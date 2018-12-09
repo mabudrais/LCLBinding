@@ -1,0 +1,36 @@
+function BooleanTointegert(b:Boolean):Integer;
+ begin
+   if b then
+   Result:=1 else
+     Result:=0;
+ end;
+function integertToBoolean(i:Integer):Boolean;
+begin
+  if i=1 then
+  Result:=True
+  else
+    Result:=False;
+end;  
+procedure Forms_Application_Initialize;cdecl;
+begin
+Application.Initialize; 
+end;
+procedure Forms_Application_Run;cdecl; 
+begin
+Application.Run; 
+end;
+function Forms_Application_CreateForm:TForm;cdecl; 
+begin
+ Application.CreateForm(TForm, Result);
+end;
+function Forms_Application_CreateFormLFM(FileName: PChar): PChar; cdecl;
+  var
+    LFM: Loadlfm;
+    F: TForm;
+  begin
+    LFM := Loadlfmunit.Loadlfm.Create;
+    Result := LFM.LoadFromText(
+      'G:\dev\temp\lclbinding2\parser\generated\python\test\lfmtest\unit1.lfm');
+   // Application.UpdateMainForm(F);
+    Lfm.Free;
+  end;     

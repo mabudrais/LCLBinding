@@ -1,0 +1,14 @@
+library lclexports;
+
+
+  {$mode objfpc}{$H+}
+
+
+uses
+Interfaces,    // Necessary to create the widgetset object
+
+  Classes,
+controls,LCLClasses,Forms,ActnList,StdCtrls,Graphics,Menus,GraphType,ImgList,ExtCtrls,Dialogs,  Buttons,
+   MaskEdit, CheckLst, Grids, PairSplitter, ColorBox,
+  ValEdit,Loadlfmunit;
+

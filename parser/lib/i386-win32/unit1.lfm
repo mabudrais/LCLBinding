@@ -1,0 +1,141 @@
+object Form1: TForm1
+  Left = 331
+  Height = 472
+  Top = 223
+  Width = 904
+  Caption = 'Form1'
+  ClientHeight = 472
+  ClientWidth = 904
+  OnCreate = FormCreate
+  LCLVersion = '1.8.2.0'
+  object ParseButton: TButton
+    Left = 480
+    Height = 48
+    Top = 40
+    Width = 216
+    Caption = 'Parse'
+    OnClick = ParseButtonClick
+    TabOrder = 0
+  end
+  object StringGrid1: TStringGrid
+    Left = 40
+    Height = 172
+    Top = 176
+    Width = 383
+    TabOrder = 1
+  end
+  object FileMemo: TMemo
+    Left = 40
+    Height = 90
+    Top = 15
+    Width = 150
+    Lines.Strings = (
+      'Forms.pp'
+    )
+    TabOrder = 2
+  end
+  object ClassMemo: TMemo
+    Left = 239
+    Height = 90
+    Top = 29
+    Width = 150
+    Lines.Strings = (
+      'TForm'
+      'TMainMenu'
+      'TPanel'
+      'TPopupMenu'
+      'TButton'
+      'TRadioButton'
+      'TCheckBox'
+      'TToggleBox'
+      'TComboBox'
+      'TEdit'
+      'TMemo'
+      'TGroupBox'
+      'TLabel'
+      'TListBox'
+      'TScrollBar'
+      'TApplicationProperties'
+      'TBevel'
+      'TBitBtn'
+      'TCheckListBox'
+      'TColorBox'
+      'TColorListBox'
+      'TControlBar'
+      'TDrawGrid'
+      'TFlowPanel'
+      'TImage'
+      'TLabeledEdit'
+      'TMaskEdit'
+      'TNotebook'
+      'TPaintBox'
+      'TPairSplitter'
+      'TPairSplitterSide'
+      'TPairSplitterSide'
+      'TScrollBox'
+      'TShape'
+      'TSpeedButton'
+      'TSplitter'
+      'TStaticText'
+      'TStringGrid'
+      'TTrayIcon'
+      'TValueListEditor'
+    )
+    TabOrder = 3
+  end
+  object Label1: TLabel
+    Left = 489
+    Height = 13
+    Top = 13
+    Width = 31
+    Caption = 'Label1'
+    ParentColor = False
+  end
+  object ErrorMemo: TMemo
+    Left = 488
+    Height = 146
+    Top = 176
+    Width = 614
+    Lines.Strings = (
+      'ErrorMemo'
+    )
+    TabOrder = 4
+  end
+  object Button1: TButton
+    Left = 480
+    Height = 41
+    Top = 105
+    Width = 216
+    Caption = 'generate binding'
+    OnClick = Button1Click
+    TabOrder = 5
+  end
+  object Button2: TButton
+    Left = 773
+    Height = 25
+    Top = 47
+    Width = 75
+    Caption = 'Button2'
+    OnClick = Button2Click
+    TabOrder = 6
+  end
+  object ClassNameMemo: TMemo
+    Left = 504
+    Height = 90
+    Top = 360
+    Width = 150
+    Lines.Strings = (
+      'ClassNameMemo'
+    )
+    TabOrder = 7
+  end
+  object ClassNamesButton: TButton
+    Left = 504
+    Height = 25
+    Top = 326
+    Width = 131
+    Caption = 'ClassNamesButton'
+    OnClick = ClassNamesButtonClick
+    TabOrder = 8
+  end
+end

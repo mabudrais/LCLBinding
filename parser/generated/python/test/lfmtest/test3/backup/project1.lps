@@ -1,0 +1,247 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CONFIG>
+  <ProjectSession>
+    <PathDelim Value="\"/>
+    <Version Value="11"/>
+    <BuildModes Active="Default"/>
+    <Units Count="8">
+      <Unit0>
+        <Filename Value="project1.lpr"/>
+        <IsPartOfProject Value="True"/>
+        <EditorIndex Value="1"/>
+        <TopLine Value="16"/>
+        <CursorPos X="27" Y="22"/>
+        <UsageCount Value="20"/>
+        <Loaded Value="True"/>
+      </Unit0>
+      <Unit1>
+        <Filename Value="unit1.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="Form1"/>
+        <ResourceBaseClass Value="Form"/>
+        <UnitName Value="Unit1"/>
+        <TopLine Value="39"/>
+        <CursorPos Y="61"/>
+        <UsageCount Value="20"/>
+        <Loaded Value="True"/>
+        <LoadedDesigner Value="True"/>
+      </Unit1>
+      <Unit2>
+        <Filename Value="C:\lazarus2\lcl\include\application.inc"/>
+        <IsVisibleTab Value="True"/>
+        <EditorIndex Value="2"/>
+        <TopLine Value="2270"/>
+        <CursorPos X="23" Y="2276"/>
+        <UsageCount Value="10"/>
+        <Loaded Value="True"/>
+      </Unit2>
+      <Unit3>
+        <Filename Value="C:\lazarus2\fpc\3.0.4\source\rtl\objpas\classes\classesh.inc"/>
+        <EditorIndex Value="6"/>
+        <TopLine Value="1069"/>
+        <CursorPos X="10" Y="1089"/>
+        <UsageCount Value="10"/>
+        <Loaded Value="True"/>
+      </Unit3>
+      <Unit4>
+        <Filename Value="C:\lazarus2\fpc\3.0.4\source\rtl\objpas\classes\compon.inc"/>
+        <EditorIndex Value="7"/>
+        <TopLine Value="458"/>
+        <CursorPos X="16" Y="461"/>
+        <UsageCount Value="10"/>
+        <Loaded Value="True"/>
+      </Unit4>
+      <Unit5>
+        <Filename Value="C:\lazarus2\lcl\forms.pp"/>
+        <UnitName Value="Forms"/>
+        <EditorIndex Value="5"/>
+        <TopLine Value="1476"/>
+        <CursorPos X="49" Y="1483"/>
+        <UsageCount Value="10"/>
+        <Loaded Value="True"/>
+      </Unit5>
+      <Unit6>
+        <Filename Value="C:\lazarus2\lcl\lresources.pp"/>
+        <UnitName Value="LResources"/>
+        <EditorIndex Value="3"/>
+        <TopLine Value="792"/>
+        <CursorPos Y="805"/>
+        <UsageCount Value="10"/>
+        <Loaded Value="True"/>
+      </Unit6>
+      <Unit7>
+        <Filename Value="C:\lazarus2\lcl\include\customform.inc"/>
+        <EditorIndex Value="4"/>
+        <TopLine Value="148"/>
+        <CursorPos Y="165"/>
+        <UsageCount Value="10"/>
+        <Loaded Value="True"/>
+      </Unit7>
+    </Units>
+    <JumpHistory Count="30" HistoryIndex="29">
+      <Position1>
+        <Filename Value="C:\lazarus2\lcl\include\customform.inc"/>
+        <Caret Line="941" TopLine="928"/>
+      </Position1>
+      <Position2>
+        <Filename Value="C:\lazarus2\lcl\include\customform.inc"/>
+        <Caret Line="946" TopLine="928"/>
+      </Position2>
+      <Position3>
+        <Filename Value="C:\lazarus2\lcl\include\customform.inc"/>
+        <Caret Line="153" TopLine="145"/>
+      </Position3>
+      <Position4>
+        <Filename Value="C:\lazarus2\lcl\include\customform.inc"/>
+        <Caret Line="154" TopLine="148"/>
+      </Position4>
+      <Position5>
+        <Filename Value="C:\lazarus2\lcl\include\customform.inc"/>
+        <Caret Line="159" TopLine="148"/>
+      </Position5>
+      <Position6>
+        <Filename Value="C:\lazarus2\lcl\include\customform.inc"/>
+        <Caret Line="160" TopLine="148"/>
+      </Position6>
+      <Position7>
+        <Filename Value="C:\lazarus2\lcl\include\customform.inc"/>
+        <Caret Line="162" TopLine="148"/>
+      </Position7>
+      <Position8>
+        <Filename Value="C:\lazarus2\lcl\include\customform.inc"/>
+        <Caret Line="165" TopLine="148"/>
+      </Position8>
+      <Position9>
+        <Filename Value="C:\lazarus2\lcl\include\application.inc"/>
+        <Caret Line="2242" TopLine="2230"/>
+      </Position9>
+      <Position10>
+        <Filename Value="C:\lazarus2\lcl\include\application.inc"/>
+        <Caret Line="2244" TopLine="2230"/>
+      </Position10>
+      <Position11>
+        <Filename Value="C:\lazarus2\lcl\include\application.inc"/>
+        <Caret Line="2251" TopLine="2246"/>
+      </Position11>
+      <Position12>
+        <Filename Value="C:\lazarus2\lcl\include\application.inc"/>
+        <Caret Line="2253" TopLine="2246"/>
+      </Position12>
+      <Position13>
+        <Filename Value="C:\lazarus2\lcl\include\application.inc"/>
+        <Caret Line="2254" TopLine="2246"/>
+      </Position13>
+      <Position14>
+        <Filename Value="C:\lazarus2\lcl\include\application.inc"/>
+        <Caret Line="2275" TopLine="2265"/>
+      </Position14>
+      <Position15>
+        <Filename Value="C:\lazarus2\lcl\include\application.inc"/>
+        <Caret Line="2276" TopLine="2265"/>
+      </Position15>
+      <Position16>
+        <Filename Value="C:\lazarus2\lcl\include\application.inc"/>
+        <Caret Line="2277" TopLine="2265"/>
+      </Position16>
+      <Position17>
+        <Filename Value="C:\lazarus2\lcl\include\application.inc"/>
+        <Caret Line="2278" TopLine="2265"/>
+      </Position17>
+      <Position18>
+        <Filename Value="C:\lazarus2\lcl\include\application.inc"/>
+        <Caret Line="2280" TopLine="2265"/>
+      </Position18>
+      <Position19>
+        <Filename Value="C:\lazarus2\lcl\include\application.inc"/>
+        <Caret Line="2281" TopLine="2265"/>
+      </Position19>
+      <Position20>
+        <Filename Value="C:\lazarus2\lcl\include\application.inc"/>
+        <Caret Line="2255" TopLine="2247"/>
+      </Position20>
+      <Position21>
+        <Filename Value="C:\lazarus2\lcl\include\application.inc"/>
+        <Caret Line="2256" TopLine="2247"/>
+      </Position21>
+      <Position22>
+        <Filename Value="C:\lazarus2\lcl\include\application.inc"/>
+        <Caret Line="2257" TopLine="2247"/>
+      </Position22>
+      <Position23>
+        <Filename Value="C:\lazarus2\lcl\include\application.inc"/>
+        <Caret Line="2271" TopLine="2259"/>
+      </Position23>
+      <Position24>
+        <Filename Value="project1.lpr"/>
+        <Caret Line="23" Column="18" TopLine="12"/>
+      </Position24>
+      <Position25>
+        <Filename Value="project1.lpr"/>
+        <Caret Line="25" TopLine="12"/>
+      </Position25>
+      <Position26>
+        <Filename Value="project1.lpr"/>
+        <Caret Line="23" Column="18" TopLine="12"/>
+      </Position26>
+      <Position27>
+        <Filename Value="C:\lazarus2\lcl\forms.pp"/>
+        <Caret Line="1849" Column="22" TopLine="1836"/>
+      </Position27>
+      <Position28>
+        <Filename Value="C:\lazarus2\lcl\forms.pp"/>
+        <Caret Line="1340" Column="29" TopLine="1559"/>
+      </Position28>
+      <Position29>
+        <Filename Value="project1.lpr"/>
+        <Caret Line="22" Column="27" TopLine="16"/>
+      </Position29>
+      <Position30>
+        <Filename Value="C:\lazarus2\lcl\include\application.inc"/>
+        <Caret Line="2271" TopLine="2259"/>
+      </Position30>
+    </JumpHistory>
+    <RunParams>
+      <FormatVersion Value="2"/>
+      <Modes Count="0" ActiveMode=""/>
+    </RunParams>
+  </ProjectSession>
+  <Debugging>
+    <BreakPoints Count="5">
+      <Item1>
+        <Kind Value="bpkSource"/>
+        <WatchScope Value="wpsLocal"/>
+        <WatchKind Value="wpkWrite"/>
+        <Source Value="project1.lpr"/>
+        <Line Value="32"/>
+      </Item1>
+      <Item2>
+        <Kind Value="bpkSource"/>
+        <WatchScope Value="wpsLocal"/>
+        <WatchKind Value="wpkWrite"/>
+        <Source Value="project1.lpr"/>
+        <Line Value="26"/>
+      </Item2>
+      <Item3>
+        <Kind Value="bpkSource"/>
+        <WatchScope Value="wpsLocal"/>
+        <WatchKind Value="wpkWrite"/>
+        <Source Value="project1.lpr"/>
+        <Line Value="19"/>
+      </Item3>
+      <Item4>
+        <Kind Value="bpkSource"/>
+        <WatchScope Value="wpsLocal"/>
+        <WatchKind Value="wpkWrite"/>
+        <Source Value="unit1.pas"/>
+        <Line Value="50"/>
+      </Item4>
+      <Item5>
+        <Kind Value="bpkSource"/>
+        <WatchScope Value="wpsLocal"/>
+        <WatchKind Value="wpkWrite"/>
+        <Source Value="C:\lazarus2\lcl\include\application.inc"/>
+        <Line Value="2241"/>
+      </Item5>
+    </BreakPoints>
+  </Debugging>
+</CONFIG>

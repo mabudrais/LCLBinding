@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CONFIG>
+  <ProjectSession>
+    <PathDelim Value="\"/>
+    <Version Value="10"/>
+    <BuildModes Active="Default"/>
+    <Units Count="4">
+      <Unit0>
+        <Filename Value="project1.lpr"/>
+        <IsPartOfProject Value="True"/>
+        <TopLine Value="39"/>
+        <CursorPos X="38" Y="51"/>
+        <UsageCount Value="22"/>
+        <Loaded Value="True"/>
+      </Unit0>
+      <Unit1>
+        <Filename Value="C:\lazarus2\lcl\lresources.pp"/>
+        <UnitName Value="LResources"/>
+        <EditorIndex Value="3"/>
+        <TopLine Value="909"/>
+        <CursorPos X="22" Y="898"/>
+        <UsageCount Value="11"/>
+        <Loaded Value="True"/>
+      </Unit1>
+      <Unit2>
+        <Filename Value="C:\lazarus\lcl\include\application.inc"/>
+        <IsVisibleTab Value="True"/>
+        <EditorIndex Value="2"/>
+        <TopLine Value="2461"/>
+        <CursorPos X="28" Y="2470"/>
+        <UsageCount Value="11"/>
+        <Loaded Value="True"/>
+      </Unit2>
+      <Unit3>
+        <Filename Value="C:\lazarus\lcl\forms.pp"/>
+        <UnitName Value="Forms"/>
+        <EditorIndex Value="1"/>
+        <TopLine Value="1346"/>
+        <CursorPos X="5" Y="1357"/>
+        <UsageCount Value="10"/>
+        <Loaded Value="True"/>
+      </Unit3>
+    </Units>
+    <JumpHistory Count="29" HistoryIndex="28">
+      <Position1>
+        <Filename Value="project1.lpr"/>
+        <Caret Line="86" Column="16" TopLine="68"/>
+      </Position1>
+      <Position2>
+        <Filename Value="project1.lpr"/>
+        <Caret Line="46" Column="20" TopLine="35"/>
+      </Position2>
+      <Position3>
+        <Filename Value="project1.lpr"/>
+        <Caret Line="48" Column="10" TopLine="35"/>
+      </Position3>
+      <Position4>
+        <Filename Value="project1.lpr"/>
+        <Caret Line="49" TopLine="35"/>
+      </Position4>
+      <Position5>
+        <Filename Value="C:\lazarus\lcl\include\application.inc"/>
+        <Caret Line="2249" TopLine="2237"/>
+      </Position5>
+      <Position6>
+        <Filename Value="C:\lazarus\lcl\include\application.inc"/>
+        <Caret Line="2250" TopLine="2237"/>
+      </Position6>
+      <Position7>
+        <Filename Value="C:\lazarus\lcl\include\application.inc"/>
+        <Caret Line="2255" TopLine="2237"/>
+      </Position7>
+      <Position8>
+        <Filename Value="project1.lpr"/>
+        <Caret Line="45" Column="18" TopLine="38"/>
+      </Position8>
+      <Position9>
+        <Filename Value="project1.lpr"/>
+        <Caret Line="47" Column="27" TopLine="38"/>
+      </Position9>
+      <Position10>
+        <Filename Value="project1.lpr"/>
+        <Caret Line="46" Column="35" TopLine="38"/>
+      </Position10>
+      <Position11>
+        <Filename Value="project1.lpr"/>
+        <Caret Line="48" TopLine="38"/>
+      </Position11>
+      <Position12>
+        <Filename Value="project1.lpr"/>
+        <Caret Line="49" TopLine="38"/>
+      </Position12>
+      <Position13>
+        <Filename Value="project1.lpr"/>
+        <Caret Line="48" Column="3" TopLine="38"/>
+      </Position13>
+      <Position14>
+        <Filename Value="project1.lpr"/>
+        <Caret Line="42" Column="33" TopLine="39"/>
+      </Position14>
+      <Position15>
+        <Filename Value="project1.lpr"/>
+        <Caret Line="49" TopLine="40"/>
+      </Position15>
+      <Position16>
+        <Filename Value="project1.lpr"/>
+        <Caret Line="48" Column="10" TopLine="42"/>
+      </Position16>
+      <Position17>
+        <Filename Value="project1.lpr"/>
+        <Caret Line="47" Column="23" TopLine="36"/>
+      </Position17>
+      <Position18>
+        <Filename Value="project1.lpr"/>
+        <Caret Line="48" TopLine="36"/>
+      </Position18>
+      <Position19>
+        <Filename Value="project1.lpr"/>
+        <Caret Line="49" TopLine="36"/>
+      </Position19>
+      <Position20>
+        <Filename Value="project1.lpr"/>
+        <Caret Line="13" Column="16"/>
+      </Position20>
+      <Position21>
+        <Filename Value="project1.lpr"/>
+        <Caret Line="51" Column="48" TopLine="39"/>
+      </Position21>
+      <Position22>
+        <Filename Value="project1.lpr"/>
+        <Caret Line="52" Column="25" TopLine="39"/>
+      </Position22>
+      <Position23>
+        <Filename Value="C:\lazarus\lcl\include\application.inc"/>
+        <Caret Line="2251" Column="20" TopLine="2238"/>
+      </Position23>
+      <Position24>
+        <Filename Value="C:\lazarus\lcl\include\application.inc"/>
+        <Caret Line="2470" Column="3" TopLine="2448"/>
+      </Position24>
+      <Position25>
+        <Filename Value="C:\lazarus\lcl\forms.pp"/>
+        <Caret Line="1455" Column="24" TopLine="1445"/>
+      </Position25>
+      <Position26>
+        <Filename Value="C:\lazarus\lcl\forms.pp"/>
+        <Caret Line="1456" Column="29" TopLine="1445"/>
+      </Position26>
+      <Position27>
+        <Filename Value="project1.lpr"/>
+        <Caret Line="51" Column="38" TopLine="39"/>
+      </Position27>
+      <Position28>
+        <Filename Value="C:\lazarus\lcl\include\application.inc"/>
+        <Caret Line="2471" Column="10" TopLine="2449"/>
+      </Position28>
+      <Position29>
+        <Filename Value="C:\lazarus\lcl\include\application.inc"/>
+        <Caret Line="2454" Column="19" TopLine="2450"/>
+      </Position29>
+    </JumpHistory>
+  </ProjectSession>
+  <Debugging>
+    <Watches Count="1">
+      <Item1>
+        <Expression Value="amf"/>
+      </Item1>
+    </Watches>
+  </Debugging>
+</CONFIG>
