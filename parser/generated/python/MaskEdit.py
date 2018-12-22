@@ -1,14 +1,44 @@
+from lclstrconsts import *
+from lclproc import *
+from lcltype import *
+from clipbrd import *
+from lmessages import *
+from StdCtrls import *
+from ExtCtrls import *
+from dialogs import *
+from Graphics import *
+from Controls import *
+from Forms import *
+from lresources import *
+from Classes import *
 from MainPasObject import *
+import LCLBindingUtil
 #import end
 #class TCustomMaskEdit start
 class TCustomMaskEdit(TCustomEdit):
 #    pointer=c_void_p()
     def __init__(self):#TCustomMaskEdit
         TCustomEdit.__init__(self)
+#Procedure MaskEdit_TCustomMaskEdit_CutToClipBoard
+    @staticmethod
+    def CutToClipBoard(self,):
+        LCLBinding.MaskEdit_TCustomMaskEdit_CutToClipBoard()
+#Procedure MaskEdit_TCustomMaskEdit_PasteFromClipBoard
+    @staticmethod
+    def PasteFromClipBoard(self,):
+        LCLBinding.MaskEdit_TCustomMaskEdit_PasteFromClipBoard()
 #constructorMaskEdit_TCustomMaskEdit_Create
     @staticmethod
     def Create(TheOwner):
         return LCLBindingUtil.GetPytonObject(LCLBinding.MaskEdit_TCustomMaskEdit_Create((TheOwner.pointer)),TCustomMaskEdit)
+#Procedure MaskEdit_TCustomMaskEdit_Clear
+    @staticmethod
+    def Clear(self,):
+        LCLBinding.MaskEdit_TCustomMaskEdit_Clear()
+#Procedure MaskEdit_TCustomMaskEdit_ValidateEdit
+    @staticmethod
+    def ValidateEdit(self,):
+        LCLBinding.MaskEdit_TCustomMaskEdit_ValidateEdit()
     def getModified(self):
         r=LCLBinding.get_MaskEdit_TCustomMaskEdit_Modified(self.pointer)
         return LCLBindingUtil.ConvertPascalBoolean(r)
@@ -87,7 +117,7 @@ class TMaskEdit(TCustomMaskEdit):
         oldobj=0
         if hasattr(self, 'OnDblClickcall'):
             FreeOldEvent=1
-            oldobj=OnDblClickPasObject
+            oldobj=self.OnDblClickPasObject
         self.OnDblClickcall=v 
         self.PasOnDblClick=FunctionForm(self._Warper_OnDblClick)
         self.OnDblClickPasObject=LCLBinding.set_MaskEdit_TMaskEdit_OnDblClick(self.pointer,self.PasOnDblClick,oldobj,FreeOldEvent)
@@ -102,7 +132,7 @@ class TMaskEdit(TCustomMaskEdit):
         oldobj=0
         if hasattr(self, 'OnDragDropcall'):
             FreeOldEvent=1
-            oldobj=OnDragDropPasObject
+            oldobj=self.OnDragDropPasObject
         self.OnDragDropcall=v 
         self.PasOnDragDrop=FunctionForm(self._Warper_OnDragDrop)
         self.OnDragDropPasObject=LCLBinding.set_MaskEdit_TMaskEdit_OnDragDrop(self.pointer,self.PasOnDragDrop,oldobj,FreeOldEvent)
@@ -117,7 +147,7 @@ class TMaskEdit(TCustomMaskEdit):
         oldobj=0
         if hasattr(self, 'OnDragOvercall'):
             FreeOldEvent=1
-            oldobj=OnDragOverPasObject
+            oldobj=self.OnDragOverPasObject
         self.OnDragOvercall=v 
         self.PasOnDragOver=FunctionForm(self._Warper_OnDragOver)
         self.OnDragOverPasObject=LCLBinding.set_MaskEdit_TMaskEdit_OnDragOver(self.pointer,self.PasOnDragOver,oldobj,FreeOldEvent)
@@ -132,7 +162,7 @@ class TMaskEdit(TCustomMaskEdit):
         oldobj=0
         if hasattr(self, 'OnEditingDonecall'):
             FreeOldEvent=1
-            oldobj=OnEditingDonePasObject
+            oldobj=self.OnEditingDonePasObject
         self.OnEditingDonecall=v 
         self.PasOnEditingDone=FunctionForm(self._Warper_OnEditingDone)
         self.OnEditingDonePasObject=LCLBinding.set_MaskEdit_TMaskEdit_OnEditingDone(self.pointer,self.PasOnEditingDone,oldobj,FreeOldEvent)
@@ -147,7 +177,7 @@ class TMaskEdit(TCustomMaskEdit):
         oldobj=0
         if hasattr(self, 'OnEndDockcall'):
             FreeOldEvent=1
-            oldobj=OnEndDockPasObject
+            oldobj=self.OnEndDockPasObject
         self.OnEndDockcall=v 
         self.PasOnEndDock=FunctionForm(self._Warper_OnEndDock)
         self.OnEndDockPasObject=LCLBinding.set_MaskEdit_TMaskEdit_OnEndDock(self.pointer,self.PasOnEndDock,oldobj,FreeOldEvent)
@@ -162,7 +192,7 @@ class TMaskEdit(TCustomMaskEdit):
         oldobj=0
         if hasattr(self, 'OnEndDragcall'):
             FreeOldEvent=1
-            oldobj=OnEndDragPasObject
+            oldobj=self.OnEndDragPasObject
         self.OnEndDragcall=v 
         self.PasOnEndDrag=FunctionForm(self._Warper_OnEndDrag)
         self.OnEndDragPasObject=LCLBinding.set_MaskEdit_TMaskEdit_OnEndDrag(self.pointer,self.PasOnEndDrag,oldobj,FreeOldEvent)
@@ -177,7 +207,7 @@ class TMaskEdit(TCustomMaskEdit):
         oldobj=0
         if hasattr(self, 'OnMouseDowncall'):
             FreeOldEvent=1
-            oldobj=OnMouseDownPasObject
+            oldobj=self.OnMouseDownPasObject
         self.OnMouseDowncall=v 
         self.PasOnMouseDown=FunctionForm(self._Warper_OnMouseDown)
         self.OnMouseDownPasObject=LCLBinding.set_MaskEdit_TMaskEdit_OnMouseDown(self.pointer,self.PasOnMouseDown,oldobj,FreeOldEvent)
@@ -192,7 +222,7 @@ class TMaskEdit(TCustomMaskEdit):
         oldobj=0
         if hasattr(self, 'OnMouseEntercall'):
             FreeOldEvent=1
-            oldobj=OnMouseEnterPasObject
+            oldobj=self.OnMouseEnterPasObject
         self.OnMouseEntercall=v 
         self.PasOnMouseEnter=FunctionForm(self._Warper_OnMouseEnter)
         self.OnMouseEnterPasObject=LCLBinding.set_MaskEdit_TMaskEdit_OnMouseEnter(self.pointer,self.PasOnMouseEnter,oldobj,FreeOldEvent)
@@ -207,7 +237,7 @@ class TMaskEdit(TCustomMaskEdit):
         oldobj=0
         if hasattr(self, 'OnMouseLeavecall'):
             FreeOldEvent=1
-            oldobj=OnMouseLeavePasObject
+            oldobj=self.OnMouseLeavePasObject
         self.OnMouseLeavecall=v 
         self.PasOnMouseLeave=FunctionForm(self._Warper_OnMouseLeave)
         self.OnMouseLeavePasObject=LCLBinding.set_MaskEdit_TMaskEdit_OnMouseLeave(self.pointer,self.PasOnMouseLeave,oldobj,FreeOldEvent)
@@ -222,7 +252,7 @@ class TMaskEdit(TCustomMaskEdit):
         oldobj=0
         if hasattr(self, 'OnMouseMovecall'):
             FreeOldEvent=1
-            oldobj=OnMouseMovePasObject
+            oldobj=self.OnMouseMovePasObject
         self.OnMouseMovecall=v 
         self.PasOnMouseMove=FunctionForm(self._Warper_OnMouseMove)
         self.OnMouseMovePasObject=LCLBinding.set_MaskEdit_TMaskEdit_OnMouseMove(self.pointer,self.PasOnMouseMove,oldobj,FreeOldEvent)
@@ -237,7 +267,7 @@ class TMaskEdit(TCustomMaskEdit):
         oldobj=0
         if hasattr(self, 'OnMouseUpcall'):
             FreeOldEvent=1
-            oldobj=OnMouseUpPasObject
+            oldobj=self.OnMouseUpPasObject
         self.OnMouseUpcall=v 
         self.PasOnMouseUp=FunctionForm(self._Warper_OnMouseUp)
         self.OnMouseUpPasObject=LCLBinding.set_MaskEdit_TMaskEdit_OnMouseUp(self.pointer,self.PasOnMouseUp,oldobj,FreeOldEvent)
@@ -252,7 +282,7 @@ class TMaskEdit(TCustomMaskEdit):
         oldobj=0
         if hasattr(self, 'OnStartDockcall'):
             FreeOldEvent=1
-            oldobj=OnStartDockPasObject
+            oldobj=self.OnStartDockPasObject
         self.OnStartDockcall=v 
         self.PasOnStartDock=FunctionForm(self._Warper_OnStartDock)
         self.OnStartDockPasObject=LCLBinding.set_MaskEdit_TMaskEdit_OnStartDock(self.pointer,self.PasOnStartDock,oldobj,FreeOldEvent)
@@ -267,7 +297,7 @@ class TMaskEdit(TCustomMaskEdit):
         oldobj=0
         if hasattr(self, 'OnStartDragcall'):
             FreeOldEvent=1
-            oldobj=OnStartDragPasObject
+            oldobj=self.OnStartDragPasObject
         self.OnStartDragcall=v 
         self.PasOnStartDrag=FunctionForm(self._Warper_OnStartDrag)
         self.OnStartDragPasObject=LCLBinding.set_MaskEdit_TMaskEdit_OnStartDrag(self.pointer,self.PasOnStartDrag,oldobj,FreeOldEvent)

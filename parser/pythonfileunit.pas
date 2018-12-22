@@ -19,7 +19,7 @@ type
     procedure AddClass(CL: TParsedClass); override;
     procedure AddFunction(fun: TparsedFunction); override;
     procedure AddConstructor(co: TparsedConstructor); override;
-    procedure AddProcedure(pro: Pointer); override;
+    procedure AddProcedure(fun: TparsedFunction); override;
     procedure AddProperty(prop: TParsedProperty); override;
     procedure AddUses(U: TparsedUses); override;
     procedure save(saveFolder: string); override;
@@ -32,6 +32,8 @@ type
     function PasTOPythonConvert(V, T: string; o: TParsedObject = nil): string;
     function PasToCtypeConvert(V, T: string; o: TParsedObject = nil): string;
     procedure ClassReordering;
+    function ReturnTypeCorection(rtype, PFN: string; s: boolean;
+      Rtypeo: TObject): string;
   end;
 
 implementation
@@ -45,6 +47,7 @@ begin
   inherited;
   FileExt := '.py';
   C.Add('from MainPasObject import *');
+  C.Add('import LCLBindingUtil');
   C.Add(('#import end'));
 end;
 
@@ -137,6 +140,8 @@ begin
     Exit;
   end;
   P := pas as TpascalBindingFile;
+  if not CheckPara(proc.paramaterList) then
+    exit;
   p.AddExportFunction(co);
   PFN := proc.FileName + '_' + proc.memberof + '_' + proc.TParsedObjectName;
   para := '';
@@ -161,9 +166,55 @@ begin
   inherited AddFunction(fun);
 end;
 
-procedure TpythonFile.AddProcedure(pro: Pointer);
+procedure TpythonFile.AddProcedure(fun: TparsedFunction);
+var
+  CEI, k: integer;
+  PFN, para, callcomma, paracall, paraComma, r: string;
+  P: TpascalBindingFile;
+  proc: TParsedProcedureType;
+  Cp, rt: TparsedParameter;
 begin
-  inherited AddProcedure(pro);
+  proc := fun.pro;
+  if proc.TParsedObjectName='Show'then
+  WriteLn('nn');
+  CEI := C.IndexOf('#class ' + proc.memberof + ' end');
+  if CEI < 0 then
+  begin
+    WriteLn('failed to find python class' + proc.memberof);
+    Exit;
+  end;
+  P := pas as TpascalBindingFile;
+  if not CheckPara(proc.paramaterList) then
+    exit;
+  if proc.hasResult then
+  begin
+    if not CheckPara(proc.resultType) then
+      Exit;
+    r := 'r=(';
+  end;
+  p.AddExportFunction(fun);
+  PFN := proc.FileName + '_' + proc.memberof + '_' + proc.TParsedObjectName;
+  para := 'self,';
+  for k := 0 to proc.paramaterList.Count - 1 do
+  begin
+    Cp := proc.paramaterList[k] as TparsedParameter;
+    Para := para + paraComma + cp.parameterName;
+    paracall := paracall + callcomma + '(' + PythonToPasConvert(
+      cp.parameterName, cp.parameterType) + ')';
+    callcomma := ',';
+    paraComma := ',';
+  end;
+  C.Insert(CEI, '#Procedure ' + PFN);
+  c.Insert(CEI + 1, space(1) + '@staticmethod');
+  C.Insert(CEI + 2, space(1) + 'def ' + proc.TParsedObjectName + '(' + para + '):');
+  C.Insert(CEI + 3, space(2) + r + 'LCLBinding.' + PFN + '(' +
+    paracall + ')' );
+  if proc.hasResult then
+  begin
+    rt := proc.resultType;
+    C.Insert(CEI + 4, ReturnTypeCorection(rt.parameterType, PFN,
+      rt.isSimpleType, rt.parameterTypeO));
+  end;
 end;
 
 procedure TpythonFile.AddEventProperty(prop, Link: TParsedProperty);
@@ -180,6 +231,8 @@ begin
   if link.Isindexed then
     Exit;
   PT := Link.proptype as TParsedProcedureType;
+  if not CheckPara(PT.paramaterList) then
+    exit;
   Para := '';
   CtypePara := 'c_void_p';
   for k := 0 to PT.paramaterList.Count - 1 do
@@ -203,7 +256,7 @@ begin
   C.Insert(CEI + 6, space(2) + 'if hasattr(self, ''' + Link.TParsedObjectName +
     'call''):');
   C.Insert(CEI + 7, space(3) + 'FreeOldEvent=1');
-  C.Insert(CEI + 8, space(3) + 'oldobj=' + Link.TParsedObjectName + 'PasObject');
+  C.Insert(CEI + 8, space(3) + 'oldobj=self.' + Link.TParsedObjectName + 'PasObject');
   C.Insert(CEI + 9, space(2) + 'self.' + Link.TParsedObjectName + 'call=v ');
   C.Insert(CEI + 10, space(2) + 'self.Pas' + Link.TParsedObjectName +
     '=FunctionForm(self._Warper_' + Link.TParsedObjectName + ')');
@@ -228,19 +281,21 @@ var
 begin
   P := pas as TpascalBindingFile;
   link := prop.GetLinkedProperty();
-  if link.TParsedObjectName = 'Cells' then
-    WriteLn('');
+  // if link.TParsedObjectName = 'Cells' then
+  // WriteLn('');
   //if prop.TParsedObjectName = 'OnMouseMove' then
   // WriteLn('lll');
   if (Link.proptype = nil) and (not Link.isSimple) and (not Link.isDefaultType) then
     Exit;
+  if not CheckPara(link.paramaterList) then
+    exit;
   PrivateStr := '_';
   Indexpara := '';
   if link.Isindexed then   //only integer index are supported
   begin
     PrivateStr := '';
     for k := 0 to link.paramaterList.Count - 1 do
-      Indexpara := Indexpara +',' + TparsedParameter(link.paramaterList[k]).parameterName;
+      Indexpara := Indexpara + ',' + TparsedParameter(link.paramaterList[k]).parameterName;
     //Exit;
   end;
   if not Link.IsReadable then
@@ -265,18 +320,8 @@ begin
       '(self' + Indexpara + '):');
     C.Insert(CEI + 1, space(2) + 'r=LCLBinding.get_' + PFN +
       '(self.pointer' + Indexpara + ')');
-    if (CompareText(link.TParsedObjectType, 'String') = 0) or
-      (CompareText(link.TParsedObjectType, 'TCaption') = 0) then
-      ReturnTypeDec.c.Add('LCLBinding.get_' + PFN + '.restype=c_char_p');
-    if Link.isSimple then
-      C.Insert(CEI + 2, space(2) + 'return LCLBindingUtil.ConvertPascal' +
-        Link.TParsedObjectType + '(r)')
-    else if (Link.proptype <> nil) and ((Link.proptype is TParsedEnum) or
-      (Link.proptype is TParsedSet)) then
-      C.Insert(CEI + 2, space(2) + 'return r')
-    else
-      C.Insert(CEI + 2, space(2) + 'return LCLBindingUtil.GetPytonObject(r,' +
-        Link.TParsedObjectType + ')');
+    c.Insert(CEI + 2, ReturnTypeCorection(link.TParsedObjectType,
+      PFN, link.isSimple, link.proptype));
   end;
   CEI := C.IndexOf('#class ' + prop.memberof + ' end');
   if Link.IsWritable then
@@ -299,8 +344,12 @@ begin
 end;
 
 procedure TpythonFile.AddUses(Name: string);
+var
+  temp: String;
+  index: Integer;
 begin
-  inherited AddUses(Name);
+  index := C.IndexOf('#import end');
+  c.Insert(0,'from '+Name+' import *');
 end;
 
 procedure TpythonFile.AddUses(U: TparsedUses);
@@ -370,8 +419,12 @@ begin
 end;
 
 procedure TpythonFile.save(saveFolder: string);
+var
+  temp: String;
 begin
+  temp:=c[0];
   ClassReordering;
+  temp:=c[0];
   inherited save(saveFolder);
 end;
 
@@ -398,6 +451,19 @@ begin
   end;
   Self.InsertAfter(index + 1, space(1) + 'dic={' + dic + '}');
   self.InsertAfter(index + 2, space(1) + 'return CreateSetFormint(i,dic)');
+end;
+
+function TpythonFile.ReturnTypeCorection(rtype, PFN: string; s: boolean;
+  Rtypeo: TObject): string;
+begin
+  if (CompareText(Rtype, 'String') = 0) or (CompareText(Rtype, 'TCaption') = 0) then
+    ReturnTypeDec.c.Add('LCLBinding.get_' + PFN + '.restype=c_char_p');
+  if s then
+    Result := (space(2) + 'return LCLBindingUtil.ConvertPascal' + rtype + '(r)')
+  else if (Rtypeo <> nil) and ((Rtypeo is TParsedEnum) or (Rtypeo is TParsedSet)) then
+    Result := (space(2) + 'return r')
+  else
+    Result := (space(2) + 'return LCLBindingUtil.GetPytonObject(r,' + Rtype + ')');
 end;
 
 end.

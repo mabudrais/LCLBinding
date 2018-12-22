@@ -1,8 +1,16 @@
+from Menus import *
+from Forms import *
+from Controls import *
+from ActnList import *
+from Graphics import *
+from lresources import *
+from lmessages import *
+from lclproc import *
+from lcltype import *
+from lclstrconsts import *
+from Classes import *
 from MainPasObject import *
-from controls import *
-from LCLClasses import *
-from Forms import*
-from LCLBindingUtil import *
+import LCLBindingUtil 
 #import end
 def CreateTListBoxOptionsFromInt(i):
     dic={1:"lboDrawFocusRect"}
@@ -10,6 +18,236 @@ def CreateTListBoxOptionsFromInt(i):
 def CreateTComboBoxAutoCompleteTextFromInt(i):
     dic={1:"cbactEnabled",2:"cbactEndOfLineComplete",4:"cbactRetainPrefixCase",8:"cbactSearchCaseSensitive",16:"cbactSearchAscending"}
     return CreateSetFormint(i,dic)
+#class TCustomStaticText start
+class TCustomStaticText(TWinControl):
+#    pointer=c_void_p()
+    def __init__(self):#TCustomStaticText
+        TWinControl.__init__(self)
+#constructorStdCtrls_TCustomStaticText_Create
+    @staticmethod
+    def Create(AOwner):
+        return LCLBindingUtil.GetPytonObject(LCLBinding.StdCtrls_TCustomStaticText_Create((AOwner.pointer)),TCustomStaticText)
+    def getAlignment(self):
+        r=LCLBinding.get_StdCtrls_TCustomStaticText_Alignment(self.pointer)
+        return r
+    def setAlignment(self,v):
+        LCLBinding.set_StdCtrls_TCustomStaticText_Alignment(self.pointer,v.pointer)
+    Alignment=property(getAlignment,setAlignment)
+    def getBorderStyle(self):
+        r=LCLBinding.get_StdCtrls_TCustomStaticText_BorderStyle(self.pointer)
+        return r
+    def setBorderStyle(self,v):
+        LCLBinding.set_StdCtrls_TCustomStaticText_BorderStyle(self.pointer,v.pointer)
+    BorderStyle=property(getBorderStyle,setBorderStyle)
+    def getFocusControl(self):
+        r=LCLBinding.get_StdCtrls_TCustomStaticText_FocusControl(self.pointer)
+        return LCLBindingUtil.GetPytonObject(r,TWinControl)
+    def setFocusControl(self,v):
+        LCLBinding.set_StdCtrls_TCustomStaticText_FocusControl(self.pointer,v.pointer)
+    FocusControl=property(getFocusControl,setFocusControl)
+    def getShowAccelChar(self):
+        r=LCLBinding.get_StdCtrls_TCustomStaticText_ShowAccelChar(self.pointer)
+        return LCLBindingUtil.ConvertPascalBoolean(r)
+    def setShowAccelChar(self,v):
+        LCLBinding.set_StdCtrls_TCustomStaticText_ShowAccelChar(self.pointer,v)
+    ShowAccelChar=property(getShowAccelChar,setShowAccelChar)
+    def getTransparent(self):
+        r=LCLBinding.get_StdCtrls_TCustomStaticText_Transparent(self.pointer)
+        return LCLBindingUtil.ConvertPascalBoolean(r)
+    def setTransparent(self,v):
+        LCLBinding.set_StdCtrls_TCustomStaticText_Transparent(self.pointer,v)
+    Transparent=property(getTransparent,setTransparent)
+#class TCustomStaticText end
+#class TStaticText start
+class TStaticText(TCustomStaticText):
+#    pointer=c_void_p()
+    def __init__(self):#TStaticText
+        TCustomStaticText.__init__(self)
+    def getDragKind(self):
+        r=LCLBinding.get_StdCtrls_TStaticText_DragKind(self.pointer)
+        return r
+    def setDragKind(self,v):
+        LCLBinding.set_StdCtrls_TStaticText_DragKind(self.pointer,v.pointer)
+    DragKind=property(getDragKind,setDragKind)
+    def getDragMode(self):
+        r=LCLBinding.get_StdCtrls_TStaticText_DragMode(self.pointer)
+        return r
+    def setDragMode(self,v):
+        LCLBinding.set_StdCtrls_TStaticText_DragMode(self.pointer,v.pointer)
+    DragMode=property(getDragMode,setDragMode)
+    def _Warper_OnDblClick(self,Sender):
+        self.OnDblClickcall(LCLBindingUtil.GetPytonObject(Sender,TObject))
+    def setOnDblClick(self,v):
+        FunctionForm= CFUNCTYPE(c_void_p,c_void_p)
+        FreeOldEvent=0
+        oldobj=0
+        if hasattr(self, 'OnDblClickcall'):
+            FreeOldEvent=1
+            oldobj=OnDblClickPasObject
+        self.OnDblClickcall=v 
+        self.PasOnDblClick=FunctionForm(self._Warper_OnDblClick)
+        self.OnDblClickPasObject=LCLBinding.set_StdCtrls_TStaticText_OnDblClick(self.pointer,self.PasOnDblClick,oldobj,FreeOldEvent)
+    def getOnDblClick(self):
+        return OnDblClickcall
+    OnDblClick=property(getOnDblClick,setOnDblClick)
+    def _Warper_OnDragDrop(self,Sender,Source,X,Y):
+        self.OnDragDropcall(LCLBindingUtil.GetPytonObject(Sender,TObject),LCLBindingUtil.GetPytonObject(Source,TObject),X,Y)
+    def setOnDragDrop(self,v):
+        FunctionForm= CFUNCTYPE(c_void_p,c_void_p,c_void_p,c_int,c_int)
+        FreeOldEvent=0
+        oldobj=0
+        if hasattr(self, 'OnDragDropcall'):
+            FreeOldEvent=1
+            oldobj=OnDragDropPasObject
+        self.OnDragDropcall=v 
+        self.PasOnDragDrop=FunctionForm(self._Warper_OnDragDrop)
+        self.OnDragDropPasObject=LCLBinding.set_StdCtrls_TStaticText_OnDragDrop(self.pointer,self.PasOnDragDrop,oldobj,FreeOldEvent)
+    def getOnDragDrop(self):
+        return OnDragDropcall
+    OnDragDrop=property(getOnDragDrop,setOnDragDrop)
+    def _Warper_OnDragOver(self,Sender,Source,X,Y,State,Accept):
+        self.OnDragOvercall(LCLBindingUtil.GetPytonObject(Sender,TObject),LCLBindingUtil.GetPytonObject(Source,TObject),X,Y,State,LCLBindingUtil.IntToBoolean(Accept))
+    def setOnDragOver(self,v):
+        FunctionForm= CFUNCTYPE(c_void_p,c_void_p,c_void_p,c_int,c_int,c_int,c_int)
+        FreeOldEvent=0
+        oldobj=0
+        if hasattr(self, 'OnDragOvercall'):
+            FreeOldEvent=1
+            oldobj=OnDragOverPasObject
+        self.OnDragOvercall=v 
+        self.PasOnDragOver=FunctionForm(self._Warper_OnDragOver)
+        self.OnDragOverPasObject=LCLBinding.set_StdCtrls_TStaticText_OnDragOver(self.pointer,self.PasOnDragOver,oldobj,FreeOldEvent)
+    def getOnDragOver(self):
+        return OnDragOvercall
+    OnDragOver=property(getOnDragOver,setOnDragOver)
+    def _Warper_OnEndDrag(self,Sender,Target,X,Y):
+        self.OnEndDragcall(LCLBindingUtil.GetPytonObject(Sender,TObject),LCLBindingUtil.GetPytonObject(Target,TObject),X,Y)
+    def setOnEndDrag(self,v):
+        FunctionForm= CFUNCTYPE(c_void_p,c_void_p,c_void_p,c_int,c_int)
+        FreeOldEvent=0
+        oldobj=0
+        if hasattr(self, 'OnEndDragcall'):
+            FreeOldEvent=1
+            oldobj=OnEndDragPasObject
+        self.OnEndDragcall=v 
+        self.PasOnEndDrag=FunctionForm(self._Warper_OnEndDrag)
+        self.OnEndDragPasObject=LCLBinding.set_StdCtrls_TStaticText_OnEndDrag(self.pointer,self.PasOnEndDrag,oldobj,FreeOldEvent)
+    def getOnEndDrag(self):
+        return OnEndDragcall
+    OnEndDrag=property(getOnEndDrag,setOnEndDrag)
+    def _Warper_OnMouseDown(self,Sender,Button,Shift,X,Y):
+        self.OnMouseDowncall(LCLBindingUtil.GetPytonObject(Sender,TObject),Button,Shift,X,Y)
+    def setOnMouseDown(self,v):
+        FunctionForm= CFUNCTYPE(c_void_p,c_void_p,c_int,c_int,c_int,c_int)
+        FreeOldEvent=0
+        oldobj=0
+        if hasattr(self, 'OnMouseDowncall'):
+            FreeOldEvent=1
+            oldobj=OnMouseDownPasObject
+        self.OnMouseDowncall=v 
+        self.PasOnMouseDown=FunctionForm(self._Warper_OnMouseDown)
+        self.OnMouseDownPasObject=LCLBinding.set_StdCtrls_TStaticText_OnMouseDown(self.pointer,self.PasOnMouseDown,oldobj,FreeOldEvent)
+    def getOnMouseDown(self):
+        return OnMouseDowncall
+    OnMouseDown=property(getOnMouseDown,setOnMouseDown)
+    def _Warper_OnMouseEnter(self,Sender):
+        self.OnMouseEntercall(LCLBindingUtil.GetPytonObject(Sender,TObject))
+    def setOnMouseEnter(self,v):
+        FunctionForm= CFUNCTYPE(c_void_p,c_void_p)
+        FreeOldEvent=0
+        oldobj=0
+        if hasattr(self, 'OnMouseEntercall'):
+            FreeOldEvent=1
+            oldobj=OnMouseEnterPasObject
+        self.OnMouseEntercall=v 
+        self.PasOnMouseEnter=FunctionForm(self._Warper_OnMouseEnter)
+        self.OnMouseEnterPasObject=LCLBinding.set_StdCtrls_TStaticText_OnMouseEnter(self.pointer,self.PasOnMouseEnter,oldobj,FreeOldEvent)
+    def getOnMouseEnter(self):
+        return OnMouseEntercall
+    OnMouseEnter=property(getOnMouseEnter,setOnMouseEnter)
+    def _Warper_OnMouseLeave(self,Sender):
+        self.OnMouseLeavecall(LCLBindingUtil.GetPytonObject(Sender,TObject))
+    def setOnMouseLeave(self,v):
+        FunctionForm= CFUNCTYPE(c_void_p,c_void_p)
+        FreeOldEvent=0
+        oldobj=0
+        if hasattr(self, 'OnMouseLeavecall'):
+            FreeOldEvent=1
+            oldobj=OnMouseLeavePasObject
+        self.OnMouseLeavecall=v 
+        self.PasOnMouseLeave=FunctionForm(self._Warper_OnMouseLeave)
+        self.OnMouseLeavePasObject=LCLBinding.set_StdCtrls_TStaticText_OnMouseLeave(self.pointer,self.PasOnMouseLeave,oldobj,FreeOldEvent)
+    def getOnMouseLeave(self):
+        return OnMouseLeavecall
+    OnMouseLeave=property(getOnMouseLeave,setOnMouseLeave)
+    def _Warper_OnMouseMove(self,Sender,Shift,X,Y):
+        self.OnMouseMovecall(LCLBindingUtil.GetPytonObject(Sender,TObject),Shift,X,Y)
+    def setOnMouseMove(self,v):
+        FunctionForm= CFUNCTYPE(c_void_p,c_void_p,c_int,c_int,c_int)
+        FreeOldEvent=0
+        oldobj=0
+        if hasattr(self, 'OnMouseMovecall'):
+            FreeOldEvent=1
+            oldobj=OnMouseMovePasObject
+        self.OnMouseMovecall=v 
+        self.PasOnMouseMove=FunctionForm(self._Warper_OnMouseMove)
+        self.OnMouseMovePasObject=LCLBinding.set_StdCtrls_TStaticText_OnMouseMove(self.pointer,self.PasOnMouseMove,oldobj,FreeOldEvent)
+    def getOnMouseMove(self):
+        return OnMouseMovecall
+    OnMouseMove=property(getOnMouseMove,setOnMouseMove)
+    def _Warper_OnMouseUp(self,Sender,Button,Shift,X,Y):
+        self.OnMouseUpcall(LCLBindingUtil.GetPytonObject(Sender,TObject),Button,Shift,X,Y)
+    def setOnMouseUp(self,v):
+        FunctionForm= CFUNCTYPE(c_void_p,c_void_p,c_int,c_int,c_int,c_int)
+        FreeOldEvent=0
+        oldobj=0
+        if hasattr(self, 'OnMouseUpcall'):
+            FreeOldEvent=1
+            oldobj=OnMouseUpPasObject
+        self.OnMouseUpcall=v 
+        self.PasOnMouseUp=FunctionForm(self._Warper_OnMouseUp)
+        self.OnMouseUpPasObject=LCLBinding.set_StdCtrls_TStaticText_OnMouseUp(self.pointer,self.PasOnMouseUp,oldobj,FreeOldEvent)
+    def getOnMouseUp(self):
+        return OnMouseUpcall
+    OnMouseUp=property(getOnMouseUp,setOnMouseUp)
+    def _Warper_OnStartDrag(self,Sender,DragObject):
+        self.OnStartDragcall(LCLBindingUtil.GetPytonObject(Sender,TObject),LCLBindingUtil.GetPytonObject(DragObject,TDragObject))
+    def setOnStartDrag(self,v):
+        FunctionForm= CFUNCTYPE(c_void_p,c_void_p,c_void_p)
+        FreeOldEvent=0
+        oldobj=0
+        if hasattr(self, 'OnStartDragcall'):
+            FreeOldEvent=1
+            oldobj=OnStartDragPasObject
+        self.OnStartDragcall=v 
+        self.PasOnStartDrag=FunctionForm(self._Warper_OnStartDrag)
+        self.OnStartDragPasObject=LCLBinding.set_StdCtrls_TStaticText_OnStartDrag(self.pointer,self.PasOnStartDrag,oldobj,FreeOldEvent)
+    def getOnStartDrag(self):
+        return OnStartDragcall
+    OnStartDrag=property(getOnStartDrag,setOnStartDrag)
+    def getParentFont(self):
+        r=LCLBinding.get_StdCtrls_TStaticText_ParentFont(self.pointer)
+        return LCLBindingUtil.ConvertPascalBoolean(r)
+    def setParentFont(self,v):
+        LCLBinding.set_StdCtrls_TStaticText_ParentFont(self.pointer,v)
+    ParentFont=property(getParentFont,setParentFont)
+    def getParentColor(self):
+        r=LCLBinding.get_StdCtrls_TStaticText_ParentColor(self.pointer)
+        return LCLBindingUtil.ConvertPascalBoolean(r)
+    def setParentColor(self,v):
+        LCLBinding.set_StdCtrls_TStaticText_ParentColor(self.pointer,v)
+    ParentColor=property(getParentColor,setParentColor)
+    def getParentShowHint(self):
+        r=LCLBinding.get_StdCtrls_TStaticText_ParentShowHint(self.pointer)
+        return LCLBindingUtil.ConvertPascalBoolean(r)
+    def setParentShowHint(self,v):
+        LCLBinding.set_StdCtrls_TStaticText_ParentShowHint(self.pointer,v)
+    ParentShowHint=property(getParentShowHint,setParentShowHint)
+#constructorStdCtrls_TStaticText_Create
+    @staticmethod
+    def Create(AOwner):
+        return LCLBindingUtil.GetPytonObject(LCLBinding.StdCtrls_TStaticText_Create((AOwner.pointer)),TStaticText)
+#class TStaticText end
 #class TCustomScrollBar start
 class TCustomScrollBar(TWinControl):
 #    pointer=c_void_p()
@@ -177,6 +415,42 @@ class TCustomListBox(TWinControl):
     @staticmethod
     def Create(TheOwner):
         return LCLBindingUtil.GetPytonObject(LCLBinding.StdCtrls_TCustomListBox_Create((TheOwner.pointer)),TCustomListBox)
+#Procedure StdCtrls_TCustomListBox_AddItem
+    @staticmethod
+    def AddItem(self,Item,AnObject):
+        LCLBinding.StdCtrls_TCustomListBox_AddItem((Item),(AnObject.pointer))
+#Procedure StdCtrls_TCustomListBox_Click
+    @staticmethod
+    def Click(self,):
+        LCLBinding.StdCtrls_TCustomListBox_Click()
+#Procedure StdCtrls_TCustomListBox_Clear
+    @staticmethod
+    def Clear(self,):
+        LCLBinding.StdCtrls_TCustomListBox_Clear()
+#Procedure StdCtrls_TCustomListBox_ClearSelection
+    @staticmethod
+    def ClearSelection(self,):
+        LCLBinding.StdCtrls_TCustomListBox_ClearSelection()
+#Procedure StdCtrls_TCustomListBox_LockSelectionChange
+    @staticmethod
+    def LockSelectionChange(self,):
+        LCLBinding.StdCtrls_TCustomListBox_LockSelectionChange()
+#Procedure StdCtrls_TCustomListBox_MakeCurrentVisible
+    @staticmethod
+    def MakeCurrentVisible(self,):
+        LCLBinding.StdCtrls_TCustomListBox_MakeCurrentVisible()
+#Procedure StdCtrls_TCustomListBox_SelectAll
+    @staticmethod
+    def SelectAll(self,):
+        LCLBinding.StdCtrls_TCustomListBox_SelectAll()
+#Procedure StdCtrls_TCustomListBox_DeleteSelected
+    @staticmethod
+    def DeleteSelected(self,):
+        LCLBinding.StdCtrls_TCustomListBox_DeleteSelected()
+#Procedure StdCtrls_TCustomListBox_UnlockSelectionChange
+    @staticmethod
+    def UnlockSelectionChange(self,):
+        LCLBinding.StdCtrls_TCustomListBox_UnlockSelectionChange()
     def getCanvas(self):
         r=LCLBinding.get_StdCtrls_TCustomListBox_Canvas(self.pointer)
         return LCLBindingUtil.GetPytonObject(r,TCanvas)
@@ -387,6 +661,11 @@ class TCustomListBox(TWinControl):
         r=LCLBinding.get_StdCtrls_TCustomListBox_SelCount(self.pointer)
         return LCLBindingUtil.ConvertPascalInteger(r)
     SelCount=property(getSelCount)
+    def getSelected(self,Index):
+        r=LCLBinding.get_StdCtrls_TCustomListBox_Selected(self.pointer,Index)
+        return LCLBindingUtil.ConvertPascalBoolean(r)
+    def setSelected(self,Index,v):
+        LCLBinding.set_StdCtrls_TCustomListBox_Selected(self.pointer,Index,v)
     def getSorted(self):
         r=LCLBinding.get_StdCtrls_TCustomListBox_Sorted(self.pointer)
         return LCLBindingUtil.ConvertPascalBoolean(r)
@@ -497,6 +776,14 @@ class TCustomLabel(TGraphicControl):
     @staticmethod
     def Create(TheOwner):
         return LCLBindingUtil.GetPytonObject(LCLBinding.StdCtrls_TCustomLabel_Create((TheOwner.pointer)),TCustomLabel)
+#Procedure StdCtrls_TCustomLabel_Paint
+    @staticmethod
+    def Paint(self,):
+        LCLBinding.StdCtrls_TCustomLabel_Paint()
+#Procedure StdCtrls_TCustomLabel_SetBounds
+    @staticmethod
+    def SetBounds(self,aLeft,aTop,aWidth,aHeight):
+        LCLBinding.StdCtrls_TCustomLabel_SetBounds((aLeft),(aTop),(aWidth),(aHeight))
 #class TCustomLabel end
 #class TLabel start
 class TLabel(TCustomLabel):
@@ -979,6 +1266,34 @@ class TCustomEdit(TWinControl):
     @staticmethod
     def Create(AOwner):
         return LCLBindingUtil.GetPytonObject(LCLBinding.StdCtrls_TCustomEdit_Create((AOwner.pointer)),TCustomEdit)
+#Procedure StdCtrls_TCustomEdit_Clear
+    @staticmethod
+    def Clear(self,):
+        LCLBinding.StdCtrls_TCustomEdit_Clear()
+#Procedure StdCtrls_TCustomEdit_SelectAll
+    @staticmethod
+    def SelectAll(self,):
+        LCLBinding.StdCtrls_TCustomEdit_SelectAll()
+#Procedure StdCtrls_TCustomEdit_ClearSelection
+    @staticmethod
+    def ClearSelection(self,):
+        LCLBinding.StdCtrls_TCustomEdit_ClearSelection()
+#Procedure StdCtrls_TCustomEdit_CopyToClipboard
+    @staticmethod
+    def CopyToClipboard(self,):
+        LCLBinding.StdCtrls_TCustomEdit_CopyToClipboard()
+#Procedure StdCtrls_TCustomEdit_CutToClipboard
+    @staticmethod
+    def CutToClipboard(self,):
+        LCLBinding.StdCtrls_TCustomEdit_CutToClipboard()
+#Procedure StdCtrls_TCustomEdit_PasteFromClipboard
+    @staticmethod
+    def PasteFromClipboard(self,):
+        LCLBinding.StdCtrls_TCustomEdit_PasteFromClipboard()
+#Procedure StdCtrls_TCustomEdit_Undo
+    @staticmethod
+    def Undo(self,):
+        LCLBinding.StdCtrls_TCustomEdit_Undo()
     def getAlignment(self):
         r=LCLBinding.get_StdCtrls_TCustomEdit_Alignment(self.pointer)
         return r
@@ -1058,6 +1373,12 @@ class TCustomEdit(TWinControl):
     def setSelStart(self,v):
         LCLBinding.set_StdCtrls_TCustomEdit_SelStart(self.pointer,v)
     SelStart=property(getSelStart,setSelStart)
+    def getSelText(self):
+        r=LCLBinding.get_StdCtrls_TCustomEdit_SelText(self.pointer)
+        return LCLBindingUtil.ConvertPascalstring(r)
+    def setSelText(self,v):
+        LCLBinding.set_StdCtrls_TCustomEdit_SelText(self.pointer,v)
+    SelText=property(getSelText,setSelText)
     def getText(self):
         r=LCLBinding.get_StdCtrls_TCustomEdit_Text(self.pointer)
         return LCLBindingUtil.ConvertPascalTCaption(r)
@@ -1080,6 +1401,14 @@ class TCustomMemo(TCustomEdit):
     @staticmethod
     def Create(AOwner):
         return LCLBindingUtil.GetPytonObject(LCLBinding.StdCtrls_TCustomMemo_Create((AOwner.pointer)),TCustomMemo)
+#Procedure StdCtrls_TCustomMemo_Append
+    @staticmethod
+    def Append(self,Value):
+        LCLBinding.StdCtrls_TCustomMemo_Append((Value))
+#Procedure StdCtrls_TCustomMemo_ScrollBy
+    @staticmethod
+    def ScrollBy(self,DeltaX,DeltaY):
+        LCLBinding.StdCtrls_TCustomMemo_ScrollBy((DeltaX),(DeltaY))
     def getLines(self):
         r=LCLBinding.get_StdCtrls_TCustomMemo_Lines(self.pointer)
         return LCLBindingUtil.GetPytonObject(r,TStrings)
@@ -1554,6 +1883,22 @@ class TCustomComboBox(TWinControl):
     @staticmethod
     def Create(TheOwner):
         return LCLBindingUtil.GetPytonObject(LCLBinding.StdCtrls_TCustomComboBox_Create((TheOwner.pointer)),TCustomComboBox)
+#Procedure StdCtrls_TCustomComboBox_IntfGetItems
+    @staticmethod
+    def IntfGetItems(self,):
+        LCLBinding.StdCtrls_TCustomComboBox_IntfGetItems()
+#Procedure StdCtrls_TCustomComboBox_AddItem
+    @staticmethod
+    def AddItem(self,Item,AnObject):
+        LCLBinding.StdCtrls_TCustomComboBox_AddItem((Item),(AnObject.pointer))
+#Procedure StdCtrls_TCustomComboBox_Clear
+    @staticmethod
+    def Clear(self,):
+        LCLBinding.StdCtrls_TCustomComboBox_Clear()
+#Procedure StdCtrls_TCustomComboBox_ClearSelection
+    @staticmethod
+    def ClearSelection(self,):
+        LCLBinding.StdCtrls_TCustomComboBox_ClearSelection()
     def getCharCase(self):
         r=LCLBinding.get_StdCtrls_TCustomComboBox_CharCase(self.pointer)
         return r
@@ -1572,6 +1917,10 @@ class TCustomComboBox(TWinControl):
     def setDroppingDown(self,v):
         LCLBinding.set_StdCtrls_TCustomComboBox_DroppingDown(self.pointer,v)
     DroppingDown=property(getDroppingDown,setDroppingDown)
+#Procedure StdCtrls_TCustomComboBox_SelectAll
+    @staticmethod
+    def SelectAll(self,):
+        LCLBinding.StdCtrls_TCustomComboBox_SelectAll()
     def getAutoComplete(self):
         r=LCLBinding.get_StdCtrls_TCustomComboBox_AutoComplete(self.pointer)
         return LCLBindingUtil.ConvertPascalBoolean(r)
@@ -1648,6 +1997,12 @@ class TCustomComboBox(TWinControl):
     def setSelStart(self,v):
         LCLBinding.set_StdCtrls_TCustomComboBox_SelStart(self.pointer,v)
     SelStart=property(getSelStart,setSelStart)
+    def getSelText(self):
+        r=LCLBinding.get_StdCtrls_TCustomComboBox_SelText(self.pointer)
+        return LCLBindingUtil.ConvertPascalstring(r)
+    def setSelText(self,v):
+        LCLBinding.set_StdCtrls_TCustomComboBox_SelText(self.pointer,v)
+    SelText=property(getSelText,setSelText)
     def getStyle(self):
         r=LCLBinding.get_StdCtrls_TCustomComboBox_Style(self.pointer)
         return r
@@ -2588,6 +2943,26 @@ class TCustomButton(TButtonControl):
     @staticmethod
     def Create(TheOwner):
         return LCLBindingUtil.GetPytonObject(LCLBinding.StdCtrls_TCustomButton_Create((TheOwner.pointer)),TCustomButton)
+#Procedure StdCtrls_TCustomButton_Click
+    @staticmethod
+    def Click(self,):
+        LCLBinding.StdCtrls_TCustomButton_Click()
+#Procedure StdCtrls_TCustomButton_ExecuteDefaultAction
+    @staticmethod
+    def ExecuteDefaultAction(self,):
+        LCLBinding.StdCtrls_TCustomButton_ExecuteDefaultAction()
+#Procedure StdCtrls_TCustomButton_ExecuteCancelAction
+    @staticmethod
+    def ExecuteCancelAction(self,):
+        LCLBinding.StdCtrls_TCustomButton_ExecuteCancelAction()
+#Procedure StdCtrls_TCustomButton_ActiveDefaultControlChanged
+    @staticmethod
+    def ActiveDefaultControlChanged(self,NewControl):
+        LCLBinding.StdCtrls_TCustomButton_ActiveDefaultControlChanged((NewControl.pointer))
+#Procedure StdCtrls_TCustomButton_UpdateRolesForForm
+    @staticmethod
+    def UpdateRolesForForm(self,):
+        LCLBinding.StdCtrls_TCustomButton_UpdateRolesForForm()
     def getActive(self):
         r=LCLBinding.get_StdCtrls_TCustomButton_Active(self.pointer)
         return LCLBindingUtil.ConvertPascalBoolean(r)

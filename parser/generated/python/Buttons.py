@@ -1,4 +1,14 @@
+from Menus import *
+from Forms import *
+from StdCtrls import *
+from Controls import *
+from ActnList import *
+from ImgList import *
+from Graphics import *
+from GraphType import *
+from Classes import *
 from MainPasObject import *
+import LCLBindingUtil
 #import end
 #class TCustomSpeedButton start
 class TCustomSpeedButton(TGraphicControl):
@@ -9,6 +19,14 @@ class TCustomSpeedButton(TGraphicControl):
     @staticmethod
     def Create(AOwner):
         return LCLBindingUtil.GetPytonObject(LCLBinding.Buttons_TCustomSpeedButton_Create((AOwner.pointer)),TCustomSpeedButton)
+#Procedure Buttons_TCustomSpeedButton_Click
+    @staticmethod
+    def Click(self,):
+        LCLBinding.Buttons_TCustomSpeedButton_Click()
+#Procedure Buttons_TCustomSpeedButton_LoadGlyphFromLazarusResource
+    @staticmethod
+    def LoadGlyphFromLazarusResource(self,AName):
+        LCLBinding.Buttons_TCustomSpeedButton_LoadGlyphFromLazarusResource((AName))
     def getAllowAllUp(self):
         r=LCLBinding.get_Buttons_TCustomSpeedButton_AllowAllUp(self.pointer)
         return LCLBindingUtil.ConvertPascalBoolean(r)
@@ -95,7 +113,7 @@ class TSpeedButton(TCustomSpeedButton):
         oldobj=0
         if hasattr(self, 'OnDblClickcall'):
             FreeOldEvent=1
-            oldobj=OnDblClickPasObject
+            oldobj=self.OnDblClickPasObject
         self.OnDblClickcall=v 
         self.PasOnDblClick=FunctionForm(self._Warper_OnDblClick)
         self.OnDblClickPasObject=LCLBinding.set_Buttons_TSpeedButton_OnDblClick(self.pointer,self.PasOnDblClick,oldobj,FreeOldEvent)
@@ -110,7 +128,7 @@ class TSpeedButton(TCustomSpeedButton):
         oldobj=0
         if hasattr(self, 'OnMouseDowncall'):
             FreeOldEvent=1
-            oldobj=OnMouseDownPasObject
+            oldobj=self.OnMouseDownPasObject
         self.OnMouseDowncall=v 
         self.PasOnMouseDown=FunctionForm(self._Warper_OnMouseDown)
         self.OnMouseDownPasObject=LCLBinding.set_Buttons_TSpeedButton_OnMouseDown(self.pointer,self.PasOnMouseDown,oldobj,FreeOldEvent)
@@ -125,7 +143,7 @@ class TSpeedButton(TCustomSpeedButton):
         oldobj=0
         if hasattr(self, 'OnMouseEntercall'):
             FreeOldEvent=1
-            oldobj=OnMouseEnterPasObject
+            oldobj=self.OnMouseEnterPasObject
         self.OnMouseEntercall=v 
         self.PasOnMouseEnter=FunctionForm(self._Warper_OnMouseEnter)
         self.OnMouseEnterPasObject=LCLBinding.set_Buttons_TSpeedButton_OnMouseEnter(self.pointer,self.PasOnMouseEnter,oldobj,FreeOldEvent)
@@ -140,7 +158,7 @@ class TSpeedButton(TCustomSpeedButton):
         oldobj=0
         if hasattr(self, 'OnMouseLeavecall'):
             FreeOldEvent=1
-            oldobj=OnMouseLeavePasObject
+            oldobj=self.OnMouseLeavePasObject
         self.OnMouseLeavecall=v 
         self.PasOnMouseLeave=FunctionForm(self._Warper_OnMouseLeave)
         self.OnMouseLeavePasObject=LCLBinding.set_Buttons_TSpeedButton_OnMouseLeave(self.pointer,self.PasOnMouseLeave,oldobj,FreeOldEvent)
@@ -155,7 +173,7 @@ class TSpeedButton(TCustomSpeedButton):
         oldobj=0
         if hasattr(self, 'OnMouseMovecall'):
             FreeOldEvent=1
-            oldobj=OnMouseMovePasObject
+            oldobj=self.OnMouseMovePasObject
         self.OnMouseMovecall=v 
         self.PasOnMouseMove=FunctionForm(self._Warper_OnMouseMove)
         self.OnMouseMovePasObject=LCLBinding.set_Buttons_TSpeedButton_OnMouseMove(self.pointer,self.PasOnMouseMove,oldobj,FreeOldEvent)
@@ -170,7 +188,7 @@ class TSpeedButton(TCustomSpeedButton):
         oldobj=0
         if hasattr(self, 'OnMouseUpcall'):
             FreeOldEvent=1
-            oldobj=OnMouseUpPasObject
+            oldobj=self.OnMouseUpPasObject
         self.OnMouseUpcall=v 
         self.PasOnMouseUp=FunctionForm(self._Warper_OnMouseUp)
         self.OnMouseUpPasObject=LCLBinding.set_Buttons_TSpeedButton_OnMouseUp(self.pointer,self.PasOnMouseUp,oldobj,FreeOldEvent)
@@ -185,7 +203,7 @@ class TSpeedButton(TCustomSpeedButton):
         oldobj=0
         if hasattr(self, 'OnPaintcall'):
             FreeOldEvent=1
-            oldobj=OnPaintPasObject
+            oldobj=self.OnPaintPasObject
         self.OnPaintcall=v 
         self.PasOnPaint=FunctionForm(self._Warper_OnPaint)
         self.OnPaintPasObject=LCLBinding.set_Buttons_TSpeedButton_OnPaint(self.pointer,self.PasOnPaint,oldobj,FreeOldEvent)
@@ -218,6 +236,18 @@ class TCustomBitBtn(TCustomButton):
     @staticmethod
     def Create(TheOwner):
         return LCLBindingUtil.GetPytonObject(LCLBinding.Buttons_TCustomBitBtn_Create((TheOwner.pointer)),TCustomBitBtn)
+#Procedure Buttons_TCustomBitBtn_Click
+    @staticmethod
+    def Click(self,):
+        LCLBinding.Buttons_TCustomBitBtn_Click()
+#Procedure Buttons_TCustomBitBtn_LoadGlyphFromLazarusResource
+    @staticmethod
+    def LoadGlyphFromLazarusResource(self,AName):
+        LCLBinding.Buttons_TCustomBitBtn_LoadGlyphFromLazarusResource((AName))
+#Procedure Buttons_TCustomBitBtn_LoadGlyphFromStock
+    @staticmethod
+    def LoadGlyphFromStock(self,idButton):
+        LCLBinding.Buttons_TCustomBitBtn_LoadGlyphFromStock((idButton))
     def getDefaultCaption(self):
         r=LCLBinding.get_Buttons_TCustomBitBtn_DefaultCaption(self.pointer)
         return LCLBindingUtil.ConvertPascalBoolean(r)
@@ -280,7 +310,7 @@ class TBitBtn(TCustomBitBtn):
         oldobj=0
         if hasattr(self, 'OnDragDropcall'):
             FreeOldEvent=1
-            oldobj=OnDragDropPasObject
+            oldobj=self.OnDragDropPasObject
         self.OnDragDropcall=v 
         self.PasOnDragDrop=FunctionForm(self._Warper_OnDragDrop)
         self.OnDragDropPasObject=LCLBinding.set_Buttons_TBitBtn_OnDragDrop(self.pointer,self.PasOnDragDrop,oldobj,FreeOldEvent)
@@ -295,7 +325,7 @@ class TBitBtn(TCustomBitBtn):
         oldobj=0
         if hasattr(self, 'OnDragOvercall'):
             FreeOldEvent=1
-            oldobj=OnDragOverPasObject
+            oldobj=self.OnDragOverPasObject
         self.OnDragOvercall=v 
         self.PasOnDragOver=FunctionForm(self._Warper_OnDragOver)
         self.OnDragOverPasObject=LCLBinding.set_Buttons_TBitBtn_OnDragOver(self.pointer,self.PasOnDragOver,oldobj,FreeOldEvent)
@@ -310,7 +340,7 @@ class TBitBtn(TCustomBitBtn):
         oldobj=0
         if hasattr(self, 'OnEndDragcall'):
             FreeOldEvent=1
-            oldobj=OnEndDragPasObject
+            oldobj=self.OnEndDragPasObject
         self.OnEndDragcall=v 
         self.PasOnEndDrag=FunctionForm(self._Warper_OnEndDrag)
         self.OnEndDragPasObject=LCLBinding.set_Buttons_TBitBtn_OnEndDrag(self.pointer,self.PasOnEndDrag,oldobj,FreeOldEvent)
@@ -325,7 +355,7 @@ class TBitBtn(TCustomBitBtn):
         oldobj=0
         if hasattr(self, 'OnMouseDowncall'):
             FreeOldEvent=1
-            oldobj=OnMouseDownPasObject
+            oldobj=self.OnMouseDownPasObject
         self.OnMouseDowncall=v 
         self.PasOnMouseDown=FunctionForm(self._Warper_OnMouseDown)
         self.OnMouseDownPasObject=LCLBinding.set_Buttons_TBitBtn_OnMouseDown(self.pointer,self.PasOnMouseDown,oldobj,FreeOldEvent)
@@ -340,7 +370,7 @@ class TBitBtn(TCustomBitBtn):
         oldobj=0
         if hasattr(self, 'OnMouseEntercall'):
             FreeOldEvent=1
-            oldobj=OnMouseEnterPasObject
+            oldobj=self.OnMouseEnterPasObject
         self.OnMouseEntercall=v 
         self.PasOnMouseEnter=FunctionForm(self._Warper_OnMouseEnter)
         self.OnMouseEnterPasObject=LCLBinding.set_Buttons_TBitBtn_OnMouseEnter(self.pointer,self.PasOnMouseEnter,oldobj,FreeOldEvent)
@@ -355,7 +385,7 @@ class TBitBtn(TCustomBitBtn):
         oldobj=0
         if hasattr(self, 'OnMouseLeavecall'):
             FreeOldEvent=1
-            oldobj=OnMouseLeavePasObject
+            oldobj=self.OnMouseLeavePasObject
         self.OnMouseLeavecall=v 
         self.PasOnMouseLeave=FunctionForm(self._Warper_OnMouseLeave)
         self.OnMouseLeavePasObject=LCLBinding.set_Buttons_TBitBtn_OnMouseLeave(self.pointer,self.PasOnMouseLeave,oldobj,FreeOldEvent)
@@ -370,7 +400,7 @@ class TBitBtn(TCustomBitBtn):
         oldobj=0
         if hasattr(self, 'OnMouseMovecall'):
             FreeOldEvent=1
-            oldobj=OnMouseMovePasObject
+            oldobj=self.OnMouseMovePasObject
         self.OnMouseMovecall=v 
         self.PasOnMouseMove=FunctionForm(self._Warper_OnMouseMove)
         self.OnMouseMovePasObject=LCLBinding.set_Buttons_TBitBtn_OnMouseMove(self.pointer,self.PasOnMouseMove,oldobj,FreeOldEvent)
@@ -385,7 +415,7 @@ class TBitBtn(TCustomBitBtn):
         oldobj=0
         if hasattr(self, 'OnMouseUpcall'):
             FreeOldEvent=1
-            oldobj=OnMouseUpPasObject
+            oldobj=self.OnMouseUpPasObject
         self.OnMouseUpcall=v 
         self.PasOnMouseUp=FunctionForm(self._Warper_OnMouseUp)
         self.OnMouseUpPasObject=LCLBinding.set_Buttons_TBitBtn_OnMouseUp(self.pointer,self.PasOnMouseUp,oldobj,FreeOldEvent)
@@ -400,7 +430,7 @@ class TBitBtn(TCustomBitBtn):
         oldobj=0
         if hasattr(self, 'OnStartDragcall'):
             FreeOldEvent=1
-            oldobj=OnStartDragPasObject
+            oldobj=self.OnStartDragPasObject
         self.OnStartDragcall=v 
         self.PasOnStartDrag=FunctionForm(self._Warper_OnStartDrag)
         self.OnStartDragPasObject=LCLBinding.set_Buttons_TBitBtn_OnStartDrag(self.pointer,self.PasOnStartDrag,oldobj,FreeOldEvent)

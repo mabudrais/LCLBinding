@@ -1,4 +1,15 @@
+from ImgList import *
+from Controls import *
+from clipbrd import *
+from ActnList import *
+from customtimer import *
+from Menus import *
+from Graphics import *
+from GraphType import *
+from LCLClasses import *
+from Classes import *
 from MainPasObject import *
+import LCLBindingUtil
 #import end
 def CreateTFormStateFromInt(i):
     dic={1:"fsCreating",2:"fsVisible",4:"fsShowing",8:"fsModal",16:"fsCreatedMDIChild",32:"fsBorderStyleChanged",64:"fsFormStyleChanged",128:"fsFirstShow",256:"fsDisableAutoSize"}
@@ -15,6 +26,18 @@ class TScrollingWinControl(TCustomControl):
     @staticmethod
     def Create(TheOwner):
         return LCLBindingUtil.GetPytonObject(LCLBinding.Forms_TScrollingWinControl_Create((TheOwner.pointer)),TScrollingWinControl)
+#Procedure Forms_TScrollingWinControl_UpdateScrollbars
+    @staticmethod
+    def UpdateScrollbars(self,):
+        LCLBinding.Forms_TScrollingWinControl_UpdateScrollbars()
+#Procedure Forms_TScrollingWinControl_ScrollBy
+    @staticmethod
+    def ScrollBy(self,DeltaX,DeltaY):
+        LCLBinding.Forms_TScrollingWinControl_ScrollBy((DeltaX),(DeltaY))
+#Procedure Forms_TScrollingWinControl_ScrollInView
+    @staticmethod
+    def ScrollInView(self,AControl):
+        LCLBinding.Forms_TScrollingWinControl_ScrollInView((AControl.pointer))
     def getHorzScrollBar(self):
         r=LCLBinding.get_Forms_TScrollingWinControl_HorzScrollBar(self.pointer)
         return LCLBindingUtil.GetPytonObject(r,TControlScrollBar)
@@ -123,7 +146,7 @@ class TApplicationProperties(TLCLComponent):
         oldobj=0
         if hasattr(self, 'OnActivatecall'):
             FreeOldEvent=1
-            oldobj=OnActivatePasObject
+            oldobj=self.OnActivatePasObject
         self.OnActivatecall=v 
         self.PasOnActivate=FunctionForm(self._Warper_OnActivate)
         self.OnActivatePasObject=LCLBinding.set_Forms_TApplicationProperties_OnActivate(self.pointer,self.PasOnActivate,oldobj,FreeOldEvent)
@@ -138,7 +161,7 @@ class TApplicationProperties(TLCLComponent):
         oldobj=0
         if hasattr(self, 'OnDeactivatecall'):
             FreeOldEvent=1
-            oldobj=OnDeactivatePasObject
+            oldobj=self.OnDeactivatePasObject
         self.OnDeactivatecall=v 
         self.PasOnDeactivate=FunctionForm(self._Warper_OnDeactivate)
         self.OnDeactivatePasObject=LCLBinding.set_Forms_TApplicationProperties_OnDeactivate(self.pointer,self.PasOnDeactivate,oldobj,FreeOldEvent)
@@ -153,7 +176,7 @@ class TApplicationProperties(TLCLComponent):
         oldobj=0
         if hasattr(self, 'OnIdlecall'):
             FreeOldEvent=1
-            oldobj=OnIdlePasObject
+            oldobj=self.OnIdlePasObject
         self.OnIdlecall=v 
         self.PasOnIdle=FunctionForm(self._Warper_OnIdle)
         self.OnIdlePasObject=LCLBinding.set_Forms_TApplicationProperties_OnIdle(self.pointer,self.PasOnIdle,oldobj,FreeOldEvent)
@@ -168,7 +191,7 @@ class TApplicationProperties(TLCLComponent):
         oldobj=0
         if hasattr(self, 'OnIdleEndcall'):
             FreeOldEvent=1
-            oldobj=OnIdleEndPasObject
+            oldobj=self.OnIdleEndPasObject
         self.OnIdleEndcall=v 
         self.PasOnIdleEnd=FunctionForm(self._Warper_OnIdleEnd)
         self.OnIdleEndPasObject=LCLBinding.set_Forms_TApplicationProperties_OnIdleEnd(self.pointer,self.PasOnIdleEnd,oldobj,FreeOldEvent)
@@ -183,7 +206,7 @@ class TApplicationProperties(TLCLComponent):
         oldobj=0
         if hasattr(self, 'OnEndSessioncall'):
             FreeOldEvent=1
-            oldobj=OnEndSessionPasObject
+            oldobj=self.OnEndSessionPasObject
         self.OnEndSessioncall=v 
         self.PasOnEndSession=FunctionForm(self._Warper_OnEndSession)
         self.OnEndSessionPasObject=LCLBinding.set_Forms_TApplicationProperties_OnEndSession(self.pointer,self.PasOnEndSession,oldobj,FreeOldEvent)
@@ -198,7 +221,7 @@ class TApplicationProperties(TLCLComponent):
         oldobj=0
         if hasattr(self, 'OnQueryEndSessioncall'):
             FreeOldEvent=1
-            oldobj=OnQueryEndSessionPasObject
+            oldobj=self.OnQueryEndSessionPasObject
         self.OnQueryEndSessioncall=v 
         self.PasOnQueryEndSession=FunctionForm(self._Warper_OnQueryEndSession)
         self.OnQueryEndSessionPasObject=LCLBinding.set_Forms_TApplicationProperties_OnQueryEndSession(self.pointer,self.PasOnQueryEndSession,oldobj,FreeOldEvent)
@@ -213,7 +236,7 @@ class TApplicationProperties(TLCLComponent):
         oldobj=0
         if hasattr(self, 'OnMinimizecall'):
             FreeOldEvent=1
-            oldobj=OnMinimizePasObject
+            oldobj=self.OnMinimizePasObject
         self.OnMinimizecall=v 
         self.PasOnMinimize=FunctionForm(self._Warper_OnMinimize)
         self.OnMinimizePasObject=LCLBinding.set_Forms_TApplicationProperties_OnMinimize(self.pointer,self.PasOnMinimize,oldobj,FreeOldEvent)
@@ -228,7 +251,7 @@ class TApplicationProperties(TLCLComponent):
         oldobj=0
         if hasattr(self, 'OnModalBegincall'):
             FreeOldEvent=1
-            oldobj=OnModalBeginPasObject
+            oldobj=self.OnModalBeginPasObject
         self.OnModalBegincall=v 
         self.PasOnModalBegin=FunctionForm(self._Warper_OnModalBegin)
         self.OnModalBeginPasObject=LCLBinding.set_Forms_TApplicationProperties_OnModalBegin(self.pointer,self.PasOnModalBegin,oldobj,FreeOldEvent)
@@ -243,7 +266,7 @@ class TApplicationProperties(TLCLComponent):
         oldobj=0
         if hasattr(self, 'OnModalEndcall'):
             FreeOldEvent=1
-            oldobj=OnModalEndPasObject
+            oldobj=self.OnModalEndPasObject
         self.OnModalEndcall=v 
         self.PasOnModalEnd=FunctionForm(self._Warper_OnModalEnd)
         self.OnModalEndPasObject=LCLBinding.set_Forms_TApplicationProperties_OnModalEnd(self.pointer,self.PasOnModalEnd,oldobj,FreeOldEvent)
@@ -258,7 +281,7 @@ class TApplicationProperties(TLCLComponent):
         oldobj=0
         if hasattr(self, 'OnRestorecall'):
             FreeOldEvent=1
-            oldobj=OnRestorePasObject
+            oldobj=self.OnRestorePasObject
         self.OnRestorecall=v 
         self.PasOnRestore=FunctionForm(self._Warper_OnRestore)
         self.OnRestorePasObject=LCLBinding.set_Forms_TApplicationProperties_OnRestore(self.pointer,self.PasOnRestore,oldobj,FreeOldEvent)
@@ -273,7 +296,7 @@ class TApplicationProperties(TLCLComponent):
         oldobj=0
         if hasattr(self, 'OnHintcall'):
             FreeOldEvent=1
-            oldobj=OnHintPasObject
+            oldobj=self.OnHintPasObject
         self.OnHintcall=v 
         self.PasOnHint=FunctionForm(self._Warper_OnHint)
         self.OnHintPasObject=LCLBinding.set_Forms_TApplicationProperties_OnHint(self.pointer,self.PasOnHint,oldobj,FreeOldEvent)
@@ -281,6 +304,46 @@ class TApplicationProperties(TLCLComponent):
         return OnHintcall
     OnHint=property(getOnHint,setOnHint)
 #class TApplicationProperties end
+#class TIDesigner start
+class TIDesigner(TObject):
+#    pointer=c_void_p()
+    def __init__(self):#TIDesigner
+        TObject.__init__(self)
+#Procedure Forms_TIDesigner_Modified
+    @staticmethod
+    def Modified(self,):
+        LCLBinding.Forms_TIDesigner_Modified()
+#Procedure Forms_TIDesigner_Notification
+    @staticmethod
+    def Notification(self,AComponent,Operation):
+        LCLBinding.Forms_TIDesigner_Notification((AComponent.pointer),(Operation.pointer))
+#Procedure Forms_TIDesigner_PaintGrid
+    @staticmethod
+    def PaintGrid(self,):
+        LCLBinding.Forms_TIDesigner_PaintGrid()
+#Procedure Forms_TIDesigner_ValidateRename
+    @staticmethod
+    def ValidateRename(self,AComponent,CurName,NewName):
+        LCLBinding.Forms_TIDesigner_ValidateRename((AComponent.pointer),(CurName),(NewName))
+#Procedure Forms_TIDesigner_SelectOnlyThisComponent
+    @staticmethod
+    def SelectOnlyThisComponent(self,AComponent):
+        LCLBinding.Forms_TIDesigner_SelectOnlyThisComponent((AComponent.pointer))
+#Procedure Forms_TIDesigner_PrepareFreeDesigner
+    @staticmethod
+    def PrepareFreeDesigner(self,AFreeComponent):
+        LCLBinding.Forms_TIDesigner_PrepareFreeDesigner((booleantoint(AFreeComponent)))
+    def getLookupRoot(self):
+        r=LCLBinding.get_Forms_TIDesigner_LookupRoot(self.pointer)
+        return LCLBindingUtil.GetPytonObject(r,TComponent)
+    LookupRoot=property(getLookupRoot)
+    def getDefaultFormBoundsValid(self):
+        r=LCLBinding.get_Forms_TIDesigner_DefaultFormBoundsValid(self.pointer)
+        return LCLBindingUtil.ConvertPascalBoolean(r)
+    def setDefaultFormBoundsValid(self,v):
+        LCLBinding.set_Forms_TIDesigner_DefaultFormBoundsValid(self.pointer,v)
+    DefaultFormBoundsValid=property(getDefaultFormBoundsValid,setDefaultFormBoundsValid)
+#class TIDesigner end
 #class TMonitor start
 class TMonitor(TObject):
 #    pointer=c_void_p()
@@ -315,22 +378,6 @@ class TMonitor(TObject):
         return LCLBindingUtil.ConvertPascalInteger(r)
     PixelsPerInch=property(getPixelsPerInch)
 #class TMonitor end
-#class TIDesigner start
-class TIDesigner(TObject):
-#    pointer=c_void_p()
-    def __init__(self):#TIDesigner
-        TObject.__init__(self)
-    def getLookupRoot(self):
-        r=LCLBinding.get_Forms_TIDesigner_LookupRoot(self.pointer)
-        return LCLBindingUtil.GetPytonObject(r,TComponent)
-    LookupRoot=property(getLookupRoot)
-    def getDefaultFormBoundsValid(self):
-        r=LCLBinding.get_Forms_TIDesigner_DefaultFormBoundsValid(self.pointer)
-        return LCLBindingUtil.ConvertPascalBoolean(r)
-    def setDefaultFormBoundsValid(self,v):
-        LCLBinding.set_Forms_TIDesigner_DefaultFormBoundsValid(self.pointer,v)
-    DefaultFormBoundsValid=property(getDefaultFormBoundsValid,setDefaultFormBoundsValid)
-#class TIDesigner end
 #class TControlScrollBar start
 class TControlScrollBar(TPersistent):
 #    pointer=c_void_p()
@@ -340,6 +387,10 @@ class TControlScrollBar(TPersistent):
     @staticmethod
     def Create(AControl,AKind):
         return LCLBindingUtil.GetPytonObject(LCLBinding.Forms_TControlScrollBar_Create((AControl.pointer),(AKind.pointer)),TControlScrollBar)
+#Procedure Forms_TControlScrollBar_Assign
+    @staticmethod
+    def Assign(self,Source):
+        LCLBinding.Forms_TControlScrollBar_Assign((Source.pointer))
     def getKind(self):
         r=LCLBinding.get_Forms_TControlScrollBar_Kind(self.pointer)
         return r
@@ -432,7 +483,7 @@ class TScrollBox(TScrollingWinControl):
         oldobj=0
         if hasattr(self, 'OnDblClickcall'):
             FreeOldEvent=1
-            oldobj=OnDblClickPasObject
+            oldobj=self.OnDblClickPasObject
         self.OnDblClickcall=v 
         self.PasOnDblClick=FunctionForm(self._Warper_OnDblClick)
         self.OnDblClickPasObject=LCLBinding.set_Forms_TScrollBox_OnDblClick(self.pointer,self.PasOnDblClick,oldobj,FreeOldEvent)
@@ -447,7 +498,7 @@ class TScrollBox(TScrollingWinControl):
         oldobj=0
         if hasattr(self, 'OnDragDropcall'):
             FreeOldEvent=1
-            oldobj=OnDragDropPasObject
+            oldobj=self.OnDragDropPasObject
         self.OnDragDropcall=v 
         self.PasOnDragDrop=FunctionForm(self._Warper_OnDragDrop)
         self.OnDragDropPasObject=LCLBinding.set_Forms_TScrollBox_OnDragDrop(self.pointer,self.PasOnDragDrop,oldobj,FreeOldEvent)
@@ -462,7 +513,7 @@ class TScrollBox(TScrollingWinControl):
         oldobj=0
         if hasattr(self, 'OnDragOvercall'):
             FreeOldEvent=1
-            oldobj=OnDragOverPasObject
+            oldobj=self.OnDragOverPasObject
         self.OnDragOvercall=v 
         self.PasOnDragOver=FunctionForm(self._Warper_OnDragOver)
         self.OnDragOverPasObject=LCLBinding.set_Forms_TScrollBox_OnDragOver(self.pointer,self.PasOnDragOver,oldobj,FreeOldEvent)
@@ -477,7 +528,7 @@ class TScrollBox(TScrollingWinControl):
         oldobj=0
         if hasattr(self, 'OnEndDockcall'):
             FreeOldEvent=1
-            oldobj=OnEndDockPasObject
+            oldobj=self.OnEndDockPasObject
         self.OnEndDockcall=v 
         self.PasOnEndDock=FunctionForm(self._Warper_OnEndDock)
         self.OnEndDockPasObject=LCLBinding.set_Forms_TScrollBox_OnEndDock(self.pointer,self.PasOnEndDock,oldobj,FreeOldEvent)
@@ -492,7 +543,7 @@ class TScrollBox(TScrollingWinControl):
         oldobj=0
         if hasattr(self, 'OnEndDragcall'):
             FreeOldEvent=1
-            oldobj=OnEndDragPasObject
+            oldobj=self.OnEndDragPasObject
         self.OnEndDragcall=v 
         self.PasOnEndDrag=FunctionForm(self._Warper_OnEndDrag)
         self.OnEndDragPasObject=LCLBinding.set_Forms_TScrollBox_OnEndDrag(self.pointer,self.PasOnEndDrag,oldobj,FreeOldEvent)
@@ -507,7 +558,7 @@ class TScrollBox(TScrollingWinControl):
         oldobj=0
         if hasattr(self, 'OnMouseDowncall'):
             FreeOldEvent=1
-            oldobj=OnMouseDownPasObject
+            oldobj=self.OnMouseDownPasObject
         self.OnMouseDowncall=v 
         self.PasOnMouseDown=FunctionForm(self._Warper_OnMouseDown)
         self.OnMouseDownPasObject=LCLBinding.set_Forms_TScrollBox_OnMouseDown(self.pointer,self.PasOnMouseDown,oldobj,FreeOldEvent)
@@ -522,7 +573,7 @@ class TScrollBox(TScrollingWinControl):
         oldobj=0
         if hasattr(self, 'OnMouseEntercall'):
             FreeOldEvent=1
-            oldobj=OnMouseEnterPasObject
+            oldobj=self.OnMouseEnterPasObject
         self.OnMouseEntercall=v 
         self.PasOnMouseEnter=FunctionForm(self._Warper_OnMouseEnter)
         self.OnMouseEnterPasObject=LCLBinding.set_Forms_TScrollBox_OnMouseEnter(self.pointer,self.PasOnMouseEnter,oldobj,FreeOldEvent)
@@ -537,7 +588,7 @@ class TScrollBox(TScrollingWinControl):
         oldobj=0
         if hasattr(self, 'OnMouseLeavecall'):
             FreeOldEvent=1
-            oldobj=OnMouseLeavePasObject
+            oldobj=self.OnMouseLeavePasObject
         self.OnMouseLeavecall=v 
         self.PasOnMouseLeave=FunctionForm(self._Warper_OnMouseLeave)
         self.OnMouseLeavePasObject=LCLBinding.set_Forms_TScrollBox_OnMouseLeave(self.pointer,self.PasOnMouseLeave,oldobj,FreeOldEvent)
@@ -552,7 +603,7 @@ class TScrollBox(TScrollingWinControl):
         oldobj=0
         if hasattr(self, 'OnMouseMovecall'):
             FreeOldEvent=1
-            oldobj=OnMouseMovePasObject
+            oldobj=self.OnMouseMovePasObject
         self.OnMouseMovecall=v 
         self.PasOnMouseMove=FunctionForm(self._Warper_OnMouseMove)
         self.OnMouseMovePasObject=LCLBinding.set_Forms_TScrollBox_OnMouseMove(self.pointer,self.PasOnMouseMove,oldobj,FreeOldEvent)
@@ -567,7 +618,7 @@ class TScrollBox(TScrollingWinControl):
         oldobj=0
         if hasattr(self, 'OnMouseUpcall'):
             FreeOldEvent=1
-            oldobj=OnMouseUpPasObject
+            oldobj=self.OnMouseUpPasObject
         self.OnMouseUpcall=v 
         self.PasOnMouseUp=FunctionForm(self._Warper_OnMouseUp)
         self.OnMouseUpPasObject=LCLBinding.set_Forms_TScrollBox_OnMouseUp(self.pointer,self.PasOnMouseUp,oldobj,FreeOldEvent)
@@ -582,7 +633,7 @@ class TScrollBox(TScrollingWinControl):
         oldobj=0
         if hasattr(self, 'OnStartDockcall'):
             FreeOldEvent=1
-            oldobj=OnStartDockPasObject
+            oldobj=self.OnStartDockPasObject
         self.OnStartDockcall=v 
         self.PasOnStartDock=FunctionForm(self._Warper_OnStartDock)
         self.OnStartDockPasObject=LCLBinding.set_Forms_TScrollBox_OnStartDock(self.pointer,self.PasOnStartDock,oldobj,FreeOldEvent)
@@ -597,7 +648,7 @@ class TScrollBox(TScrollingWinControl):
         oldobj=0
         if hasattr(self, 'OnStartDragcall'):
             FreeOldEvent=1
-            oldobj=OnStartDragPasObject
+            oldobj=self.OnStartDragPasObject
         self.OnStartDragcall=v 
         self.PasOnStartDrag=FunctionForm(self._Warper_OnStartDrag)
         self.OnStartDragPasObject=LCLBinding.set_Forms_TScrollBox_OnStartDrag(self.pointer,self.PasOnStartDrag,oldobj,FreeOldEvent)
@@ -614,6 +665,10 @@ class TCustomDesignControl(TScrollingWinControl):
     @staticmethod
     def Create(TheOwner):
         return LCLBindingUtil.GetPytonObject(LCLBinding.Forms_TCustomDesignControl_Create((TheOwner.pointer)),TCustomDesignControl)
+#Procedure Forms_TCustomDesignControl_AutoAdjustLayout
+    @staticmethod
+    def AutoAdjustLayout(self,AMode,AFromPPI,AToPPI,AOldFormWidth,ANewFormWidth):
+        LCLBinding.Forms_TCustomDesignControl_AutoAdjustLayout((AMode.pointer),(AFromPPI),(AToPPI),(AOldFormWidth),(ANewFormWidth))
     def getDesignTimeDPI(self):
         r=LCLBinding.get_Forms_TCustomDesignControl_DesignTimeDPI(self.pointer)
         return LCLBindingUtil.ConvertPascalInteger(r)
@@ -652,6 +707,106 @@ class TCustomForm(TCustomDesignControl):
     @staticmethod
     def CreateNew(AOwner,Num):
         return LCLBindingUtil.GetPytonObject(LCLBinding.Forms_TCustomForm_CreateNew((AOwner.pointer),(Num)),TCustomForm)
+#Procedure Forms_TCustomForm_AfterConstruction
+    @staticmethod
+    def AfterConstruction(self,):
+        LCLBinding.Forms_TCustomForm_AfterConstruction()
+#Procedure Forms_TCustomForm_BeforeDestruction
+    @staticmethod
+    def BeforeDestruction(self,):
+        LCLBinding.Forms_TCustomForm_BeforeDestruction()
+#Procedure Forms_TCustomForm_Close
+    @staticmethod
+    def Close(self,):
+        LCLBinding.Forms_TCustomForm_Close()
+#Procedure Forms_TCustomForm_DefocusControl
+    @staticmethod
+    def DefocusControl(self,Control,Removing):
+        LCLBinding.Forms_TCustomForm_DefocusControl((Control.pointer),(booleantoint(Removing)))
+#Procedure Forms_TCustomForm_DestroyWnd
+    @staticmethod
+    def DestroyWnd(self,):
+        LCLBinding.Forms_TCustomForm_DestroyWnd()
+#Procedure Forms_TCustomForm_EnsureVisible
+    @staticmethod
+    def EnsureVisible(self,AMoveToTop):
+        LCLBinding.Forms_TCustomForm_EnsureVisible((booleantoint(AMoveToTop)))
+#Procedure Forms_TCustomForm_FocusControl
+    @staticmethod
+    def FocusControl(self,WinControl):
+        LCLBinding.Forms_TCustomForm_FocusControl((WinControl.pointer))
+#Procedure Forms_TCustomForm_Hide
+    @staticmethod
+    def Hide(self,):
+        LCLBinding.Forms_TCustomForm_Hide()
+#Procedure Forms_TCustomForm_IntfHelp
+    @staticmethod
+    def IntfHelp(self,AComponent):
+        LCLBinding.Forms_TCustomForm_IntfHelp((AComponent.pointer))
+#Procedure Forms_TCustomForm_MakeFullyVisible
+    @staticmethod
+    def MakeFullyVisible(self,AMonitor,UseWorkarea):
+        LCLBinding.Forms_TCustomForm_MakeFullyVisible((AMonitor.pointer),(booleantoint(UseWorkarea)))
+#Procedure Forms_TCustomForm_Release
+    @staticmethod
+    def Release(self,):
+        LCLBinding.Forms_TCustomForm_Release()
+#Procedure Forms_TCustomForm_SetFocus
+    @staticmethod
+    def SetFocus(self,):
+        LCLBinding.Forms_TCustomForm_SetFocus()
+#Procedure Forms_TCustomForm_SetRestoredBounds
+    @staticmethod
+    def SetRestoredBounds(self,ALeft,ATop,AWidth,AHeight):
+        LCLBinding.Forms_TCustomForm_SetRestoredBounds((ALeft),(ATop),(AWidth),(AHeight))
+#Procedure Forms_TCustomForm_Show
+    @staticmethod
+    def Show(self,):
+        LCLBinding.Forms_TCustomForm_Show()
+#Procedure Forms_TCustomForm_ShowOnTop
+    @staticmethod
+    def ShowOnTop(self,):
+        LCLBinding.Forms_TCustomForm_ShowOnTop()
+#Procedure Forms_TCustomForm_GetChildren
+    @staticmethod
+    def GetChildren(self,Proc,Root):
+        LCLBinding.Forms_TCustomForm_GetChildren((Proc.pointer),(Root.pointer))
+#Procedure Forms_TCustomForm_RemoveAllHandlersOfObject
+    @staticmethod
+    def RemoveAllHandlersOfObject(self,AnObject):
+        LCLBinding.Forms_TCustomForm_RemoveAllHandlersOfObject((AnObject.pointer))
+#Procedure Forms_TCustomForm_AddHandlerFirstShow
+    @staticmethod
+    def AddHandlerFirstShow(self,OnFirstShowHandler,AsFirst):
+        LCLBinding.Forms_TCustomForm_AddHandlerFirstShow((OnFirstShowHandler.pointer),(booleantoint(AsFirst)))
+#Procedure Forms_TCustomForm_RemoveHandlerFirstShow
+    @staticmethod
+    def RemoveHandlerFirstShow(self,OnFirstShowHandler):
+        LCLBinding.Forms_TCustomForm_RemoveHandlerFirstShow((OnFirstShowHandler.pointer))
+#Procedure Forms_TCustomForm_AddHandlerClose
+    @staticmethod
+    def AddHandlerClose(self,OnCloseHandler,AsFirst):
+        LCLBinding.Forms_TCustomForm_AddHandlerClose((OnCloseHandler.pointer),(booleantoint(AsFirst)))
+#Procedure Forms_TCustomForm_RemoveHandlerClose
+    @staticmethod
+    def RemoveHandlerClose(self,OnCloseHandler):
+        LCLBinding.Forms_TCustomForm_RemoveHandlerClose((OnCloseHandler.pointer))
+#Procedure Forms_TCustomForm_AddHandlerCreate
+    @staticmethod
+    def AddHandlerCreate(self,OnCreateHandler,AsFirst):
+        LCLBinding.Forms_TCustomForm_AddHandlerCreate((OnCreateHandler.pointer),(booleantoint(AsFirst)))
+#Procedure Forms_TCustomForm_RemoveHandlerCreate
+    @staticmethod
+    def RemoveHandlerCreate(self,OnCreateHandler):
+        LCLBinding.Forms_TCustomForm_RemoveHandlerCreate((OnCreateHandler.pointer))
+#Procedure Forms_TCustomForm_AutoScale
+    @staticmethod
+    def AutoScale(self,):
+        LCLBinding.Forms_TCustomForm_AutoScale()
+#Procedure Forms_TCustomForm_UpdateDockCaption
+    @staticmethod
+    def UpdateDockCaption(self,Exclude):
+        LCLBinding.Forms_TCustomForm_UpdateDockCaption((Exclude.pointer))
     def getActive(self):
         r=LCLBinding.get_Forms_TCustomForm_Active(self.pointer)
         return LCLBindingUtil.ConvertPascalBoolean(r)
@@ -787,7 +942,7 @@ class TCustomForm(TCustomDesignControl):
         oldobj=0
         if hasattr(self, 'OnActivatecall'):
             FreeOldEvent=1
-            oldobj=OnActivatePasObject
+            oldobj=self.OnActivatePasObject
         self.OnActivatecall=v 
         self.PasOnActivate=FunctionForm(self._Warper_OnActivate)
         self.OnActivatePasObject=LCLBinding.set_Forms_TCustomForm_OnActivate(self.pointer,self.PasOnActivate,oldobj,FreeOldEvent)
@@ -802,7 +957,7 @@ class TCustomForm(TCustomDesignControl):
         oldobj=0
         if hasattr(self, 'OnClosecall'):
             FreeOldEvent=1
-            oldobj=OnClosePasObject
+            oldobj=self.OnClosePasObject
         self.OnClosecall=v 
         self.PasOnClose=FunctionForm(self._Warper_OnClose)
         self.OnClosePasObject=LCLBinding.set_Forms_TCustomForm_OnClose(self.pointer,self.PasOnClose,oldobj,FreeOldEvent)
@@ -817,7 +972,7 @@ class TCustomForm(TCustomDesignControl):
         oldobj=0
         if hasattr(self, 'OnCloseQuerycall'):
             FreeOldEvent=1
-            oldobj=OnCloseQueryPasObject
+            oldobj=self.OnCloseQueryPasObject
         self.OnCloseQuerycall=v 
         self.PasOnCloseQuery=FunctionForm(self._Warper_OnCloseQuery)
         self.OnCloseQueryPasObject=LCLBinding.set_Forms_TCustomForm_OnCloseQuery(self.pointer,self.PasOnCloseQuery,oldobj,FreeOldEvent)
@@ -832,7 +987,7 @@ class TCustomForm(TCustomDesignControl):
         oldobj=0
         if hasattr(self, 'OnCreatecall'):
             FreeOldEvent=1
-            oldobj=OnCreatePasObject
+            oldobj=self.OnCreatePasObject
         self.OnCreatecall=v 
         self.PasOnCreate=FunctionForm(self._Warper_OnCreate)
         self.OnCreatePasObject=LCLBinding.set_Forms_TCustomForm_OnCreate(self.pointer,self.PasOnCreate,oldobj,FreeOldEvent)
@@ -847,7 +1002,7 @@ class TCustomForm(TCustomDesignControl):
         oldobj=0
         if hasattr(self, 'OnDeactivatecall'):
             FreeOldEvent=1
-            oldobj=OnDeactivatePasObject
+            oldobj=self.OnDeactivatePasObject
         self.OnDeactivatecall=v 
         self.PasOnDeactivate=FunctionForm(self._Warper_OnDeactivate)
         self.OnDeactivatePasObject=LCLBinding.set_Forms_TCustomForm_OnDeactivate(self.pointer,self.PasOnDeactivate,oldobj,FreeOldEvent)
@@ -862,7 +1017,7 @@ class TCustomForm(TCustomDesignControl):
         oldobj=0
         if hasattr(self, 'OnDestroycall'):
             FreeOldEvent=1
-            oldobj=OnDestroyPasObject
+            oldobj=self.OnDestroyPasObject
         self.OnDestroycall=v 
         self.PasOnDestroy=FunctionForm(self._Warper_OnDestroy)
         self.OnDestroyPasObject=LCLBinding.set_Forms_TCustomForm_OnDestroy(self.pointer,self.PasOnDestroy,oldobj,FreeOldEvent)
@@ -877,7 +1032,7 @@ class TCustomForm(TCustomDesignControl):
         oldobj=0
         if hasattr(self, 'OnHidecall'):
             FreeOldEvent=1
-            oldobj=OnHidePasObject
+            oldobj=self.OnHidePasObject
         self.OnHidecall=v 
         self.PasOnHide=FunctionForm(self._Warper_OnHide)
         self.OnHidePasObject=LCLBinding.set_Forms_TCustomForm_OnHide(self.pointer,self.PasOnHide,oldobj,FreeOldEvent)
@@ -892,7 +1047,7 @@ class TCustomForm(TCustomDesignControl):
         oldobj=0
         if hasattr(self, 'OnShowcall'):
             FreeOldEvent=1
-            oldobj=OnShowPasObject
+            oldobj=self.OnShowPasObject
         self.OnShowcall=v 
         self.PasOnShow=FunctionForm(self._Warper_OnShow)
         self.OnShowPasObject=LCLBinding.set_Forms_TCustomForm_OnShow(self.pointer,self.PasOnShow,oldobj,FreeOldEvent)
@@ -907,7 +1062,7 @@ class TCustomForm(TCustomDesignControl):
         oldobj=0
         if hasattr(self, 'OnShowModalFinishedcall'):
             FreeOldEvent=1
-            oldobj=OnShowModalFinishedPasObject
+            oldobj=self.OnShowModalFinishedPasObject
         self.OnShowModalFinishedcall=v 
         self.PasOnShowModalFinished=FunctionForm(self._Warper_OnShowModalFinished)
         self.OnShowModalFinishedPasObject=LCLBinding.set_Forms_TCustomForm_OnShowModalFinished(self.pointer,self.PasOnShowModalFinished,oldobj,FreeOldEvent)
@@ -922,7 +1077,7 @@ class TCustomForm(TCustomDesignControl):
         oldobj=0
         if hasattr(self, 'OnWindowStateChangecall'):
             FreeOldEvent=1
-            oldobj=OnWindowStateChangePasObject
+            oldobj=self.OnWindowStateChangePasObject
         self.OnWindowStateChangecall=v 
         self.PasOnWindowStateChange=FunctionForm(self._Warper_OnWindowStateChange)
         self.OnWindowStateChangePasObject=LCLBinding.set_Forms_TCustomForm_OnWindowStateChange(self.pointer,self.PasOnWindowStateChange,oldobj,FreeOldEvent)
@@ -979,6 +1134,22 @@ class TForm(TCustomForm):
     @staticmethod
     def Create(TheOwner):
         return LCLBindingUtil.GetPytonObject(LCLBinding.Forms_TForm_Create((TheOwner.pointer)),TForm)
+#Procedure Forms_TForm_Cascade
+    @staticmethod
+    def Cascade(self,):
+        LCLBinding.Forms_TForm_Cascade()
+#Procedure Forms_TForm_Next
+    @staticmethod
+    def Next(self,):
+        LCLBinding.Forms_TForm_Next()
+#Procedure Forms_TForm_Previous
+    @staticmethod
+    def Previous(self,):
+        LCLBinding.Forms_TForm_Previous()
+#Procedure Forms_TForm_Tile
+    @staticmethod
+    def Tile(self,):
+        LCLBinding.Forms_TForm_Tile()
     def getDragKind(self):
         r=LCLBinding.get_Forms_TForm_DragKind(self.pointer)
         return r
@@ -999,7 +1170,7 @@ class TForm(TCustomForm):
         oldobj=0
         if hasattr(self, 'OnDblClickcall'):
             FreeOldEvent=1
-            oldobj=OnDblClickPasObject
+            oldobj=self.OnDblClickPasObject
         self.OnDblClickcall=v 
         self.PasOnDblClick=FunctionForm(self._Warper_OnDblClick)
         self.OnDblClickPasObject=LCLBinding.set_Forms_TForm_OnDblClick(self.pointer,self.PasOnDblClick,oldobj,FreeOldEvent)
@@ -1014,7 +1185,7 @@ class TForm(TCustomForm):
         oldobj=0
         if hasattr(self, 'OnDragDropcall'):
             FreeOldEvent=1
-            oldobj=OnDragDropPasObject
+            oldobj=self.OnDragDropPasObject
         self.OnDragDropcall=v 
         self.PasOnDragDrop=FunctionForm(self._Warper_OnDragDrop)
         self.OnDragDropPasObject=LCLBinding.set_Forms_TForm_OnDragDrop(self.pointer,self.PasOnDragDrop,oldobj,FreeOldEvent)
@@ -1029,7 +1200,7 @@ class TForm(TCustomForm):
         oldobj=0
         if hasattr(self, 'OnDragOvercall'):
             FreeOldEvent=1
-            oldobj=OnDragOverPasObject
+            oldobj=self.OnDragOverPasObject
         self.OnDragOvercall=v 
         self.PasOnDragOver=FunctionForm(self._Warper_OnDragOver)
         self.OnDragOverPasObject=LCLBinding.set_Forms_TForm_OnDragOver(self.pointer,self.PasOnDragOver,oldobj,FreeOldEvent)
@@ -1044,7 +1215,7 @@ class TForm(TCustomForm):
         oldobj=0
         if hasattr(self, 'OnEndDockcall'):
             FreeOldEvent=1
-            oldobj=OnEndDockPasObject
+            oldobj=self.OnEndDockPasObject
         self.OnEndDockcall=v 
         self.PasOnEndDock=FunctionForm(self._Warper_OnEndDock)
         self.OnEndDockPasObject=LCLBinding.set_Forms_TForm_OnEndDock(self.pointer,self.PasOnEndDock,oldobj,FreeOldEvent)
@@ -1059,7 +1230,7 @@ class TForm(TCustomForm):
         oldobj=0
         if hasattr(self, 'OnMouseDowncall'):
             FreeOldEvent=1
-            oldobj=OnMouseDownPasObject
+            oldobj=self.OnMouseDownPasObject
         self.OnMouseDowncall=v 
         self.PasOnMouseDown=FunctionForm(self._Warper_OnMouseDown)
         self.OnMouseDownPasObject=LCLBinding.set_Forms_TForm_OnMouseDown(self.pointer,self.PasOnMouseDown,oldobj,FreeOldEvent)
@@ -1074,7 +1245,7 @@ class TForm(TCustomForm):
         oldobj=0
         if hasattr(self, 'OnMouseEntercall'):
             FreeOldEvent=1
-            oldobj=OnMouseEnterPasObject
+            oldobj=self.OnMouseEnterPasObject
         self.OnMouseEntercall=v 
         self.PasOnMouseEnter=FunctionForm(self._Warper_OnMouseEnter)
         self.OnMouseEnterPasObject=LCLBinding.set_Forms_TForm_OnMouseEnter(self.pointer,self.PasOnMouseEnter,oldobj,FreeOldEvent)
@@ -1089,7 +1260,7 @@ class TForm(TCustomForm):
         oldobj=0
         if hasattr(self, 'OnMouseLeavecall'):
             FreeOldEvent=1
-            oldobj=OnMouseLeavePasObject
+            oldobj=self.OnMouseLeavePasObject
         self.OnMouseLeavecall=v 
         self.PasOnMouseLeave=FunctionForm(self._Warper_OnMouseLeave)
         self.OnMouseLeavePasObject=LCLBinding.set_Forms_TForm_OnMouseLeave(self.pointer,self.PasOnMouseLeave,oldobj,FreeOldEvent)
@@ -1104,7 +1275,7 @@ class TForm(TCustomForm):
         oldobj=0
         if hasattr(self, 'OnMouseMovecall'):
             FreeOldEvent=1
-            oldobj=OnMouseMovePasObject
+            oldobj=self.OnMouseMovePasObject
         self.OnMouseMovecall=v 
         self.PasOnMouseMove=FunctionForm(self._Warper_OnMouseMove)
         self.OnMouseMovePasObject=LCLBinding.set_Forms_TForm_OnMouseMove(self.pointer,self.PasOnMouseMove,oldobj,FreeOldEvent)
@@ -1119,7 +1290,7 @@ class TForm(TCustomForm):
         oldobj=0
         if hasattr(self, 'OnMouseUpcall'):
             FreeOldEvent=1
-            oldobj=OnMouseUpPasObject
+            oldobj=self.OnMouseUpPasObject
         self.OnMouseUpcall=v 
         self.PasOnMouseUp=FunctionForm(self._Warper_OnMouseUp)
         self.OnMouseUpPasObject=LCLBinding.set_Forms_TForm_OnMouseUp(self.pointer,self.PasOnMouseUp,oldobj,FreeOldEvent)
@@ -1134,7 +1305,7 @@ class TForm(TCustomForm):
         oldobj=0
         if hasattr(self, 'OnStartDockcall'):
             FreeOldEvent=1
-            oldobj=OnStartDockPasObject
+            oldobj=self.OnStartDockPasObject
         self.OnStartDockcall=v 
         self.PasOnStartDock=FunctionForm(self._Warper_OnStartDock)
         self.OnStartDockPasObject=LCLBinding.set_Forms_TForm_OnStartDock(self.pointer,self.PasOnStartDock,oldobj,FreeOldEvent)

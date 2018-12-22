@@ -21,8 +21,9 @@ type
 
   private
     function IsPublicMember(obj: TParsedObject): boolean;
+    function GetLangFile(filename: string): TLangueFile;
   public
-    function GetTargetFile(var obj: TParsedObject): TLangueFile;
+    function GetTargetFile(obj: TParsedObject): TLangueFile;
     procedure SaveFiles;
   protected
     SavingDiroctry: string;
@@ -48,20 +49,14 @@ begin
   GenerateFiles(ParsedObject);
 end;
 
-function TLangugeModule.GetTargetFile(var obj: TParsedObject): TLangueFile;
+function TLangugeModule.GetTargetFile(obj: TParsedObject): TLangueFile;
 var
   targetlangfile: TLangueFile;
   filename, ObjectName: string;
-  lf: Pointer;
 begin
   ObjectName := obj.TParsedObjectName;
   filename := ExtractFileNameWithoutExt(obj.FileName);
-  targetlangfile := nil;
-  for lf in LangueFile do
-  begin
-    if TLangueFile(lf).filename = filename then
-      targetlangfile := TLangueFile(lf);
-  end;
+  targetlangfile := GetLangFile(filename);
   if targetlangfile = nil then
   begin
     targetlangfile := addFile(filename);
@@ -108,29 +103,67 @@ end;
 
 procedure TLangugeModule.GenerateFiles(const ParsedObject: TList);
 var
-  targetlangfile: TLangueFile;
+  targetlangfile, F: TLangueFile;
   obj: TParsedObject;
   o: Pointer;
+  k: integer;
+  PU: TparsedUses;
+  Cuse: string;
 begin
+  k := 0;
   for o in ParsedObject do
   begin
     obj := TParsedObject(o);
     if not IsPublicMember(obj) then
       Continue;
     targetlangfile := GetTargetFile(obj);
+    // WriteLn('k=',k);
     if obj is TParsedClass then
       targetlangfile.AddClass(obj as TParsedClass)
-    else if obj is TparsedConstructor then
+    else if obj.ClassType = TparsedConstructor then
       targetlangfile.AddConstructor(obj as TparsedConstructor)
+    else if obj.ClassType = TparsedFunction then
+      targetlangfile.AddProcedure(obj as TparsedFunction)
     else if obj is TParsedProperty then
       targetlangfile.AddProperty(obj as TParsedProperty)
-    else if obj is TparsedUses then
-      targetlangfile.AddUses(obj as TparsedUses)
     else if obj is TParsedProcedureType then
       targetlangfile.AddProcedureType(obj as TParsedProcedureType)
-      else if obj is TParsedSet then
-      targetlangfile.AddSet();
+    else if obj is TParsedSet then
+      targetlangfile.AddSet(obj as TParsedSet);
+    Inc(k);
   end;
+  for o in ParsedObject do
+  begin
+    obj := TParsedObject(o);
+    if obj.FileName.Contains('controls') then
+      WriteLn('control');
+    targetlangfile := GetTargetFile(obj);
+    if obj is TparsedUses then
+    begin
+      PU := obj as TparsedUses;
+      for k := 0 to PU.useslist.Count - 1 do
+      begin
+        Cuse := PU.useslist[k];
+        F:=GetLangFile(Cuse);
+        if Assigned(F) then
+          targetlangfile.AddUses(F.filename);
+      end;
+    end;
+  end;
+end;
+
+function TLangugeModule.GetLangFile(filename: string): TLangueFile;
+var
+  lf: Pointer;
+  targetlangfile: TLangueFile;
+begin
+  targetlangfile := nil;
+  for lf in LangueFile do
+  begin
+    if CompareText(TLangueFile(lf).filename , filename)=0 then
+      targetlangfile := TLangueFile(lf);
+  end;
+  Result := targetlangfile;
 end;
 
 end.

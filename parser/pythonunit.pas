@@ -30,7 +30,7 @@ begin
   PascalExport := TPascalLang.Create(D +PathDelim+ 'pas');
   ReturnTypeDec:=TpythonFile.Create('ReturnTypeDec');
   ReturnTypeDec.AddCodeline('from ctypes import *');
-  ReturnTypeDec.AddCodeline('#import end');
+  ReturnTypeDec.AddCodeline('#importx end');
   Self.LangueFile.Add(ReturnTypeDec);
 end;
 

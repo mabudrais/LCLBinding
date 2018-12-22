@@ -296,12 +296,35 @@ procedure TpascalBindingFile.AddExportFunction(fun: TparsedFunction);
 var
   proc: TParsedProcedureType;
   Cp: TparsedParameter;
-  Para, comma, paracall, ProcedureName, callcomma: string;
+  Para, comma, paracall, ProcedureName, callcomma, Cast, r2, r1,
+  callclose, callType: string;
   k: integer;
 begin
   proc := fun.pro;
   ProcedureName := proc.FileName + '_' + proc.memberof + '_' + proc.TParsedObjectName;
-  C.Add('//constructor' + ProcedureName);
+  C.Add('//' + fun.ClassName + ProcedureName);
+  if not (fun is TparsedConstructor) then
+  begin
+    Para := 'p:' + proc.memberof;
+    Cast := '(p)';
+    r2 := '  ';
+    comma := ';';
+    callType := 'Procedure ';
+    if proc.hasResult then
+    begin
+      callType := 'function ';
+      r1 := ':' + proc.resultType.parameterType;
+      r2 := 'Result:=' + PascalResulttoCType(proc.resultType.parameterType,
+        proc.resultType.parameterTypeO) + '(';
+      callclose := ' )';
+    end;
+  end
+  else
+  begin
+    callType := 'function ';
+    r1 := ':' + proc.memberof;
+    r2 := 'Result:=';
+  end;
   for k := 0 to proc.paramaterList.Count - 1 do
   begin
     Cp := proc.paramaterList[k] as TparsedParameter;
@@ -311,10 +334,10 @@ begin
     comma := ';';
     callcomma := ',';
   end;
-  C.Add('function ' + ProcedureName + '(' + Para + '):' + proc.memberof + ';cdecl;');
+  C.Add(callType + ProcedureName + '(' + Para + ')' + r1 + ';cdecl;');
   C.Add('begin');
-  C.Add('Result:=' + proc.memberof + '.' + proc.TParsedObjectName +
-    '(' + paracall + ');');
+  C.Add(r2 + proc.memberof + cast + '.' + proc.TParsedObjectName +
+    '(' + paracall + ')' + callclose + ';');
   C.Add('end;');
   AddToExport(ProcedureName);
 end;
@@ -356,7 +379,7 @@ end;
 function TpascalBindingFile.AddExportProperty(prop, Link: TParsedProperty): boolean;
 var
   ProcedureName, Para, Indexpara, IndexparaCallComma, IndexparaCall,
-    PrivateStr, tempstr: string;
+  PrivateStr, tempstr: string;
   k: integer;
   Cp: TparsedParameter;
 begin
@@ -364,13 +387,13 @@ begin
   ProcedureName := prop.FileName + '_' + prop.memberof + '_' + prop.TParsedObjectName;
   if (Assigned(Link.proptype) and (Link.proptype is TParsedProcedureType)) then
     Exit(AddExportEventProperty(prop, link, ProcedureName));
-  IndexparaCall:='';
-  Indexpara:='';
+  IndexparaCall := '';
+  Indexpara := '';
   if link.Isindexed then   //only integer index are supported
   begin
     PrivateStr := '';
-    if prop.TParsedObjectName='Strings' then
-    WriteLn('');
+    if prop.TParsedObjectName = 'Strings' then
+      WriteLn('');
     for k := 0 to link.paramaterList.Count - 1 do
     begin
       Cp := TparsedParameter(link.paramaterList[k]);
@@ -378,18 +401,19 @@ begin
       IndexparaCall := IndexparaCall + IndexparaCallComma + cp.parameterName;
       IndexparaCallComma := ',';
     end;
-    IndexparaCall:='['+IndexparaCall+']';
+    IndexparaCall := '[' + IndexparaCall + ']';
   end;
   if link.IsReadable then
   begin
     C.Add('//property getter' + ProcedureName);
     Para := 'p:' + prop.memberof;
-    tempstr:='function ' + 'get_' + ProcedureName + '(' + Para +Indexpara+ '):' +
-      PascaltoCType(link.TParsedObjectType, link.proptype) + ';cdecl;';
+    tempstr := 'function ' + 'get_' + ProcedureName + '(' + Para +
+      Indexpara + '):' + PascaltoCType(link.TParsedObjectType, link.proptype) +
+      ';cdecl;';
     C.Add(tempstr);
     C.Add('begin');
     C.Add('Result:=' + PascalResulttoCType(link.TParsedObjectType, link.proptype) +
-      '(p.' + link.TParsedObjectName + IndexparaCall+');');
+      '(p.' + link.TParsedObjectName + IndexparaCall + ');');
     C.Add('end;');
     AddToExport('get_' + ProcedureName);
     Result := True;
@@ -397,11 +421,12 @@ begin
   if link.IsWritable then
   begin
     C.Add('//property setter' + ProcedureName);
-    Para := 'p:' + prop.memberof + Indexpara+';v:' + PascaltoCType(link.TParsedObjectType);
+    Para := 'p:' + prop.memberof + Indexpara + ';v:' +
+      PascaltoCType(link.TParsedObjectType);
     C.Add('procedure ' + 'set_' + ProcedureName + '(' + Para + ');cdecl; ');
     C.Add('begin');
-    C.Add('p.' + link.TParsedObjectName +IndexparaCall+ ':=' + BodyConvertToPas(
-      link.TParsedObjectType) + '(v);');
+    C.Add('p.' + link.TParsedObjectName + IndexparaCall + ':=' +
+      BodyConvertToPas(link.TParsedObjectType) + '(v);');
     C.Add('end;');
     AddToExport('set_' + ProcedureName);
     Result := True;
@@ -418,10 +443,12 @@ begin
   begin
     varprefix := '';
     Cp := prot.paramaterList[k] as TparsedParameter;
+    if CompareText('ClassName', cp.parameterName) then
+      cp.parameterName := 'ClassName2';//prevent clash with TObject.ClassName
     if Cp.parameterAcsess = 'var' then
       varprefix := 'var '
-      else if cp.parameterAcsess='const' then
-      varprefix:='const';
+    else if cp.parameterAcsess = 'const' then
+      varprefix := 'const ';
     paraCtype := paraCtype + comma + cp.parameterName + ':' +
       PascaltoCType(cp.parameterType, cp.parameterTypeO);
     para := para + comma + varprefix + cp.parameterName + ':' + cp.parameterType;

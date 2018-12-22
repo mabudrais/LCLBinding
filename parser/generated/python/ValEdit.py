@@ -1,4 +1,12 @@
+from lcltype import *
+from dialogs import *
+from lresources import *
+from Grids import *
+from StdCtrls import *
+from Controls import *
+from Classes import *
 from MainPasObject import *
+import LCLBindingUtil
 #import end
 def CreateTKeyOptionsFromInt(i):
     dic={1:"keyEdit",2:"keyAdd",4:"keyDelete",8:"keyUnique"}
@@ -11,12 +19,40 @@ class TValueListStrings(TStringList):
 #    pointer=c_void_p()
     def __init__(self):#TValueListStrings
         TStringList.__init__(self)
+#constructorValEdit_TValueListStrings_Create
+    @staticmethod
+    def Create(AOwner):
+        return LCLBindingUtil.GetPytonObject(LCLBinding.ValEdit_TValueListStrings_Create((AOwner.pointer)),TValueListStrings)
+#Procedure ValEdit_TValueListStrings_Assign
+    @staticmethod
+    def Assign(self,Source):
+        LCLBinding.ValEdit_TValueListStrings_Assign((Source.pointer))
+#Procedure ValEdit_TValueListStrings_Clear
+    @staticmethod
+    def Clear(self,):
+        LCLBinding.ValEdit_TValueListStrings_Clear()
+#Procedure ValEdit_TValueListStrings_CustomSort
+    @staticmethod
+    def CustomSort(self,Compare):
+        LCLBinding.ValEdit_TValueListStrings_CustomSort((Compare.pointer))
+#Procedure ValEdit_TValueListStrings_Delete
+    @staticmethod
+    def Delete(self,Index):
+        LCLBinding.ValEdit_TValueListStrings_Delete((Index))
+#Procedure ValEdit_TValueListStrings_Exchange
+    @staticmethod
+    def Exchange(self,Index1,Index2):
+        LCLBinding.ValEdit_TValueListStrings_Exchange((Index1),(Index2))
 #class TValueListStrings end
 #class TItemProp start
 class TItemProp(TPersistent):
 #    pointer=c_void_p()
     def __init__(self):#TItemProp
         TPersistent.__init__(self)
+#constructorValEdit_TItemProp_Create
+    @staticmethod
+    def Create(AOwner):
+        return LCLBindingUtil.GetPytonObject(LCLBinding.ValEdit_TItemProp_Create((AOwner.pointer)),TItemProp)
     def getEditMask(self):
         r=LCLBinding.get_ValEdit_TItemProp_EditMask(self.pointer)
         return LCLBindingUtil.ConvertPascalstring(r)
@@ -63,6 +99,34 @@ class TValueListEditor(TCustomStringGrid):
     @staticmethod
     def Create(AOwner):
         return LCLBindingUtil.GetPytonObject(LCLBinding.ValEdit_TValueListEditor_Create((AOwner.pointer)),TValueListEditor)
+#Procedure ValEdit_TValueListEditor_Clear
+    @staticmethod
+    def Clear(self,):
+        LCLBinding.ValEdit_TValueListEditor_Clear()
+#Procedure ValEdit_TValueListEditor_DeleteColRow
+    @staticmethod
+    def DeleteColRow(self,IsColumn,index):
+        LCLBinding.ValEdit_TValueListEditor_DeleteColRow((booleantoint(IsColumn)),(index))
+#Procedure ValEdit_TValueListEditor_DeleteRow
+    @staticmethod
+    def DeleteRow(self,Index):
+        LCLBinding.ValEdit_TValueListEditor_DeleteRow((Index))
+#Procedure ValEdit_TValueListEditor_DeleteCol
+    @staticmethod
+    def DeleteCol(self,Index):
+        LCLBinding.ValEdit_TValueListEditor_DeleteCol((Index))
+#Procedure ValEdit_TValueListEditor_InsertColRow
+    @staticmethod
+    def InsertColRow(self,IsColumn,index):
+        LCLBinding.ValEdit_TValueListEditor_InsertColRow((booleantoint(IsColumn)),(index))
+#Procedure ValEdit_TValueListEditor_ExchangeColRow
+    @staticmethod
+    def ExchangeColRow(self,IsColumn,index,WithIndex):
+        LCLBinding.ValEdit_TValueListEditor_ExchangeColRow((booleantoint(IsColumn)),(index),(WithIndex))
+#Procedure ValEdit_TValueListEditor_MoveColRow
+    @staticmethod
+    def MoveColRow(self,IsColumn,FromIndex,ToIndex):
+        LCLBinding.ValEdit_TValueListEditor_MoveColRow((booleantoint(IsColumn)),(FromIndex),(ToIndex))
     def getModified(self):
         r=LCLBinding.get_ValEdit_TValueListEditor_Modified(self.pointer)
         return LCLBindingUtil.ConvertPascalBoolean(r)
@@ -154,7 +218,7 @@ class TValueListEditor(TCustomStringGrid):
         oldobj=0
         if hasattr(self, 'OnCheckboxToggledcall'):
             FreeOldEvent=1
-            oldobj=OnCheckboxToggledPasObject
+            oldobj=self.OnCheckboxToggledPasObject
         self.OnCheckboxToggledcall=v 
         self.PasOnCheckboxToggled=FunctionForm(self._Warper_OnCheckboxToggled)
         self.OnCheckboxToggledPasObject=LCLBinding.set_ValEdit_TValueListEditor_OnCheckboxToggled(self.pointer,self.PasOnCheckboxToggled,oldobj,FreeOldEvent)
@@ -169,7 +233,7 @@ class TValueListEditor(TCustomStringGrid):
         oldobj=0
         if hasattr(self, 'OnEditingDonecall'):
             FreeOldEvent=1
-            oldobj=OnEditingDonePasObject
+            oldobj=self.OnEditingDonePasObject
         self.OnEditingDonecall=v 
         self.PasOnEditingDone=FunctionForm(self._Warper_OnEditingDone)
         self.OnEditingDonePasObject=LCLBinding.set_ValEdit_TValueListEditor_OnEditingDone(self.pointer,self.PasOnEditingDone,oldobj,FreeOldEvent)
@@ -184,7 +248,7 @@ class TValueListEditor(TCustomStringGrid):
         oldobj=0
         if hasattr(self, 'OnTopLeftChangedcall'):
             FreeOldEvent=1
-            oldobj=OnTopLeftChangedPasObject
+            oldobj=self.OnTopLeftChangedPasObject
         self.OnTopLeftChangedcall=v 
         self.PasOnTopLeftChanged=FunctionForm(self._Warper_OnTopLeftChanged)
         self.OnTopLeftChangedPasObject=LCLBinding.set_ValEdit_TValueListEditor_OnTopLeftChanged(self.pointer,self.PasOnTopLeftChanged,oldobj,FreeOldEvent)
@@ -199,7 +263,7 @@ class TValueListEditor(TCustomStringGrid):
         oldobj=0
         if hasattr(self, 'OnUserCheckboxBitmapcall'):
             FreeOldEvent=1
-            oldobj=OnUserCheckboxBitmapPasObject
+            oldobj=self.OnUserCheckboxBitmapPasObject
         self.OnUserCheckboxBitmapcall=v 
         self.PasOnUserCheckboxBitmap=FunctionForm(self._Warper_OnUserCheckboxBitmap)
         self.OnUserCheckboxBitmapPasObject=LCLBinding.set_ValEdit_TValueListEditor_OnUserCheckboxBitmap(self.pointer,self.PasOnUserCheckboxBitmap,oldobj,FreeOldEvent)
@@ -214,7 +278,7 @@ class TValueListEditor(TCustomStringGrid):
         oldobj=0
         if hasattr(self, 'OnValidateEntrycall'):
             FreeOldEvent=1
-            oldobj=OnValidateEntryPasObject
+            oldobj=self.OnValidateEntryPasObject
         self.OnValidateEntrycall=v 
         self.PasOnValidateEntry=FunctionForm(self._Warper_OnValidateEntry)
         self.OnValidateEntryPasObject=LCLBinding.set_ValEdit_TValueListEditor_OnValidateEntry(self.pointer,self.PasOnValidateEntry,oldobj,FreeOldEvent)
@@ -265,7 +329,7 @@ class TValueListEditor(TCustomStringGrid):
         oldobj=0
         if hasattr(self, 'OnGetPickListcall'):
             FreeOldEvent=1
-            oldobj=OnGetPickListPasObject
+            oldobj=self.OnGetPickListPasObject
         self.OnGetPickListcall=v 
         self.PasOnGetPickList=FunctionForm(self._Warper_OnGetPickList)
         self.OnGetPickListPasObject=LCLBinding.set_ValEdit_TValueListEditor_OnGetPickList(self.pointer,self.PasOnGetPickList,oldobj,FreeOldEvent)
@@ -280,7 +344,7 @@ class TValueListEditor(TCustomStringGrid):
         oldobj=0
         if hasattr(self, 'OnStringsChangecall'):
             FreeOldEvent=1
-            oldobj=OnStringsChangePasObject
+            oldobj=self.OnStringsChangePasObject
         self.OnStringsChangecall=v 
         self.PasOnStringsChange=FunctionForm(self._Warper_OnStringsChange)
         self.OnStringsChangePasObject=LCLBinding.set_ValEdit_TValueListEditor_OnStringsChange(self.pointer,self.PasOnStringsChange,oldobj,FreeOldEvent)
@@ -295,7 +359,7 @@ class TValueListEditor(TCustomStringGrid):
         oldobj=0
         if hasattr(self, 'OnStringsChangingcall'):
             FreeOldEvent=1
-            oldobj=OnStringsChangingPasObject
+            oldobj=self.OnStringsChangingPasObject
         self.OnStringsChangingcall=v 
         self.PasOnStringsChanging=FunctionForm(self._Warper_OnStringsChanging)
         self.OnStringsChangingPasObject=LCLBinding.set_ValEdit_TValueListEditor_OnStringsChanging(self.pointer,self.PasOnStringsChanging,oldobj,FreeOldEvent)

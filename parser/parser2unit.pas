@@ -66,6 +66,7 @@ type
     function CheckInUses(var oldCurrentfile: TPasModule;
       var Index: integer): boolean;
     function HasConstructor(O: TParsedClass; var ConIndex: integer): boolean;
+    function ProcessProcedure(pr: TPasProcedure; CN: string): TparsedFunction;
   end;
 
 implementation
@@ -124,7 +125,7 @@ begin
   end;
   // WriteLn(PFIS.Count);
   for LCLComponenetName in CTargetClass do
-    ParseIdentTifire(LowerCase(LCLComponenetName), i);
+    ParseIdentTifire(LCLComponenetName, i);
 end;
 
 function TLCLParser2.findPasElement(ElementName: string; CFile: TPasModule): TPasElement;
@@ -138,7 +139,7 @@ begin
   for k := 0 to Decls.Count - 1 do
   begin
     CDeclName := (TObject(Decls[k]) as TPasElement).Name;
-    if LowerCase(CDeclName) = ElementName then
+    if CompareText(CDeclName,ElementName)=0 then
       Exit((TObject(Decls[k]) as TPasElement));
   end;
 end;
@@ -189,6 +190,40 @@ begin
   end;
 end;
 
+function TLCLParser2.ProcessProcedure(pr: TPasProcedure; CN: string): TparsedFunction;
+var
+  P: TParsedObject;
+  PP: TparsedFunction;
+  prot: TParsedProcedureType;
+  k: integer;
+begin
+  //  if CN = 'TCustomImageList' then
+  //  CW('kkk');
+  Result := nil;
+  if pr.Name = 'Show' then
+    cw('mmm');
+  Result := nil;
+  P := GetProcedureType(pr.ProcType, False);
+  if Assigned(P) then
+  begin
+    prot := p as TParsedProcedureType;
+    for k := 0 to prot.paramaterList.Count - 1 do
+    begin
+      if (prot.paramaterList[k] as TparsedParameter).parameterAcsess = 'var' then
+        Exit;
+    end;
+    p.memberof := CN;
+    p.TParsedObjectName := pr.Name;
+    PP := TparsedFunction.Create;
+    pp.FileName := p.FileName;
+    pp.pro := p as TParsedProcedureType;
+    ParsedObject.Add(pp);
+    Result := pp;
+  end
+  else
+    WriteLn('failed to parse  Procedure' + cn + '.' + pr.Name);
+end;
+
 function TLCLParser2.ProcessProperty(p: TPasProperty; CO: TParsedClass): TParsedProperty;
 var
   E: TPasExpr;
@@ -202,8 +237,8 @@ begin
   CN := co.TParsedObjectName;
   O := nil;
   // p.Args for indexd property
-   if p.Name = 'Strings' then
-   CW('');
+  if p.Name = 'Strings' then
+    CW('');
   if p.Args.Count > 0 then
   begin
 
@@ -240,6 +275,8 @@ begin
   begin
     o.ParentClass := c.AncestorType.FullName;
     o.ParentclassO := ParseIdentTifire(LowerCase(o.ParentClass), index) as TParsedClass;
+    if o.ParentclassO=Nil then
+    o.ParentClass:='TObject';
   end
   else
     o.ParentClass := 'TObject';
@@ -258,8 +295,9 @@ begin
     if CMember is TPasFunction then
     else if CMember is TPasConstructor then
       PM := ProcessConstructor(CMember as TPasConstructor, o.TParsedObjectName)
-    else if CMember is TPasDestructor then
+    else if CMember.ClassType = TPasDestructor then
     else if CMember is TPasProcedure then
+      PM := ProcessProcedure(CMember as TPasProcedure, o.TParsedObjectName)
     else if CMember is TPasProperty then
       PM := ProcessProperty(CMember as TPasProperty, o);
     if Assigned(PM) then
@@ -286,18 +324,34 @@ var
   //ATPO add to parsed object
   k, index: integer;
   CArg: TPasArgument;
-  ArgTypeName, ArgName, Access: string;
+  ArgTypeName, ArgName, Access, tt: string;
   DT, SimpleType, WrongType, SearchFail: boolean;
   O: TParsedProcedureType;
   ParsedArg: TparsedParameter;
   SearchedParaType: TParsedObject;
+  funt: TPasFunctionType;
 begin
   Result := nil;
+  O := TParsedProcedureType.Create;
+  if p is TPasFunctionType then
+  begin
+    o.hasResult := True;
+    funt := p as TPasFunctionType;
+    o.resultType := TparsedParameter.Create('Result', '');
+    o.resultType.parameterType := funt.ResultEl.ResultType.Name;
+    GetParamterType(funt.ResultEl.ResultType.Name, SimpleType, DT, index);
+    o.resultType.SetparameterTypeO(PFIS, index);
+    if (not DT) and (not SimpleType) and (index < 0) then
+    begin
+      FreeAndNil(o);
+      Exit(nil);
+    end;
+  end;
+  WrongType := False;
   O := TParsedProcedureType.Create;
   o.TParsedObjectName := p.Name;
   o.FileName := CurrentFile.Name;
   o.TParsedObjectName := P.Name;
-  WrongType := False;
   for k := 0 to P.Args.Count - 1 do
   begin
     SimpleType := False;
@@ -305,6 +359,8 @@ begin
     SearchFail := False;
     CArg := TPasArgument(P.Args[k]);
     ArgName := CArg.Name;
+    if not Assigned(CArg.ArgType) then
+      Exit(nil);
     ArgTypeName := CArg.ArgType.Name;
     if isDefinedSimpleIdentfire(LowerCase(ArgTypeName)) then
       SimpleType := True
@@ -313,7 +369,8 @@ begin
     else
     begin
       SearchedParaType := ParseIdentTifire(LowerCase(ArgTypeName), index, True);
-      if SearchedParaType = nil then
+      if index < 0 then
+
         SearchFail := True;
     end;
     if (not DT) and (not SimpleType) and (SearchFail) then
@@ -322,9 +379,9 @@ begin
       Break;
     end;
     if (CArg.Access = argConst) then
-       Access := 'const'
+      Access := 'const'
     else if (CArg.Access = argDefault) then
-    Access := 'def'
+      Access := 'def'
     else if (CArg.Access = argVar) or (CArg.Access = argOut) then
       Access := 'var'
     else
@@ -334,7 +391,7 @@ begin
     ParsedArg.isSimpleType := SimpleType;
     ParsedArg.isDefaultType := Dt;
     if (not SimpleType) and (not Dt) then
-      ParsedArg.parameterTypeO := SearchedParaType;
+      ParsedArg.SetparameterTypeO(PFIS, index);
     o.paramaterList.Add(ParsedArg);
   end;
   if WrongType then
@@ -420,13 +477,13 @@ var
   cPFI: TPFI;
 begin
   Result := nil;
-  if c = 'tmousemoveevent' then
+  if CompareText(c, 'tmousemoveevent')=0 then
   begin
     WriteLn('lll');
     // Exit;
   end;
   oldCurrentfile := CurrentFile;
-  index := PFIS.IndexOf(c + '_0');
+  index := PFIS.IndexOf(LowerCase(c) + '_0');
   found := False;
   if (Index > -1) and (ristrict) then
   begin
@@ -481,7 +538,8 @@ var
   k: integer;
   ckey: string;
 begin
-  k := PFIS.IndexOf(LowerCase(IName));
+   Iname:=LowerCase(IName);
+  k := PFIS.IndexOf((IName));
   if k < 0 then
     Exit(0);
   ckey := PFIS.Keys[k];
@@ -501,6 +559,7 @@ var
   M: TPasModule;
   IName: string;
   CPFI: TPFI;
+  PU: TparsedUses;
 begin
   E := TSimpleEngine.Create;
   M := nil;
@@ -523,8 +582,14 @@ begin
     end
     else
       CW('No interface section --- this is not a unit, this is a ' + M.ClassName);
-    for k := 2 to Length(m.InterfaceSection.UsesClause) - 1 do
+    PU := TparsedUses.Create;
+    Pu.FileName := ExtractFileNameWithoutExt(ExtractFileName(FileName));
+    for k := 0 to Length(m.InterfaceSection.UsesClause) - 1 do
+    begin
       CW(m.InterfaceSection.UsesClause[k].Module.FullName);
+      PU.useslist.Add(m.InterfaceSection.UsesClause[k].Module.FullName);
+    end;
+    ParsedObject.Add(PU);
   finally
     // FreeAndNil(M);
     FreeAndNil(E)
@@ -551,7 +616,11 @@ begin
   CTypeName := p.VarType.Name;
   index := -1;
   Ctype := GetParamterType(CTypeName, SimpleType, DT, index);
-
+  if Ctype is TParsedProcedureType then
+  begin
+    if (Ctype as TParsedProcedureType).hasResult then
+    cw('iss function');
+  end;
   {if (Ctype = nil) and (not SimpleType) and (not DT) then
     Exit(nil);    }
   O := TParsedProperty.Create;
@@ -579,7 +648,8 @@ begin
       CArg := TPasArgument(p.Args[k]);
       if CompareText(CArg.ArgType.Name, 'Integer') <> 0 then
       begin
-        WriteLn(o.memberof+' '+o.TParsedObjectName+' index '+CArg.Name+ ' '+CArg.ArgType.Name);
+        WriteLn(o.memberof + ' ' + o.TParsedObjectName + ' index ' +
+          CArg.Name + ' ' + CArg.ArgType.Name);
         Exit(nil);
       end;
       CPara := TparsedParameter.Create(CArg.Name, 'const');

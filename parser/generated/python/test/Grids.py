@@ -1,8 +1,13 @@
-from MainPasObject import *
-from controls import *
-from LCLClasses import *
+from clipbrd import *
+from Buttons import *
+from MaskEdit import *
+from StdCtrls import *
 from Forms import *
-from LCLBindingUtil import *
+from Graphics import *
+from GraphType import *
+from Controls import *
+from Classes import *
+from MainPasObject import *
 #import end
 def CreateTGridDrawStateFromInt(i):
     dic={1:"gdSelected",2:"gdFocused",4:"gdFixed",8:"gdHot",16:"gdPushed",32:"gdRowHighlight"}
@@ -31,6 +36,66 @@ class TCustomGrid(TCustomControl):
     @staticmethod
     def Create(AOwner):
         return LCLBindingUtil.GetPytonObject(LCLBinding.Grids_TCustomGrid_Create((AOwner.pointer)),TCustomGrid)
+#Procedure Grids_TCustomGrid_Invalidate
+    @staticmethod
+    def Invalidate(self,):
+        LCLBinding.Grids_TCustomGrid_Invalidate()
+#Procedure Grids_TCustomGrid_EditingDone
+    @staticmethod
+    def EditingDone(self,):
+        LCLBinding.Grids_TCustomGrid_EditingDone()
+#Procedure Grids_TCustomGrid_AutoAdjustColumns
+    @staticmethod
+    def AutoAdjustColumns(self,):
+        LCLBinding.Grids_TCustomGrid_AutoAdjustColumns()
+#Procedure Grids_TCustomGrid_BeginUpdate
+    @staticmethod
+    def BeginUpdate(self,):
+        LCLBinding.Grids_TCustomGrid_BeginUpdate()
+#Procedure Grids_TCustomGrid_CheckPosition
+    @staticmethod
+    def CheckPosition(self,):
+        LCLBinding.Grids_TCustomGrid_CheckPosition()
+#Procedure Grids_TCustomGrid_Clear
+    @staticmethod
+    def Clear(self,):
+        LCLBinding.Grids_TCustomGrid_Clear()
+#Procedure Grids_TCustomGrid_ClearSelections
+    @staticmethod
+    def ClearSelections(self,):
+        LCLBinding.Grids_TCustomGrid_ClearSelections()
+#Procedure Grids_TCustomGrid_EndUpdate
+    @staticmethod
+    def EndUpdate(self,aRefresh):
+        LCLBinding.Grids_TCustomGrid_EndUpdate((booleantoint(aRefresh)))
+#Procedure Grids_TCustomGrid_InvalidateCol
+    @staticmethod
+    def InvalidateCol(self,ACol):
+        LCLBinding.Grids_TCustomGrid_InvalidateCol((ACol))
+#Procedure Grids_TCustomGrid_InvalidateRow
+    @staticmethod
+    def InvalidateRow(self,ARow):
+        LCLBinding.Grids_TCustomGrid_InvalidateRow((ARow))
+#Procedure Grids_TCustomGrid_LoadFromFile
+    @staticmethod
+    def LoadFromFile(self,FileName):
+        LCLBinding.Grids_TCustomGrid_LoadFromFile((FileName))
+#Procedure Grids_TCustomGrid_LoadFromStream
+    @staticmethod
+    def LoadFromStream(self,AStream):
+        LCLBinding.Grids_TCustomGrid_LoadFromStream((AStream.pointer))
+#Procedure Grids_TCustomGrid_SaveToFile
+    @staticmethod
+    def SaveToFile(self,FileName):
+        LCLBinding.Grids_TCustomGrid_SaveToFile((FileName))
+#Procedure Grids_TCustomGrid_SaveToStream
+    @staticmethod
+    def SaveToStream(self,AStream):
+        LCLBinding.Grids_TCustomGrid_SaveToStream((AStream.pointer))
+#Procedure Grids_TCustomGrid_SetFocus
+    @staticmethod
+    def SetFocus(self,):
+        LCLBinding.Grids_TCustomGrid_SetFocus()
     def getSelectedRangeCount(self):
         r=LCLBinding.get_Grids_TCustomGrid_SelectedRangeCount(self.pointer)
         return LCLBindingUtil.ConvertPascalInteger(r)
@@ -55,6 +120,30 @@ class TCustomDrawGrid(TCustomGrid):
     @staticmethod
     def Create(AOwner):
         return LCLBindingUtil.GetPytonObject(LCLBinding.Grids_TCustomDrawGrid_Create((AOwner.pointer)),TCustomDrawGrid)
+#Procedure Grids_TCustomDrawGrid_DeleteColRow
+    @staticmethod
+    def DeleteColRow(self,IsColumn,index):
+        LCLBinding.Grids_TCustomDrawGrid_DeleteColRow((booleantoint(IsColumn)),(index))
+#Procedure Grids_TCustomDrawGrid_DeleteCol
+    @staticmethod
+    def DeleteCol(self,Index):
+        LCLBinding.Grids_TCustomDrawGrid_DeleteCol((Index))
+#Procedure Grids_TCustomDrawGrid_DeleteRow
+    @staticmethod
+    def DeleteRow(self,Index):
+        LCLBinding.Grids_TCustomDrawGrid_DeleteRow((Index))
+#Procedure Grids_TCustomDrawGrid_ExchangeColRow
+    @staticmethod
+    def ExchangeColRow(self,IsColumn,index,WithIndex):
+        LCLBinding.Grids_TCustomDrawGrid_ExchangeColRow((booleantoint(IsColumn)),(index),(WithIndex))
+#Procedure Grids_TCustomDrawGrid_InsertColRow
+    @staticmethod
+    def InsertColRow(self,IsColumn,index):
+        LCLBinding.Grids_TCustomDrawGrid_InsertColRow((booleantoint(IsColumn)),(index))
+#Procedure Grids_TCustomDrawGrid_MoveColRow
+    @staticmethod
+    def MoveColRow(self,IsColumn,FromIndex,ToIndex):
+        LCLBinding.Grids_TCustomDrawGrid_MoveColRow((booleantoint(IsColumn)),(FromIndex),(ToIndex))
     def getAllowOutboundEvents(self):
         r=LCLBinding.get_Grids_TCustomDrawGrid_AllowOutboundEvents(self.pointer)
         return LCLBindingUtil.ConvertPascalBoolean(r)
@@ -760,6 +849,18 @@ class TGridColumnTitle(TPersistent):
 #    pointer=c_void_p()
     def __init__(self):#TGridColumnTitle
         TPersistent.__init__(self)
+#constructorGrids_TGridColumnTitle_Create
+    @staticmethod
+    def Create(TheColumn):
+        return LCLBindingUtil.GetPytonObject(LCLBinding.Grids_TGridColumnTitle_Create((TheColumn.pointer)),TGridColumnTitle)
+#Procedure Grids_TGridColumnTitle_Assign
+    @staticmethod
+    def Assign(self,Source):
+        LCLBinding.Grids_TGridColumnTitle_Assign((Source.pointer))
+#Procedure Grids_TGridColumnTitle_FillTitleDefaultFont
+    @staticmethod
+    def FillTitleDefaultFont(self,):
+        LCLBinding.Grids_TGridColumnTitle_FillTitleDefaultFont()
     def getColumn(self):
         r=LCLBinding.get_Grids_TGridColumnTitle_Column(self.pointer)
         return LCLBindingUtil.GetPytonObject(r,TGridColumn)
@@ -822,6 +923,14 @@ class TGridColumn(TCollectionItem):
     @staticmethod
     def Create(ACollection):
         return LCLBindingUtil.GetPytonObject(LCLBinding.Grids_TGridColumn_Create((ACollection.pointer)),TGridColumn)
+#Procedure Grids_TGridColumn_Assign
+    @staticmethod
+    def Assign(self,Source):
+        LCLBinding.Grids_TGridColumn_Assign((Source.pointer))
+#Procedure Grids_TGridColumn_FillDefaultFont
+    @staticmethod
+    def FillDefaultFont(self,):
+        LCLBinding.Grids_TGridColumn_FillDefaultFont()
     def getGrid(self):
         r=LCLBinding.get_Grids_TGridColumn_Grid(self.pointer)
         return LCLBindingUtil.GetPytonObject(r,TCustomGrid)
@@ -928,13 +1037,16 @@ class TGridColumn(TCollectionItem):
     def setValueUnchecked(self,v):
         LCLBinding.set_Grids_TGridColumn_ValueUnchecked(self.pointer,v)
     ValueUnchecked=property(getValueUnchecked,setValueUnchecked)
-
 #class TGridColumn end
 #class TGridColumns start
 class TGridColumns(TCollection):
 #    pointer=c_void_p()
     def __init__(self):#TGridColumns
         TCollection.__init__(self)
+#Procedure Grids_TGridColumns_Clear
+    @staticmethod
+    def Clear(self,):
+        LCLBinding.Grids_TGridColumns_Clear()
     def getGrid(self):
         r=LCLBinding.get_Grids_TGridColumns_Grid(self.pointer)
         return LCLBindingUtil.GetPytonObject(r,TCustomGrid)
@@ -962,6 +1074,18 @@ class TCustomStringGrid(TCustomDrawGrid):
     @staticmethod
     def Create(AOwner):
         return LCLBindingUtil.GetPytonObject(LCLBinding.Grids_TCustomStringGrid_Create((AOwner.pointer)),TCustomStringGrid)
+#Procedure Grids_TCustomStringGrid_AutoSizeColumn
+    @staticmethod
+    def AutoSizeColumn(self,aCol):
+        LCLBinding.Grids_TCustomStringGrid_AutoSizeColumn((aCol))
+#Procedure Grids_TCustomStringGrid_AutoSizeColumns
+    @staticmethod
+    def AutoSizeColumns(self,):
+        LCLBinding.Grids_TCustomStringGrid_AutoSizeColumns()
+#Procedure Grids_TCustomStringGrid_CopyToClipboard
+    @staticmethod
+    def CopyToClipboard(self,AUseSelection):
+        LCLBinding.Grids_TCustomStringGrid_CopyToClipboard((booleantoint(AUseSelection)))
     def getCells(self,ACol,ARow):
         r=LCLBinding.get_Grids_TCustomStringGrid_Cells(self.pointer,ACol,ARow)
         return LCLBindingUtil.ConvertPascalstring(r)

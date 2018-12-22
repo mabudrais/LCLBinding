@@ -1,4 +1,12 @@
+from LCLClasses import *
+from ActnList import *
+from Menus import *
+from ImgList import *
+from Graphics import *
+from GraphType import *
+from Classes import *
 from MainPasObject import *
+import LCLBindingUtil
 #import end
 def CreateTControlStyleFromInt(i):
     dic={1:"csAcceptsControls",2:"csCaptureMouse",4:"csDesignInteractive",8:"csClickEvents",16:"csFramed",32:"csSetCaption",64:"csOpaque",128:"csDoubleClicks",256:"csTripleClicks",512:"csQuadClicks",1024:"csFixedWidth",2048:"csFixedHeight",4096:"csNoDesignVisible",8192:"csReplicatable",16384:"csNoStdEvents",32768:"csDisplayDragImage",65536:"csReflector",131072:"csActionClient",262144:"csMenuEvents",524288:"csNoFocus",1048576:"csNeedsBorderPaint",2097152:"csParentBackground",4194304:"csDesignNoSmoothResize",8388608:"csDesignFixedBounds",16777216:"csHasDefaultAction",33554432:"csHasCancelAction",67108864:"csNoDesignSelectable",134217728:"csOwnedChildrenNotSelectable",268435456:"csAutoSize0x0",536870912:"csAutoSizeKeepChildLeft",1073741824:"csAutoSizeKeepChildTop",2147483648:"csRequiresKeyboardInput"}
@@ -20,6 +28,18 @@ class TDragImageList(TCustomImageList):
 #    pointer=c_void_p()
     def __init__(self):#TDragImageList
         TCustomImageList.__init__(self)
+#Procedure Controls_TDragImageList_DragUnlock
+    @staticmethod
+    def DragUnlock(self,):
+        LCLBinding.Controls_TDragImageList_DragUnlock()
+#Procedure Controls_TDragImageList_HideDragImage
+    @staticmethod
+    def HideDragImage(self,):
+        LCLBinding.Controls_TDragImageList_HideDragImage()
+#Procedure Controls_TDragImageList_ShowDragImage
+    @staticmethod
+    def ShowDragImage(self,):
+        LCLBinding.Controls_TDragImageList_ShowDragImage()
     def getDragging(self):
         r=LCLBinding.get_Controls_TDragImageList_Dragging(self.pointer)
         return LCLBindingUtil.ConvertPascalBoolean(r)
@@ -44,13 +64,217 @@ class TControl(TLCLComponent):
 #    pointer=c_void_p()
     def __init__(self):#TControl
         TLCLComponent.__init__(self)
+#Procedure Controls_TControl_DragDrop
+    @staticmethod
+    def DragDrop(self,Source,X,Y):
+        LCLBinding.Controls_TControl_DragDrop((Source.pointer),(X),(Y))
+#Procedure Controls_TControl_AdjustSize
+    @staticmethod
+    def AdjustSize(self,):
+        LCLBinding.Controls_TControl_AdjustSize()
+#Procedure Controls_TControl_AnchorHorizontalCenterTo
+    @staticmethod
+    def AnchorHorizontalCenterTo(self,Sibling):
+        LCLBinding.Controls_TControl_AnchorHorizontalCenterTo((Sibling.pointer))
+#Procedure Controls_TControl_AnchorVerticalCenterTo
+    @staticmethod
+    def AnchorVerticalCenterTo(self,Sibling):
+        LCLBinding.Controls_TControl_AnchorVerticalCenterTo((Sibling.pointer))
+#Procedure Controls_TControl_AnchorSame
+    @staticmethod
+    def AnchorSame(self,Side,Sibling):
+        LCLBinding.Controls_TControl_AnchorSame((Side.pointer),(Sibling.pointer))
     def getAnchoredControls(self,Index):
         r=LCLBinding.get_Controls_TControl_AnchoredControls(self.pointer,Index)
         return LCLBindingUtil.GetPytonObject(r,TControl)
+#Procedure Controls_TControl_SetBounds
+    @staticmethod
+    def SetBounds(self,aLeft,aTop,aWidth,aHeight):
+        LCLBinding.Controls_TControl_SetBounds((aLeft),(aTop),(aWidth),(aHeight))
+#Procedure Controls_TControl_SetInitialBounds
+    @staticmethod
+    def SetInitialBounds(self,aLeft,aTop,aWidth,aHeight):
+        LCLBinding.Controls_TControl_SetInitialBounds((aLeft),(aTop),(aWidth),(aHeight))
+#Procedure Controls_TControl_SetBoundsKeepBase
+    @staticmethod
+    def SetBoundsKeepBase(self,aLeft,aTop,aWidth,aHeight):
+        LCLBinding.Controls_TControl_SetBoundsKeepBase((aLeft),(aTop),(aWidth),(aHeight))
+#Procedure Controls_TControl_CNPreferredSizeChanged
+    @staticmethod
+    def CNPreferredSizeChanged(self,):
+        LCLBinding.Controls_TControl_CNPreferredSizeChanged()
+#Procedure Controls_TControl_InvalidatePreferredSize
+    @staticmethod
+    def InvalidatePreferredSize(self,):
+        LCLBinding.Controls_TControl_InvalidatePreferredSize()
+#Procedure Controls_TControl_DisableAutoSizing
+    @staticmethod
+    def DisableAutoSizing(self,):
+        LCLBinding.Controls_TControl_DisableAutoSizing()
+#Procedure Controls_TControl_EnableAutoSizing
+    @staticmethod
+    def EnableAutoSizing(self,):
+        LCLBinding.Controls_TControl_EnableAutoSizing()
+#Procedure Controls_TControl_UpdateBaseBounds
+    @staticmethod
+    def UpdateBaseBounds(self,StoreBounds,StoreParentClientSize,UseLoadedValues):
+        LCLBinding.Controls_TControl_UpdateBaseBounds((booleantoint(StoreBounds)),(booleantoint(StoreParentClientSize)),(booleantoint(UseLoadedValues)))
+#Procedure Controls_TControl_WriteLayoutDebugReport
+    @staticmethod
+    def WriteLayoutDebugReport(self,Prefix):
+        LCLBinding.Controls_TControl_WriteLayoutDebugReport((Prefix))
+#Procedure Controls_TControl_AutoAdjustLayout
+    @staticmethod
+    def AutoAdjustLayout(self,AMode,AFromPPI,AToPPI,AOldFormWidth,ANewFormWidth):
+        LCLBinding.Controls_TControl_AutoAdjustLayout((AMode.pointer),(AFromPPI),(AToPPI),(AOldFormWidth),(ANewFormWidth))
+#Procedure Controls_TControl_FixDesignFontsPPI
+    @staticmethod
+    def FixDesignFontsPPI(self,ADesignTimePPI):
+        LCLBinding.Controls_TControl_FixDesignFontsPPI((ADesignTimePPI))
+#Procedure Controls_TControl_ScaleFontsPPI
+    @staticmethod
+    def ScaleFontsPPI(self,AToPPI,AProportion):
+        LCLBinding.Controls_TControl_ScaleFontsPPI((AToPPI),(AProportion.pointer))
 #constructorControls_TControl_Create
     @staticmethod
     def Create(TheOwner):
         return LCLBindingUtil.GetPytonObject(LCLBinding.Controls_TControl_Create((TheOwner.pointer)),TControl)
+#Procedure Controls_TControl_BeforeDestruction
+    @staticmethod
+    def BeforeDestruction(self,):
+        LCLBinding.Controls_TControl_BeforeDestruction()
+#Procedure Controls_TControl_EditingDone
+    @staticmethod
+    def EditingDone(self,):
+        LCLBinding.Controls_TControl_EditingDone()
+#Procedure Controls_TControl_ExecuteDefaultAction
+    @staticmethod
+    def ExecuteDefaultAction(self,):
+        LCLBinding.Controls_TControl_ExecuteDefaultAction()
+#Procedure Controls_TControl_ExecuteCancelAction
+    @staticmethod
+    def ExecuteCancelAction(self,):
+        LCLBinding.Controls_TControl_ExecuteCancelAction()
+#Procedure Controls_TControl_BeginDrag
+    @staticmethod
+    def BeginDrag(self,Immediate,Threshold):
+        LCLBinding.Controls_TControl_BeginDrag((booleantoint(Immediate)),(Threshold))
+#Procedure Controls_TControl_EndDrag
+    @staticmethod
+    def EndDrag(self,Drop):
+        LCLBinding.Controls_TControl_EndDrag((booleantoint(Drop)))
+#Procedure Controls_TControl_BringToFront
+    @staticmethod
+    def BringToFront(self,):
+        LCLBinding.Controls_TControl_BringToFront()
+#Procedure Controls_TControl_Hide
+    @staticmethod
+    def Hide(self,):
+        LCLBinding.Controls_TControl_Hide()
+#Procedure Controls_TControl_Refresh
+    @staticmethod
+    def Refresh(self,):
+        LCLBinding.Controls_TControl_Refresh()
+#Procedure Controls_TControl_Repaint
+    @staticmethod
+    def Repaint(self,):
+        LCLBinding.Controls_TControl_Repaint()
+#Procedure Controls_TControl_Invalidate
+    @staticmethod
+    def Invalidate(self,):
+        LCLBinding.Controls_TControl_Invalidate()
+#Procedure Controls_TControl_CheckNewParent
+    @staticmethod
+    def CheckNewParent(self,AParent):
+        LCLBinding.Controls_TControl_CheckNewParent((AParent.pointer))
+#Procedure Controls_TControl_SendToBack
+    @staticmethod
+    def SendToBack(self,):
+        LCLBinding.Controls_TControl_SendToBack()
+#Procedure Controls_TControl_UpdateRolesForForm
+    @staticmethod
+    def UpdateRolesForForm(self,):
+        LCLBinding.Controls_TControl_UpdateRolesForForm()
+#Procedure Controls_TControl_ActiveDefaultControlChanged
+    @staticmethod
+    def ActiveDefaultControlChanged(self,NewControl):
+        LCLBinding.Controls_TControl_ActiveDefaultControlChanged((NewControl.pointer))
+#Procedure Controls_TControl_Show
+    @staticmethod
+    def Show(self,):
+        LCLBinding.Controls_TControl_Show()
+#Procedure Controls_TControl_Update
+    @staticmethod
+    def Update(self,):
+        LCLBinding.Controls_TControl_Update()
+#Procedure Controls_TControl_InitiateAction
+    @staticmethod
+    def InitiateAction(self,):
+        LCLBinding.Controls_TControl_InitiateAction()
+#Procedure Controls_TControl_ShowHelp
+    @staticmethod
+    def ShowHelp(self,):
+        LCLBinding.Controls_TControl_ShowHelp()
+#Procedure Controls_TControl_RemoveAllHandlersOfObject
+    @staticmethod
+    def RemoveAllHandlersOfObject(self,AnObject):
+        LCLBinding.Controls_TControl_RemoveAllHandlersOfObject((AnObject.pointer))
+#Procedure Controls_TControl_AddHandlerOnResize
+    @staticmethod
+    def AddHandlerOnResize(self,OnResizeEvent,AsFirst):
+        LCLBinding.Controls_TControl_AddHandlerOnResize((OnResizeEvent.pointer),(booleantoint(AsFirst)))
+#Procedure Controls_TControl_RemoveHandlerOnResize
+    @staticmethod
+    def RemoveHandlerOnResize(self,OnResizeEvent):
+        LCLBinding.Controls_TControl_RemoveHandlerOnResize((OnResizeEvent.pointer))
+#Procedure Controls_TControl_AddHandlerOnChangeBounds
+    @staticmethod
+    def AddHandlerOnChangeBounds(self,OnChangeBoundsEvent,AsFirst):
+        LCLBinding.Controls_TControl_AddHandlerOnChangeBounds((OnChangeBoundsEvent.pointer),(booleantoint(AsFirst)))
+#Procedure Controls_TControl_RemoveHandlerOnChangeBounds
+    @staticmethod
+    def RemoveHandlerOnChangeBounds(self,OnChangeBoundsEvent):
+        LCLBinding.Controls_TControl_RemoveHandlerOnChangeBounds((OnChangeBoundsEvent.pointer))
+#Procedure Controls_TControl_AddHandlerOnVisibleChanging
+    @staticmethod
+    def AddHandlerOnVisibleChanging(self,OnVisibleChangingEvent,AsFirst):
+        LCLBinding.Controls_TControl_AddHandlerOnVisibleChanging((OnVisibleChangingEvent.pointer),(booleantoint(AsFirst)))
+#Procedure Controls_TControl_RemoveHandlerOnVisibleChanging
+    @staticmethod
+    def RemoveHandlerOnVisibleChanging(self,OnVisibleChangingEvent):
+        LCLBinding.Controls_TControl_RemoveHandlerOnVisibleChanging((OnVisibleChangingEvent.pointer))
+#Procedure Controls_TControl_AddHandlerOnVisibleChanged
+    @staticmethod
+    def AddHandlerOnVisibleChanged(self,OnVisibleChangedEvent,AsFirst):
+        LCLBinding.Controls_TControl_AddHandlerOnVisibleChanged((OnVisibleChangedEvent.pointer),(booleantoint(AsFirst)))
+#Procedure Controls_TControl_RemoveHandlerOnVisibleChanged
+    @staticmethod
+    def RemoveHandlerOnVisibleChanged(self,OnVisibleChangedEvent):
+        LCLBinding.Controls_TControl_RemoveHandlerOnVisibleChanged((OnVisibleChangedEvent.pointer))
+#Procedure Controls_TControl_AddHandlerOnEnabledChanged
+    @staticmethod
+    def AddHandlerOnEnabledChanged(self,OnEnabledChangedEvent,AsFirst):
+        LCLBinding.Controls_TControl_AddHandlerOnEnabledChanged((OnEnabledChangedEvent.pointer),(booleantoint(AsFirst)))
+#Procedure Controls_TControl_RemoveHandlerOnEnableChanging
+    @staticmethod
+    def RemoveHandlerOnEnableChanging(self,OnEnableChangingEvent):
+        LCLBinding.Controls_TControl_RemoveHandlerOnEnableChanging((OnEnableChangingEvent.pointer))
+#Procedure Controls_TControl_AddHandlerOnBeforeDestruction
+    @staticmethod
+    def AddHandlerOnBeforeDestruction(self,OnBeforeDestructionEvent,AsFirst):
+        LCLBinding.Controls_TControl_AddHandlerOnBeforeDestruction((OnBeforeDestructionEvent.pointer),(booleantoint(AsFirst)))
+#Procedure Controls_TControl_RemoveHandlerOnBeforeDestruction
+    @staticmethod
+    def RemoveHandlerOnBeforeDestruction(self,OnBeforeDestructionEvent):
+        LCLBinding.Controls_TControl_RemoveHandlerOnBeforeDestruction((OnBeforeDestructionEvent.pointer))
+#Procedure Controls_TControl_AddHandlerOnMouseWheel
+    @staticmethod
+    def AddHandlerOnMouseWheel(self,OnMouseWheelEvent,AsFirst):
+        LCLBinding.Controls_TControl_AddHandlerOnMouseWheel((OnMouseWheelEvent.pointer),(booleantoint(AsFirst)))
+#Procedure Controls_TControl_RemoveHandlerOnMouseWheel
+    @staticmethod
+    def RemoveHandlerOnMouseWheel(self,OnMouseWheelEvent):
+        LCLBinding.Controls_TControl_RemoveHandlerOnMouseWheel((OnMouseWheelEvent.pointer))
     def getAccessibleDescription(self):
         r=LCLBinding.get_Controls_TControl_AccessibleDescription(self.pointer)
         return LCLBindingUtil.ConvertPascalTCaption(r)
@@ -171,7 +395,7 @@ class TControl(TLCLComponent):
         oldobj=0
         if hasattr(self, 'OnChangeBoundscall'):
             FreeOldEvent=1
-            oldobj=OnChangeBoundsPasObject
+            oldobj=self.OnChangeBoundsPasObject
         self.OnChangeBoundscall=v 
         self.PasOnChangeBounds=FunctionForm(self._Warper_OnChangeBounds)
         self.OnChangeBoundsPasObject=LCLBinding.set_Controls_TControl_OnChangeBounds(self.pointer,self.PasOnChangeBounds,oldobj,FreeOldEvent)
@@ -186,7 +410,7 @@ class TControl(TLCLComponent):
         oldobj=0
         if hasattr(self, 'OnClickcall'):
             FreeOldEvent=1
-            oldobj=OnClickPasObject
+            oldobj=self.OnClickPasObject
         self.OnClickcall=v 
         self.PasOnClick=FunctionForm(self._Warper_OnClick)
         self.OnClickPasObject=LCLBinding.set_Controls_TControl_OnClick(self.pointer,self.PasOnClick,oldobj,FreeOldEvent)
@@ -201,7 +425,7 @@ class TControl(TLCLComponent):
         oldobj=0
         if hasattr(self, 'OnResizecall'):
             FreeOldEvent=1
-            oldobj=OnResizePasObject
+            oldobj=self.OnResizePasObject
         self.OnResizecall=v 
         self.PasOnResize=FunctionForm(self._Warper_OnResize)
         self.OnResizePasObject=LCLBinding.set_Controls_TControl_OnResize(self.pointer,self.PasOnResize,oldobj,FreeOldEvent)
@@ -350,12 +574,60 @@ class TDockManager(TPersistent):
 #    pointer=c_void_p()
     def __init__(self):#TDockManager
         TPersistent.__init__(self)
+#constructorControls_TDockManager_Create
+    @staticmethod
+    def Create(ADockSite):
+        return LCLBindingUtil.GetPytonObject(LCLBinding.Controls_TDockManager_Create((ADockSite.pointer)),TDockManager)
+#Procedure Controls_TDockManager_BeginUpdate
+    @staticmethod
+    def BeginUpdate(self,):
+        LCLBinding.Controls_TDockManager_BeginUpdate()
+#Procedure Controls_TDockManager_EndUpdate
+    @staticmethod
+    def EndUpdate(self,):
+        LCLBinding.Controls_TDockManager_EndUpdate()
+#Procedure Controls_TDockManager_LoadFromStream
+    @staticmethod
+    def LoadFromStream(self,Stream):
+        LCLBinding.Controls_TDockManager_LoadFromStream((Stream.pointer))
+#Procedure Controls_TDockManager_RemoveControl
+    @staticmethod
+    def RemoveControl(self,Control):
+        LCLBinding.Controls_TDockManager_RemoveControl((Control.pointer))
+#Procedure Controls_TDockManager_ResetBounds
+    @staticmethod
+    def ResetBounds(self,Force):
+        LCLBinding.Controls_TDockManager_ResetBounds((booleantoint(Force)))
+#Procedure Controls_TDockManager_SaveToStream
+    @staticmethod
+    def SaveToStream(self,Stream):
+        LCLBinding.Controls_TDockManager_SaveToStream((Stream.pointer))
+#Procedure Controls_TDockManager_SetReplacingControl
+    @staticmethod
+    def SetReplacingControl(self,Control):
+        LCLBinding.Controls_TDockManager_SetReplacingControl((Control.pointer))
 #class TDockManager end
 #class TControlChildSizing start
 class TControlChildSizing(TPersistent):
 #    pointer=c_void_p()
     def __init__(self):#TControlChildSizing
         TPersistent.__init__(self)
+#constructorControls_TControlChildSizing_Create
+    @staticmethod
+    def Create(OwnerControl):
+        return LCLBindingUtil.GetPytonObject(LCLBinding.Controls_TControlChildSizing_Create((OwnerControl.pointer)),TControlChildSizing)
+#Procedure Controls_TControlChildSizing_Assign
+    @staticmethod
+    def Assign(self,Source):
+        LCLBinding.Controls_TControlChildSizing_Assign((Source.pointer))
+#Procedure Controls_TControlChildSizing_AssignTo
+    @staticmethod
+    def AssignTo(self,Dest):
+        LCLBinding.Controls_TControlChildSizing_AssignTo((Dest.pointer))
+#Procedure Controls_TControlChildSizing_SetGridSpacing
+    @staticmethod
+    def SetGridSpacing(self,Spacing):
+        LCLBinding.Controls_TControlChildSizing_SetGridSpacing((Spacing))
     def getControl(self):
         r=LCLBinding.get_Controls_TControlChildSizing_Control(self.pointer)
         return LCLBindingUtil.GetPytonObject(r,TWinControl)
@@ -368,7 +640,7 @@ class TControlChildSizing(TPersistent):
         oldobj=0
         if hasattr(self, 'OnChangecall'):
             FreeOldEvent=1
-            oldobj=OnChangePasObject
+            oldobj=self.OnChangePasObject
         self.OnChangecall=v 
         self.PasOnChange=FunctionForm(self._Warper_OnChange)
         self.OnChangePasObject=LCLBinding.set_Controls_TControlChildSizing_OnChange(self.pointer,self.PasOnChange,oldobj,FreeOldEvent)
@@ -441,6 +713,22 @@ class TSizeConstraints(TPersistent):
 #    pointer=c_void_p()
     def __init__(self):#TSizeConstraints
         TPersistent.__init__(self)
+#constructorControls_TSizeConstraints_Create
+    @staticmethod
+    def Create(AControl):
+        return LCLBindingUtil.GetPytonObject(LCLBinding.Controls_TSizeConstraints_Create((AControl.pointer)),TSizeConstraints)
+#Procedure Controls_TSizeConstraints_UpdateInterfaceConstraints
+    @staticmethod
+    def UpdateInterfaceConstraints(self,):
+        LCLBinding.Controls_TSizeConstraints_UpdateInterfaceConstraints()
+#Procedure Controls_TSizeConstraints_SetInterfaceConstraints
+    @staticmethod
+    def SetInterfaceConstraints(self,MinW,MinH,MaxW,MaxH):
+        LCLBinding.Controls_TSizeConstraints_SetInterfaceConstraints((MinW),(MinH),(MaxW),(MaxH))
+#Procedure Controls_TSizeConstraints_AutoAdjustLayout
+    @staticmethod
+    def AutoAdjustLayout(self,AXProportion,AYProportion):
+        LCLBinding.Controls_TSizeConstraints_AutoAdjustLayout((AXProportion.pointer),(AYProportion.pointer))
     def getMaxInterfaceHeight(self):
         r=LCLBinding.get_Controls_TSizeConstraints_MaxInterfaceHeight(self.pointer)
         return LCLBindingUtil.ConvertPascalInteger(r)
@@ -475,7 +763,7 @@ class TSizeConstraints(TPersistent):
         oldobj=0
         if hasattr(self, 'OnChangecall'):
             FreeOldEvent=1
-            oldobj=OnChangePasObject
+            oldobj=self.OnChangePasObject
         self.OnChangecall=v 
         self.PasOnChange=FunctionForm(self._Warper_OnChange)
         self.OnChangePasObject=LCLBinding.set_Controls_TSizeConstraints_OnChange(self.pointer,self.PasOnChange,oldobj,FreeOldEvent)
@@ -488,6 +776,18 @@ class TControlBorderSpacing(TPersistent):
 #    pointer=c_void_p()
     def __init__(self):#TControlBorderSpacing
         TPersistent.__init__(self)
+#Procedure Controls_TControlBorderSpacing_Assign
+    @staticmethod
+    def Assign(self,Source):
+        LCLBinding.Controls_TControlBorderSpacing_Assign((Source.pointer))
+#Procedure Controls_TControlBorderSpacing_AssignTo
+    @staticmethod
+    def AssignTo(self,Dest):
+        LCLBinding.Controls_TControlBorderSpacing_AssignTo((Dest.pointer))
+#Procedure Controls_TControlBorderSpacing_AutoAdjustLayout
+    @staticmethod
+    def AutoAdjustLayout(self,AXProportion,AYProportion):
+        LCLBinding.Controls_TControlBorderSpacing_AutoAdjustLayout((AXProportion.pointer),(AYProportion.pointer))
     def getControl(self):
         r=LCLBinding.get_Controls_TControlBorderSpacing_Control(self.pointer)
         return LCLBindingUtil.GetPytonObject(r,TControl)
@@ -540,7 +840,7 @@ class TControlBorderSpacing(TPersistent):
         oldobj=0
         if hasattr(self, 'OnChangecall'):
             FreeOldEvent=1
-            oldobj=OnChangePasObject
+            oldobj=self.OnChangePasObject
         self.OnChangecall=v 
         self.PasOnChange=FunctionForm(self._Warper_OnChange)
         self.OnChangePasObject=LCLBinding.set_Controls_TControlBorderSpacing_OnChange(self.pointer,self.PasOnChange,oldobj,FreeOldEvent)
@@ -571,6 +871,18 @@ class TAnchorSide(TPersistent):
 #    pointer=c_void_p()
     def __init__(self):#TAnchorSide
         TPersistent.__init__(self)
+#constructorControls_TAnchorSide_Create
+    @staticmethod
+    def Create(TheOwner,TheKind):
+        return LCLBindingUtil.GetPytonObject(LCLBinding.Controls_TAnchorSide_Create((TheOwner.pointer),(TheKind.pointer)),TAnchorSide)
+#Procedure Controls_TAnchorSide_Assign
+    @staticmethod
+    def Assign(self,Source):
+        LCLBinding.Controls_TAnchorSide_Assign((Source.pointer))
+#Procedure Controls_TAnchorSide_FixCenterAnchoring
+    @staticmethod
+    def FixCenterAnchoring(self,):
+        LCLBinding.Controls_TAnchorSide_FixCenterAnchoring()
     def getOwner(self):
         r=LCLBinding.get_Controls_TAnchorSide_Owner(self.pointer)
         return LCLBindingUtil.GetPytonObject(r,TControl)
@@ -597,6 +909,22 @@ class TDragObject(TObject):
 #    pointer=c_void_p()
     def __init__(self):#TDragObject
         TObject.__init__(self)
+#constructorControls_TDragObject_Create
+    @staticmethod
+    def Create(AControl):
+        return LCLBindingUtil.GetPytonObject(LCLBinding.Controls_TDragObject_Create((AControl.pointer)),TDragObject)
+#constructorControls_TDragObject_AutoCreate
+    @staticmethod
+    def AutoCreate(AControl):
+        return LCLBindingUtil.GetPytonObject(LCLBinding.Controls_TDragObject_AutoCreate((AControl.pointer)),TDragObject)
+#Procedure Controls_TDragObject_HideDragImage
+    @staticmethod
+    def HideDragImage(self,):
+        LCLBinding.Controls_TDragObject_HideDragImage()
+#Procedure Controls_TDragObject_ShowDragImage
+    @staticmethod
+    def ShowDragImage(self,):
+        LCLBinding.Controls_TDragObject_ShowDragImage()
     def getAlwaysShowDragImages(self):
         r=LCLBinding.get_Controls_TDragObject_AlwaysShowDragImages(self.pointer)
         return LCLBindingUtil.ConvertPascalBoolean(r)
@@ -655,6 +983,10 @@ class TDragDockObject(TDragObject):
         r=LCLBinding.get_Controls_TDragDockObject_IncreaseDockArea(self.pointer)
         return LCLBindingUtil.ConvertPascalBoolean(r)
     IncreaseDockArea=property(getIncreaseDockArea)
+#constructorControls_TDragDockObject_AutoCreate
+    @staticmethod
+    def AutoCreate(AControl):
+        return LCLBindingUtil.GetPytonObject(LCLBinding.Controls_TDragDockObject_AutoCreate((AControl.pointer)),TDragDockObject)
 #class TDragDockObject end
 #class TControlActionLink start
 class TControlActionLink(TActionLink):
@@ -749,6 +1081,21 @@ class TWinControl(TControl):
     def setTabStop(self,v):
         LCLBinding.set_Controls_TWinControl_TabStop(self.pointer,v)
     TabStop=property(getTabStop,setTabStop)
+    def _Warper_OnAlignInsertBefore(self,Sender,Control1,Control2):
+        self.OnAlignInsertBeforecall(LCLBindingUtil.GetPytonObject(Sender,TWinControl),LCLBindingUtil.GetPytonObject(Control1,TControl),LCLBindingUtil.GetPytonObject(Control2,TControl))
+    def setOnAlignInsertBefore(self,v):
+        FunctionForm= CFUNCTYPE(c_void_p,c_void_p,c_void_p,c_void_p)
+        FreeOldEvent=0
+        oldobj=0
+        if hasattr(self, 'OnAlignInsertBeforecall'):
+            FreeOldEvent=1
+            oldobj=self.OnAlignInsertBeforePasObject
+        self.OnAlignInsertBeforecall=v 
+        self.PasOnAlignInsertBefore=FunctionForm(self._Warper_OnAlignInsertBefore)
+        self.OnAlignInsertBeforePasObject=LCLBinding.set_Controls_TWinControl_OnAlignInsertBefore(self.pointer,self.PasOnAlignInsertBefore,oldobj,FreeOldEvent)
+    def getOnAlignInsertBefore(self):
+        return OnAlignInsertBeforecall
+    OnAlignInsertBefore=property(getOnAlignInsertBefore,setOnAlignInsertBefore)
     def _Warper_OnDockDrop(self,Sender,Source,X,Y):
         self.OnDockDropcall(LCLBindingUtil.GetPytonObject(Sender,TObject),LCLBindingUtil.GetPytonObject(Source,TDragDockObject),X,Y)
     def setOnDockDrop(self,v):
@@ -757,7 +1104,7 @@ class TWinControl(TControl):
         oldobj=0
         if hasattr(self, 'OnDockDropcall'):
             FreeOldEvent=1
-            oldobj=OnDockDropPasObject
+            oldobj=self.OnDockDropPasObject
         self.OnDockDropcall=v 
         self.PasOnDockDrop=FunctionForm(self._Warper_OnDockDrop)
         self.OnDockDropPasObject=LCLBinding.set_Controls_TWinControl_OnDockDrop(self.pointer,self.PasOnDockDrop,oldobj,FreeOldEvent)
@@ -772,7 +1119,7 @@ class TWinControl(TControl):
         oldobj=0
         if hasattr(self, 'OnDockOvercall'):
             FreeOldEvent=1
-            oldobj=OnDockOverPasObject
+            oldobj=self.OnDockOverPasObject
         self.OnDockOvercall=v 
         self.PasOnDockOver=FunctionForm(self._Warper_OnDockOver)
         self.OnDockOverPasObject=LCLBinding.set_Controls_TWinControl_OnDockOver(self.pointer,self.PasOnDockOver,oldobj,FreeOldEvent)
@@ -787,7 +1134,7 @@ class TWinControl(TControl):
         oldobj=0
         if hasattr(self, 'OnEntercall'):
             FreeOldEvent=1
-            oldobj=OnEnterPasObject
+            oldobj=self.OnEnterPasObject
         self.OnEntercall=v 
         self.PasOnEnter=FunctionForm(self._Warper_OnEnter)
         self.OnEnterPasObject=LCLBinding.set_Controls_TWinControl_OnEnter(self.pointer,self.PasOnEnter,oldobj,FreeOldEvent)
@@ -802,13 +1149,28 @@ class TWinControl(TControl):
         oldobj=0
         if hasattr(self, 'OnExitcall'):
             FreeOldEvent=1
-            oldobj=OnExitPasObject
+            oldobj=self.OnExitPasObject
         self.OnExitcall=v 
         self.PasOnExit=FunctionForm(self._Warper_OnExit)
         self.OnExitPasObject=LCLBinding.set_Controls_TWinControl_OnExit(self.pointer,self.PasOnExit,oldobj,FreeOldEvent)
     def getOnExit(self):
         return OnExitcall
     OnExit=property(getOnExit,setOnExit)
+    def _Warper_OnUnDock(self,Sender,Client,NewTarget,Allow):
+        self.OnUnDockcall(LCLBindingUtil.GetPytonObject(Sender,TObject),LCLBindingUtil.GetPytonObject(Client,TControl),LCLBindingUtil.GetPytonObject(NewTarget,TWinControl),LCLBindingUtil.IntToBoolean(Allow))
+    def setOnUnDock(self,v):
+        FunctionForm= CFUNCTYPE(c_void_p,c_void_p,c_void_p,c_void_p,c_int)
+        FreeOldEvent=0
+        oldobj=0
+        if hasattr(self, 'OnUnDockcall'):
+            FreeOldEvent=1
+            oldobj=self.OnUnDockPasObject
+        self.OnUnDockcall=v 
+        self.PasOnUnDock=FunctionForm(self._Warper_OnUnDock)
+        self.OnUnDockPasObject=LCLBinding.set_Controls_TWinControl_OnUnDock(self.pointer,self.PasOnUnDock,oldobj,FreeOldEvent)
+    def getOnUnDock(self):
+        return OnUnDockcall
+    OnUnDock=property(getOnUnDock,setOnUnDock)
     def getShowing(self):
         r=LCLBinding.get_Controls_TWinControl_Showing(self.pointer)
         return LCLBindingUtil.ConvertPascalBoolean(r)
@@ -829,10 +1191,122 @@ class TWinControl(TControl):
         r=LCLBinding.get_Controls_TWinControl_VisibleDockClientCount(self.pointer)
         return LCLBindingUtil.ConvertPascalInteger(r)
     VisibleDockClientCount=property(getVisibleDockClientCount)
+#Procedure Controls_TWinControl_BeginUpdateBounds
+    @staticmethod
+    def BeginUpdateBounds(self,):
+        LCLBinding.Controls_TWinControl_BeginUpdateBounds()
+#Procedure Controls_TWinControl_EndUpdateBounds
+    @staticmethod
+    def EndUpdateBounds(self,):
+        LCLBinding.Controls_TWinControl_EndUpdateBounds()
+#Procedure Controls_TWinControl_LockRealizeBounds
+    @staticmethod
+    def LockRealizeBounds(self,):
+        LCLBinding.Controls_TWinControl_LockRealizeBounds()
+#Procedure Controls_TWinControl_UnlockRealizeBounds
+    @staticmethod
+    def UnlockRealizeBounds(self,):
+        LCLBinding.Controls_TWinControl_UnlockRealizeBounds()
+#Procedure Controls_TWinControl_DoAdjustClientRectChange
+    @staticmethod
+    def DoAdjustClientRectChange(self,InvalidateRect):
+        LCLBinding.Controls_TWinControl_DoAdjustClientRectChange((booleantoint(InvalidateRect)))
+#Procedure Controls_TWinControl_InvalidateClientRectCache
+    @staticmethod
+    def InvalidateClientRectCache(self,WithChildControls):
+        LCLBinding.Controls_TWinControl_InvalidateClientRectCache((booleantoint(WithChildControls)))
+#Procedure Controls_TWinControl_SetBounds
+    @staticmethod
+    def SetBounds(self,ALeft,ATop,AWidth,AHeight):
+        LCLBinding.Controls_TWinControl_SetBounds((ALeft),(ATop),(AWidth),(AHeight))
+#Procedure Controls_TWinControl_DisableAlign
+    @staticmethod
+    def DisableAlign(self,):
+        LCLBinding.Controls_TWinControl_DisableAlign()
+#Procedure Controls_TWinControl_EnableAlign
+    @staticmethod
+    def EnableAlign(self,):
+        LCLBinding.Controls_TWinControl_EnableAlign()
+#Procedure Controls_TWinControl_ReAlign
+    @staticmethod
+    def ReAlign(self,):
+        LCLBinding.Controls_TWinControl_ReAlign()
+#Procedure Controls_TWinControl_ScrollBy_WS
+    @staticmethod
+    def ScrollBy_WS(self,DeltaX,DeltaY):
+        LCLBinding.Controls_TWinControl_ScrollBy_WS((DeltaX),(DeltaY))
+#Procedure Controls_TWinControl_ScrollBy
+    @staticmethod
+    def ScrollBy(self,DeltaX,DeltaY):
+        LCLBinding.Controls_TWinControl_ScrollBy((DeltaX),(DeltaY))
+#Procedure Controls_TWinControl_WriteLayoutDebugReport
+    @staticmethod
+    def WriteLayoutDebugReport(self,Prefix):
+        LCLBinding.Controls_TWinControl_WriteLayoutDebugReport((Prefix))
+#Procedure Controls_TWinControl_AutoAdjustLayout
+    @staticmethod
+    def AutoAdjustLayout(self,AMode,AFromPPI,AToPPI,AOldFormWidth,ANewFormWidth):
+        LCLBinding.Controls_TWinControl_AutoAdjustLayout((AMode.pointer),(AFromPPI),(AToPPI),(AOldFormWidth),(ANewFormWidth))
 #constructorControls_TWinControl_Create
     @staticmethod
     def Create(TheOwner):
         return LCLBindingUtil.GetPytonObject(LCLBinding.Controls_TWinControl_Create((TheOwner.pointer)),TWinControl)
+#Procedure Controls_TWinControl_DockDrop
+    @staticmethod
+    def DockDrop(self,DragDockObject,X,Y):
+        LCLBinding.Controls_TWinControl_DockDrop((DragDockObject.pointer),(X),(Y))
+#Procedure Controls_TWinControl_SetControlIndex
+    @staticmethod
+    def SetControlIndex(self,AControl,NewIndex):
+        LCLBinding.Controls_TWinControl_SetControlIndex((AControl.pointer),(NewIndex))
+#Procedure Controls_TWinControl_SelectNext
+    @staticmethod
+    def SelectNext(self,CurControl,GoForward,CheckTabStop):
+        LCLBinding.Controls_TWinControl_SelectNext((CurControl.pointer),(booleantoint(GoForward)),(booleantoint(CheckTabStop)))
+#Procedure Controls_TWinControl_Invalidate
+    @staticmethod
+    def Invalidate(self,):
+        LCLBinding.Controls_TWinControl_Invalidate()
+#Procedure Controls_TWinControl_AddControl
+    @staticmethod
+    def AddControl(self,):
+        LCLBinding.Controls_TWinControl_AddControl()
+#Procedure Controls_TWinControl_RemoveControl
+    @staticmethod
+    def RemoveControl(self,AControl):
+        LCLBinding.Controls_TWinControl_RemoveControl((AControl.pointer))
+#Procedure Controls_TWinControl_Repaint
+    @staticmethod
+    def Repaint(self,):
+        LCLBinding.Controls_TWinControl_Repaint()
+#Procedure Controls_TWinControl_Update
+    @staticmethod
+    def Update(self,):
+        LCLBinding.Controls_TWinControl_Update()
+#Procedure Controls_TWinControl_SetFocus
+    @staticmethod
+    def SetFocus(self,):
+        LCLBinding.Controls_TWinControl_SetFocus()
+#Procedure Controls_TWinControl_FlipChildren
+    @staticmethod
+    def FlipChildren(self,AllLevels):
+        LCLBinding.Controls_TWinControl_FlipChildren((booleantoint(AllLevels)))
+#Procedure Controls_TWinControl_ScaleBy
+    @staticmethod
+    def ScaleBy(self,Multiplier,Divider):
+        LCLBinding.Controls_TWinControl_ScaleBy((Multiplier),(Divider))
+#Procedure Controls_TWinControl_UpdateDockCaption
+    @staticmethod
+    def UpdateDockCaption(self,Exclude):
+        LCLBinding.Controls_TWinControl_UpdateDockCaption((Exclude.pointer))
+#Procedure Controls_TWinControl_GetTabOrderList
+    @staticmethod
+    def GetTabOrderList(self,List):
+        LCLBinding.Controls_TWinControl_GetTabOrderList((List.pointer))
+#Procedure Controls_TWinControl_HandleNeeded
+    @staticmethod
+    def HandleNeeded(self,):
+        LCLBinding.Controls_TWinControl_HandleNeeded()
 #class TWinControl end
 #class TCustomControl start
 class TCustomControl(TWinControl):
@@ -857,7 +1331,7 @@ class TCustomControl(TWinControl):
         oldobj=0
         if hasattr(self, 'OnPaintcall'):
             FreeOldEvent=1
-            oldobj=OnPaintPasObject
+            oldobj=self.OnPaintPasObject
         self.OnPaintcall=v 
         self.PasOnPaint=FunctionForm(self._Warper_OnPaint)
         self.OnPaintPasObject=LCLBinding.set_Controls_TCustomControl_OnPaint(self.pointer,self.PasOnPaint,oldobj,FreeOldEvent)

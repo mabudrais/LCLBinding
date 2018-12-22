@@ -1,4 +1,13 @@
+from ExtCtrls import *
+from Controls import *
+from GraphType import *
+from Graphics import *
+from lmessages import *
+from lclproc import *
+from lcltype import *
+from Classes import *
 from MainPasObject import *
+import LCLBindingUtil
 #import end
 #class TPairSplitterSide start
 class TPairSplitterSide(TWinControl):
@@ -21,7 +30,7 @@ class TPairSplitterSide(TWinControl):
         oldobj=0
         if hasattr(self, 'OnMouseDowncall'):
             FreeOldEvent=1
-            oldobj=OnMouseDownPasObject
+            oldobj=self.OnMouseDownPasObject
         self.OnMouseDowncall=v 
         self.PasOnMouseDown=FunctionForm(self._Warper_OnMouseDown)
         self.OnMouseDownPasObject=LCLBinding.set_PairSplitter_TPairSplitterSide_OnMouseDown(self.pointer,self.PasOnMouseDown,oldobj,FreeOldEvent)
@@ -36,7 +45,7 @@ class TPairSplitterSide(TWinControl):
         oldobj=0
         if hasattr(self, 'OnMouseEntercall'):
             FreeOldEvent=1
-            oldobj=OnMouseEnterPasObject
+            oldobj=self.OnMouseEnterPasObject
         self.OnMouseEntercall=v 
         self.PasOnMouseEnter=FunctionForm(self._Warper_OnMouseEnter)
         self.OnMouseEnterPasObject=LCLBinding.set_PairSplitter_TPairSplitterSide_OnMouseEnter(self.pointer,self.PasOnMouseEnter,oldobj,FreeOldEvent)
@@ -51,7 +60,7 @@ class TPairSplitterSide(TWinControl):
         oldobj=0
         if hasattr(self, 'OnMouseLeavecall'):
             FreeOldEvent=1
-            oldobj=OnMouseLeavePasObject
+            oldobj=self.OnMouseLeavePasObject
         self.OnMouseLeavecall=v 
         self.PasOnMouseLeave=FunctionForm(self._Warper_OnMouseLeave)
         self.OnMouseLeavePasObject=LCLBinding.set_PairSplitter_TPairSplitterSide_OnMouseLeave(self.pointer,self.PasOnMouseLeave,oldobj,FreeOldEvent)
@@ -66,7 +75,7 @@ class TPairSplitterSide(TWinControl):
         oldobj=0
         if hasattr(self, 'OnMouseMovecall'):
             FreeOldEvent=1
-            oldobj=OnMouseMovePasObject
+            oldobj=self.OnMouseMovePasObject
         self.OnMouseMovecall=v 
         self.PasOnMouseMove=FunctionForm(self._Warper_OnMouseMove)
         self.OnMouseMovePasObject=LCLBinding.set_PairSplitter_TPairSplitterSide_OnMouseMove(self.pointer,self.PasOnMouseMove,oldobj,FreeOldEvent)
@@ -81,7 +90,7 @@ class TPairSplitterSide(TWinControl):
         oldobj=0
         if hasattr(self, 'OnMouseUpcall'):
             FreeOldEvent=1
-            oldobj=OnMouseUpPasObject
+            oldobj=self.OnMouseUpPasObject
         self.OnMouseUpcall=v 
         self.PasOnMouseUp=FunctionForm(self._Warper_OnMouseUp)
         self.OnMouseUpPasObject=LCLBinding.set_PairSplitter_TPairSplitterSide_OnMouseUp(self.pointer,self.PasOnMouseUp,oldobj,FreeOldEvent)
@@ -104,6 +113,22 @@ class TCustomPairSplitter(TWinControl):
     @staticmethod
     def Create(TheOwner):
         return LCLBindingUtil.GetPytonObject(LCLBinding.PairSplitter_TCustomPairSplitter_Create((TheOwner.pointer)),TCustomPairSplitter)
+#Procedure PairSplitter_TCustomPairSplitter_CreateWnd
+    @staticmethod
+    def CreateWnd(self,):
+        LCLBinding.PairSplitter_TCustomPairSplitter_CreateWnd()
+#Procedure PairSplitter_TCustomPairSplitter_UpdatePosition
+    @staticmethod
+    def UpdatePosition(self,):
+        LCLBinding.PairSplitter_TCustomPairSplitter_UpdatePosition()
+#Procedure PairSplitter_TCustomPairSplitter_CreateSides
+    @staticmethod
+    def CreateSides(self,):
+        LCLBinding.PairSplitter_TCustomPairSplitter_CreateSides()
+#Procedure PairSplitter_TCustomPairSplitter_Loaded
+    @staticmethod
+    def Loaded(self,):
+        LCLBinding.PairSplitter_TCustomPairSplitter_Loaded()
     def getSides(self,Index):
         r=LCLBinding.get_PairSplitter_TCustomPairSplitter_Sides(self.pointer,Index)
         return LCLBindingUtil.GetPytonObject(r,TPairSplitterSide)
@@ -133,7 +158,7 @@ class TPairSplitter(TCustomPairSplitter):
         oldobj=0
         if hasattr(self, 'OnMouseDowncall'):
             FreeOldEvent=1
-            oldobj=OnMouseDownPasObject
+            oldobj=self.OnMouseDownPasObject
         self.OnMouseDowncall=v 
         self.PasOnMouseDown=FunctionForm(self._Warper_OnMouseDown)
         self.OnMouseDownPasObject=LCLBinding.set_PairSplitter_TPairSplitter_OnMouseDown(self.pointer,self.PasOnMouseDown,oldobj,FreeOldEvent)
@@ -148,7 +173,7 @@ class TPairSplitter(TCustomPairSplitter):
         oldobj=0
         if hasattr(self, 'OnMouseEntercall'):
             FreeOldEvent=1
-            oldobj=OnMouseEnterPasObject
+            oldobj=self.OnMouseEnterPasObject
         self.OnMouseEntercall=v 
         self.PasOnMouseEnter=FunctionForm(self._Warper_OnMouseEnter)
         self.OnMouseEnterPasObject=LCLBinding.set_PairSplitter_TPairSplitter_OnMouseEnter(self.pointer,self.PasOnMouseEnter,oldobj,FreeOldEvent)
@@ -163,7 +188,7 @@ class TPairSplitter(TCustomPairSplitter):
         oldobj=0
         if hasattr(self, 'OnMouseLeavecall'):
             FreeOldEvent=1
-            oldobj=OnMouseLeavePasObject
+            oldobj=self.OnMouseLeavePasObject
         self.OnMouseLeavecall=v 
         self.PasOnMouseLeave=FunctionForm(self._Warper_OnMouseLeave)
         self.OnMouseLeavePasObject=LCLBinding.set_PairSplitter_TPairSplitter_OnMouseLeave(self.pointer,self.PasOnMouseLeave,oldobj,FreeOldEvent)
@@ -178,7 +203,7 @@ class TPairSplitter(TCustomPairSplitter):
         oldobj=0
         if hasattr(self, 'OnMouseMovecall'):
             FreeOldEvent=1
-            oldobj=OnMouseMovePasObject
+            oldobj=self.OnMouseMovePasObject
         self.OnMouseMovecall=v 
         self.PasOnMouseMove=FunctionForm(self._Warper_OnMouseMove)
         self.OnMouseMovePasObject=LCLBinding.set_PairSplitter_TPairSplitter_OnMouseMove(self.pointer,self.PasOnMouseMove,oldobj,FreeOldEvent)
@@ -193,7 +218,7 @@ class TPairSplitter(TCustomPairSplitter):
         oldobj=0
         if hasattr(self, 'OnMouseUpcall'):
             FreeOldEvent=1
-            oldobj=OnMouseUpPasObject
+            oldobj=self.OnMouseUpPasObject
         self.OnMouseUpcall=v 
         self.PasOnMouseUp=FunctionForm(self._Warper_OnMouseUp)
         self.OnMouseUpPasObject=LCLBinding.set_PairSplitter_TPairSplitter_OnMouseUp(self.pointer,self.PasOnMouseUp,oldobj,FreeOldEvent)

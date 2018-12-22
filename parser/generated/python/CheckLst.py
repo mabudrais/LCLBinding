@@ -1,4 +1,10 @@
+from StdCtrls import *
+from Controls import *
+from Graphics import *
+from GraphType import *
+from Classes import *
 from MainPasObject import *
+import LCLBindingUtil
 #import end
 #class TCustomCheckListBox start
 class TCustomCheckListBox(TCustomListBox):
@@ -9,6 +15,14 @@ class TCustomCheckListBox(TCustomListBox):
     @staticmethod
     def Create(AOwner):
         return LCLBindingUtil.GetPytonObject(LCLBinding.CheckLst_TCustomCheckListBox_Create((AOwner.pointer)),TCustomCheckListBox)
+#Procedure CheckLst_TCustomCheckListBox_Toggle
+    @staticmethod
+    def Toggle(self,AIndex):
+        LCLBinding.CheckLst_TCustomCheckListBox_Toggle((AIndex))
+#Procedure CheckLst_TCustomCheckListBox_CheckAll
+    @staticmethod
+    def CheckAll(self,AState,aAllowGrayed,aAllowDisabled):
+        LCLBinding.CheckLst_TCustomCheckListBox_CheckAll((AState.pointer),(booleantoint(aAllowGrayed)),(booleantoint(aAllowDisabled)))
     def getAllowGrayed(self):
         r=LCLBinding.get_CheckLst_TCustomCheckListBox_AllowGrayed(self.pointer)
         return LCLBindingUtil.ConvertPascalBoolean(r)
@@ -43,7 +57,7 @@ class TCustomCheckListBox(TCustomListBox):
         oldobj=0
         if hasattr(self, 'OnClickCheckcall'):
             FreeOldEvent=1
-            oldobj=OnClickCheckPasObject
+            oldobj=self.OnClickCheckPasObject
         self.OnClickCheckcall=v 
         self.PasOnClickCheck=FunctionForm(self._Warper_OnClickCheck)
         self.OnClickCheckPasObject=LCLBinding.set_CheckLst_TCustomCheckListBox_OnClickCheck(self.pointer,self.PasOnClickCheck,oldobj,FreeOldEvent)
@@ -58,7 +72,7 @@ class TCustomCheckListBox(TCustomListBox):
         oldobj=0
         if hasattr(self, 'OnItemClickcall'):
             FreeOldEvent=1
-            oldobj=OnItemClickPasObject
+            oldobj=self.OnItemClickPasObject
         self.OnItemClickcall=v 
         self.PasOnItemClick=FunctionForm(self._Warper_OnItemClick)
         self.OnItemClickPasObject=LCLBinding.set_CheckLst_TCustomCheckListBox_OnItemClick(self.pointer,self.PasOnItemClick,oldobj,FreeOldEvent)
@@ -85,7 +99,7 @@ class TCheckListBox(TCustomCheckListBox):
         oldobj=0
         if hasattr(self, 'OnDragDropcall'):
             FreeOldEvent=1
-            oldobj=OnDragDropPasObject
+            oldobj=self.OnDragDropPasObject
         self.OnDragDropcall=v 
         self.PasOnDragDrop=FunctionForm(self._Warper_OnDragDrop)
         self.OnDragDropPasObject=LCLBinding.set_CheckLst_TCheckListBox_OnDragDrop(self.pointer,self.PasOnDragDrop,oldobj,FreeOldEvent)
@@ -100,7 +114,7 @@ class TCheckListBox(TCustomCheckListBox):
         oldobj=0
         if hasattr(self, 'OnDragOvercall'):
             FreeOldEvent=1
-            oldobj=OnDragOverPasObject
+            oldobj=self.OnDragOverPasObject
         self.OnDragOvercall=v 
         self.PasOnDragOver=FunctionForm(self._Warper_OnDragOver)
         self.OnDragOverPasObject=LCLBinding.set_CheckLst_TCheckListBox_OnDragOver(self.pointer,self.PasOnDragOver,oldobj,FreeOldEvent)
@@ -115,7 +129,7 @@ class TCheckListBox(TCustomCheckListBox):
         oldobj=0
         if hasattr(self, 'OnEndDragcall'):
             FreeOldEvent=1
-            oldobj=OnEndDragPasObject
+            oldobj=self.OnEndDragPasObject
         self.OnEndDragcall=v 
         self.PasOnEndDrag=FunctionForm(self._Warper_OnEndDrag)
         self.OnEndDragPasObject=LCLBinding.set_CheckLst_TCheckListBox_OnEndDrag(self.pointer,self.PasOnEndDrag,oldobj,FreeOldEvent)
@@ -130,7 +144,7 @@ class TCheckListBox(TCustomCheckListBox):
         oldobj=0
         if hasattr(self, 'OnStartDragcall'):
             FreeOldEvent=1
-            oldobj=OnStartDragPasObject
+            oldobj=self.OnStartDragPasObject
         self.OnStartDragcall=v 
         self.PasOnStartDrag=FunctionForm(self._Warper_OnStartDrag)
         self.OnStartDragPasObject=LCLBinding.set_CheckLst_TCheckListBox_OnStartDrag(self.pointer,self.PasOnStartDrag,oldobj,FreeOldEvent)

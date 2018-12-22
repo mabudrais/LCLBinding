@@ -1,4 +1,16 @@
+from Menus import *
+from Forms import *
+from Controls import *
+from ActnList import *
+from Graphics import *
+from lresources import *
+from lmessages import *
+from lclproc import *
+from lcltype import *
+from lclstrconsts import *
+from Classes import *
 from MainPasObject import *
+import LCLBindingUtil
 #import end
 def CreateTListBoxOptionsFromInt(i):
     dic={1:"lboDrawFocusRect"}
@@ -71,7 +83,7 @@ class TStaticText(TCustomStaticText):
         oldobj=0
         if hasattr(self, 'OnDblClickcall'):
             FreeOldEvent=1
-            oldobj=OnDblClickPasObject
+            oldobj=self.OnDblClickPasObject
         self.OnDblClickcall=v 
         self.PasOnDblClick=FunctionForm(self._Warper_OnDblClick)
         self.OnDblClickPasObject=LCLBinding.set_StdCtrls_TStaticText_OnDblClick(self.pointer,self.PasOnDblClick,oldobj,FreeOldEvent)
@@ -86,7 +98,7 @@ class TStaticText(TCustomStaticText):
         oldobj=0
         if hasattr(self, 'OnDragDropcall'):
             FreeOldEvent=1
-            oldobj=OnDragDropPasObject
+            oldobj=self.OnDragDropPasObject
         self.OnDragDropcall=v 
         self.PasOnDragDrop=FunctionForm(self._Warper_OnDragDrop)
         self.OnDragDropPasObject=LCLBinding.set_StdCtrls_TStaticText_OnDragDrop(self.pointer,self.PasOnDragDrop,oldobj,FreeOldEvent)
@@ -101,7 +113,7 @@ class TStaticText(TCustomStaticText):
         oldobj=0
         if hasattr(self, 'OnDragOvercall'):
             FreeOldEvent=1
-            oldobj=OnDragOverPasObject
+            oldobj=self.OnDragOverPasObject
         self.OnDragOvercall=v 
         self.PasOnDragOver=FunctionForm(self._Warper_OnDragOver)
         self.OnDragOverPasObject=LCLBinding.set_StdCtrls_TStaticText_OnDragOver(self.pointer,self.PasOnDragOver,oldobj,FreeOldEvent)
@@ -116,7 +128,7 @@ class TStaticText(TCustomStaticText):
         oldobj=0
         if hasattr(self, 'OnEndDragcall'):
             FreeOldEvent=1
-            oldobj=OnEndDragPasObject
+            oldobj=self.OnEndDragPasObject
         self.OnEndDragcall=v 
         self.PasOnEndDrag=FunctionForm(self._Warper_OnEndDrag)
         self.OnEndDragPasObject=LCLBinding.set_StdCtrls_TStaticText_OnEndDrag(self.pointer,self.PasOnEndDrag,oldobj,FreeOldEvent)
@@ -131,7 +143,7 @@ class TStaticText(TCustomStaticText):
         oldobj=0
         if hasattr(self, 'OnMouseDowncall'):
             FreeOldEvent=1
-            oldobj=OnMouseDownPasObject
+            oldobj=self.OnMouseDownPasObject
         self.OnMouseDowncall=v 
         self.PasOnMouseDown=FunctionForm(self._Warper_OnMouseDown)
         self.OnMouseDownPasObject=LCLBinding.set_StdCtrls_TStaticText_OnMouseDown(self.pointer,self.PasOnMouseDown,oldobj,FreeOldEvent)
@@ -146,7 +158,7 @@ class TStaticText(TCustomStaticText):
         oldobj=0
         if hasattr(self, 'OnMouseEntercall'):
             FreeOldEvent=1
-            oldobj=OnMouseEnterPasObject
+            oldobj=self.OnMouseEnterPasObject
         self.OnMouseEntercall=v 
         self.PasOnMouseEnter=FunctionForm(self._Warper_OnMouseEnter)
         self.OnMouseEnterPasObject=LCLBinding.set_StdCtrls_TStaticText_OnMouseEnter(self.pointer,self.PasOnMouseEnter,oldobj,FreeOldEvent)
@@ -161,7 +173,7 @@ class TStaticText(TCustomStaticText):
         oldobj=0
         if hasattr(self, 'OnMouseLeavecall'):
             FreeOldEvent=1
-            oldobj=OnMouseLeavePasObject
+            oldobj=self.OnMouseLeavePasObject
         self.OnMouseLeavecall=v 
         self.PasOnMouseLeave=FunctionForm(self._Warper_OnMouseLeave)
         self.OnMouseLeavePasObject=LCLBinding.set_StdCtrls_TStaticText_OnMouseLeave(self.pointer,self.PasOnMouseLeave,oldobj,FreeOldEvent)
@@ -176,7 +188,7 @@ class TStaticText(TCustomStaticText):
         oldobj=0
         if hasattr(self, 'OnMouseMovecall'):
             FreeOldEvent=1
-            oldobj=OnMouseMovePasObject
+            oldobj=self.OnMouseMovePasObject
         self.OnMouseMovecall=v 
         self.PasOnMouseMove=FunctionForm(self._Warper_OnMouseMove)
         self.OnMouseMovePasObject=LCLBinding.set_StdCtrls_TStaticText_OnMouseMove(self.pointer,self.PasOnMouseMove,oldobj,FreeOldEvent)
@@ -191,7 +203,7 @@ class TStaticText(TCustomStaticText):
         oldobj=0
         if hasattr(self, 'OnMouseUpcall'):
             FreeOldEvent=1
-            oldobj=OnMouseUpPasObject
+            oldobj=self.OnMouseUpPasObject
         self.OnMouseUpcall=v 
         self.PasOnMouseUp=FunctionForm(self._Warper_OnMouseUp)
         self.OnMouseUpPasObject=LCLBinding.set_StdCtrls_TStaticText_OnMouseUp(self.pointer,self.PasOnMouseUp,oldobj,FreeOldEvent)
@@ -206,7 +218,7 @@ class TStaticText(TCustomStaticText):
         oldobj=0
         if hasattr(self, 'OnStartDragcall'):
             FreeOldEvent=1
-            oldobj=OnStartDragPasObject
+            oldobj=self.OnStartDragPasObject
         self.OnStartDragcall=v 
         self.PasOnStartDrag=FunctionForm(self._Warper_OnStartDrag)
         self.OnStartDragPasObject=LCLBinding.set_StdCtrls_TStaticText_OnStartDrag(self.pointer,self.PasOnStartDrag,oldobj,FreeOldEvent)
@@ -283,7 +295,7 @@ class TCustomScrollBar(TWinControl):
         oldobj=0
         if hasattr(self, 'OnChangecall'):
             FreeOldEvent=1
-            oldobj=OnChangePasObject
+            oldobj=self.OnChangePasObject
         self.OnChangecall=v 
         self.PasOnChange=FunctionForm(self._Warper_OnChange)
         self.OnChangePasObject=LCLBinding.set_StdCtrls_TCustomScrollBar_OnChange(self.pointer,self.PasOnChange,oldobj,FreeOldEvent)
@@ -298,7 +310,7 @@ class TCustomScrollBar(TWinControl):
         oldobj=0
         if hasattr(self, 'OnScrollcall'):
             FreeOldEvent=1
-            oldobj=OnScrollPasObject
+            oldobj=self.OnScrollPasObject
         self.OnScrollcall=v 
         self.PasOnScroll=FunctionForm(self._Warper_OnScroll)
         self.OnScrollPasObject=LCLBinding.set_StdCtrls_TCustomScrollBar_OnScroll(self.pointer,self.PasOnScroll,oldobj,FreeOldEvent)
@@ -337,7 +349,7 @@ class TScrollBar(TCustomScrollBar):
         oldobj=0
         if hasattr(self, 'OnDragDropcall'):
             FreeOldEvent=1
-            oldobj=OnDragDropPasObject
+            oldobj=self.OnDragDropPasObject
         self.OnDragDropcall=v 
         self.PasOnDragDrop=FunctionForm(self._Warper_OnDragDrop)
         self.OnDragDropPasObject=LCLBinding.set_StdCtrls_TScrollBar_OnDragDrop(self.pointer,self.PasOnDragDrop,oldobj,FreeOldEvent)
@@ -352,7 +364,7 @@ class TScrollBar(TCustomScrollBar):
         oldobj=0
         if hasattr(self, 'OnDragOvercall'):
             FreeOldEvent=1
-            oldobj=OnDragOverPasObject
+            oldobj=self.OnDragOverPasObject
         self.OnDragOvercall=v 
         self.PasOnDragOver=FunctionForm(self._Warper_OnDragOver)
         self.OnDragOverPasObject=LCLBinding.set_StdCtrls_TScrollBar_OnDragOver(self.pointer,self.PasOnDragOver,oldobj,FreeOldEvent)
@@ -367,7 +379,7 @@ class TScrollBar(TCustomScrollBar):
         oldobj=0
         if hasattr(self, 'OnEndDragcall'):
             FreeOldEvent=1
-            oldobj=OnEndDragPasObject
+            oldobj=self.OnEndDragPasObject
         self.OnEndDragcall=v 
         self.PasOnEndDrag=FunctionForm(self._Warper_OnEndDrag)
         self.OnEndDragPasObject=LCLBinding.set_StdCtrls_TScrollBar_OnEndDrag(self.pointer,self.PasOnEndDrag,oldobj,FreeOldEvent)
@@ -382,7 +394,7 @@ class TScrollBar(TCustomScrollBar):
         oldobj=0
         if hasattr(self, 'OnStartDragcall'):
             FreeOldEvent=1
-            oldobj=OnStartDragPasObject
+            oldobj=self.OnStartDragPasObject
         self.OnStartDragcall=v 
         self.PasOnStartDrag=FunctionForm(self._Warper_OnStartDrag)
         self.OnStartDragPasObject=LCLBinding.set_StdCtrls_TScrollBar_OnStartDrag(self.pointer,self.PasOnStartDrag,oldobj,FreeOldEvent)
@@ -403,6 +415,42 @@ class TCustomListBox(TWinControl):
     @staticmethod
     def Create(TheOwner):
         return LCLBindingUtil.GetPytonObject(LCLBinding.StdCtrls_TCustomListBox_Create((TheOwner.pointer)),TCustomListBox)
+#Procedure StdCtrls_TCustomListBox_AddItem
+    @staticmethod
+    def AddItem(self,Item,AnObject):
+        LCLBinding.StdCtrls_TCustomListBox_AddItem((Item),(AnObject.pointer))
+#Procedure StdCtrls_TCustomListBox_Click
+    @staticmethod
+    def Click(self,):
+        LCLBinding.StdCtrls_TCustomListBox_Click()
+#Procedure StdCtrls_TCustomListBox_Clear
+    @staticmethod
+    def Clear(self,):
+        LCLBinding.StdCtrls_TCustomListBox_Clear()
+#Procedure StdCtrls_TCustomListBox_ClearSelection
+    @staticmethod
+    def ClearSelection(self,):
+        LCLBinding.StdCtrls_TCustomListBox_ClearSelection()
+#Procedure StdCtrls_TCustomListBox_LockSelectionChange
+    @staticmethod
+    def LockSelectionChange(self,):
+        LCLBinding.StdCtrls_TCustomListBox_LockSelectionChange()
+#Procedure StdCtrls_TCustomListBox_MakeCurrentVisible
+    @staticmethod
+    def MakeCurrentVisible(self,):
+        LCLBinding.StdCtrls_TCustomListBox_MakeCurrentVisible()
+#Procedure StdCtrls_TCustomListBox_SelectAll
+    @staticmethod
+    def SelectAll(self,):
+        LCLBinding.StdCtrls_TCustomListBox_SelectAll()
+#Procedure StdCtrls_TCustomListBox_DeleteSelected
+    @staticmethod
+    def DeleteSelected(self,):
+        LCLBinding.StdCtrls_TCustomListBox_DeleteSelected()
+#Procedure StdCtrls_TCustomListBox_UnlockSelectionChange
+    @staticmethod
+    def UnlockSelectionChange(self,):
+        LCLBinding.StdCtrls_TCustomListBox_UnlockSelectionChange()
     def getCanvas(self):
         r=LCLBinding.get_StdCtrls_TCustomListBox_Canvas(self.pointer)
         return LCLBindingUtil.GetPytonObject(r,TCanvas)
@@ -467,7 +515,7 @@ class TCustomListBox(TWinControl):
         oldobj=0
         if hasattr(self, 'OnDblClickcall'):
             FreeOldEvent=1
-            oldobj=OnDblClickPasObject
+            oldobj=self.OnDblClickPasObject
         self.OnDblClickcall=v 
         self.PasOnDblClick=FunctionForm(self._Warper_OnDblClick)
         self.OnDblClickPasObject=LCLBinding.set_StdCtrls_TCustomListBox_OnDblClick(self.pointer,self.PasOnDblClick,oldobj,FreeOldEvent)
@@ -482,7 +530,7 @@ class TCustomListBox(TWinControl):
         oldobj=0
         if hasattr(self, 'OnMeasureItemcall'):
             FreeOldEvent=1
-            oldobj=OnMeasureItemPasObject
+            oldobj=self.OnMeasureItemPasObject
         self.OnMeasureItemcall=v 
         self.PasOnMeasureItem=FunctionForm(self._Warper_OnMeasureItem)
         self.OnMeasureItemPasObject=LCLBinding.set_StdCtrls_TCustomListBox_OnMeasureItem(self.pointer,self.PasOnMeasureItem,oldobj,FreeOldEvent)
@@ -497,7 +545,7 @@ class TCustomListBox(TWinControl):
         oldobj=0
         if hasattr(self, 'OnMouseDowncall'):
             FreeOldEvent=1
-            oldobj=OnMouseDownPasObject
+            oldobj=self.OnMouseDownPasObject
         self.OnMouseDowncall=v 
         self.PasOnMouseDown=FunctionForm(self._Warper_OnMouseDown)
         self.OnMouseDownPasObject=LCLBinding.set_StdCtrls_TCustomListBox_OnMouseDown(self.pointer,self.PasOnMouseDown,oldobj,FreeOldEvent)
@@ -512,7 +560,7 @@ class TCustomListBox(TWinControl):
         oldobj=0
         if hasattr(self, 'OnMouseEntercall'):
             FreeOldEvent=1
-            oldobj=OnMouseEnterPasObject
+            oldobj=self.OnMouseEnterPasObject
         self.OnMouseEntercall=v 
         self.PasOnMouseEnter=FunctionForm(self._Warper_OnMouseEnter)
         self.OnMouseEnterPasObject=LCLBinding.set_StdCtrls_TCustomListBox_OnMouseEnter(self.pointer,self.PasOnMouseEnter,oldobj,FreeOldEvent)
@@ -527,7 +575,7 @@ class TCustomListBox(TWinControl):
         oldobj=0
         if hasattr(self, 'OnMouseLeavecall'):
             FreeOldEvent=1
-            oldobj=OnMouseLeavePasObject
+            oldobj=self.OnMouseLeavePasObject
         self.OnMouseLeavecall=v 
         self.PasOnMouseLeave=FunctionForm(self._Warper_OnMouseLeave)
         self.OnMouseLeavePasObject=LCLBinding.set_StdCtrls_TCustomListBox_OnMouseLeave(self.pointer,self.PasOnMouseLeave,oldobj,FreeOldEvent)
@@ -542,7 +590,7 @@ class TCustomListBox(TWinControl):
         oldobj=0
         if hasattr(self, 'OnMouseMovecall'):
             FreeOldEvent=1
-            oldobj=OnMouseMovePasObject
+            oldobj=self.OnMouseMovePasObject
         self.OnMouseMovecall=v 
         self.PasOnMouseMove=FunctionForm(self._Warper_OnMouseMove)
         self.OnMouseMovePasObject=LCLBinding.set_StdCtrls_TCustomListBox_OnMouseMove(self.pointer,self.PasOnMouseMove,oldobj,FreeOldEvent)
@@ -557,7 +605,7 @@ class TCustomListBox(TWinControl):
         oldobj=0
         if hasattr(self, 'OnMouseUpcall'):
             FreeOldEvent=1
-            oldobj=OnMouseUpPasObject
+            oldobj=self.OnMouseUpPasObject
         self.OnMouseUpcall=v 
         self.PasOnMouseUp=FunctionForm(self._Warper_OnMouseUp)
         self.OnMouseUpPasObject=LCLBinding.set_StdCtrls_TCustomListBox_OnMouseUp(self.pointer,self.PasOnMouseUp,oldobj,FreeOldEvent)
@@ -572,7 +620,7 @@ class TCustomListBox(TWinControl):
         oldobj=0
         if hasattr(self, 'OnSelectionChangecall'):
             FreeOldEvent=1
-            oldobj=OnSelectionChangePasObject
+            oldobj=self.OnSelectionChangePasObject
         self.OnSelectionChangecall=v 
         self.PasOnSelectionChange=FunctionForm(self._Warper_OnSelectionChange)
         self.OnSelectionChangePasObject=LCLBinding.set_StdCtrls_TCustomListBox_OnSelectionChange(self.pointer,self.PasOnSelectionChange,oldobj,FreeOldEvent)
@@ -662,7 +710,7 @@ class TListBox(TCustomListBox):
         oldobj=0
         if hasattr(self, 'OnDragDropcall'):
             FreeOldEvent=1
-            oldobj=OnDragDropPasObject
+            oldobj=self.OnDragDropPasObject
         self.OnDragDropcall=v 
         self.PasOnDragDrop=FunctionForm(self._Warper_OnDragDrop)
         self.OnDragDropPasObject=LCLBinding.set_StdCtrls_TListBox_OnDragDrop(self.pointer,self.PasOnDragDrop,oldobj,FreeOldEvent)
@@ -677,7 +725,7 @@ class TListBox(TCustomListBox):
         oldobj=0
         if hasattr(self, 'OnDragOvercall'):
             FreeOldEvent=1
-            oldobj=OnDragOverPasObject
+            oldobj=self.OnDragOverPasObject
         self.OnDragOvercall=v 
         self.PasOnDragOver=FunctionForm(self._Warper_OnDragOver)
         self.OnDragOverPasObject=LCLBinding.set_StdCtrls_TListBox_OnDragOver(self.pointer,self.PasOnDragOver,oldobj,FreeOldEvent)
@@ -692,7 +740,7 @@ class TListBox(TCustomListBox):
         oldobj=0
         if hasattr(self, 'OnEndDragcall'):
             FreeOldEvent=1
-            oldobj=OnEndDragPasObject
+            oldobj=self.OnEndDragPasObject
         self.OnEndDragcall=v 
         self.PasOnEndDrag=FunctionForm(self._Warper_OnEndDrag)
         self.OnEndDragPasObject=LCLBinding.set_StdCtrls_TListBox_OnEndDrag(self.pointer,self.PasOnEndDrag,oldobj,FreeOldEvent)
@@ -707,7 +755,7 @@ class TListBox(TCustomListBox):
         oldobj=0
         if hasattr(self, 'OnStartDragcall'):
             FreeOldEvent=1
-            oldobj=OnStartDragPasObject
+            oldobj=self.OnStartDragPasObject
         self.OnStartDragcall=v 
         self.PasOnStartDrag=FunctionForm(self._Warper_OnStartDrag)
         self.OnStartDragPasObject=LCLBinding.set_StdCtrls_TListBox_OnStartDrag(self.pointer,self.PasOnStartDrag,oldobj,FreeOldEvent)
@@ -728,6 +776,14 @@ class TCustomLabel(TGraphicControl):
     @staticmethod
     def Create(TheOwner):
         return LCLBindingUtil.GetPytonObject(LCLBinding.StdCtrls_TCustomLabel_Create((TheOwner.pointer)),TCustomLabel)
+#Procedure StdCtrls_TCustomLabel_Paint
+    @staticmethod
+    def Paint(self,):
+        LCLBinding.StdCtrls_TCustomLabel_Paint()
+#Procedure StdCtrls_TCustomLabel_SetBounds
+    @staticmethod
+    def SetBounds(self,aLeft,aTop,aWidth,aHeight):
+        LCLBinding.StdCtrls_TCustomLabel_SetBounds((aLeft),(aTop),(aWidth),(aHeight))
 #class TCustomLabel end
 #class TLabel start
 class TLabel(TCustomLabel):
@@ -808,7 +864,7 @@ class TLabel(TCustomLabel):
         oldobj=0
         if hasattr(self, 'OnDblClickcall'):
             FreeOldEvent=1
-            oldobj=OnDblClickPasObject
+            oldobj=self.OnDblClickPasObject
         self.OnDblClickcall=v 
         self.PasOnDblClick=FunctionForm(self._Warper_OnDblClick)
         self.OnDblClickPasObject=LCLBinding.set_StdCtrls_TLabel_OnDblClick(self.pointer,self.PasOnDblClick,oldobj,FreeOldEvent)
@@ -823,7 +879,7 @@ class TLabel(TCustomLabel):
         oldobj=0
         if hasattr(self, 'OnDragDropcall'):
             FreeOldEvent=1
-            oldobj=OnDragDropPasObject
+            oldobj=self.OnDragDropPasObject
         self.OnDragDropcall=v 
         self.PasOnDragDrop=FunctionForm(self._Warper_OnDragDrop)
         self.OnDragDropPasObject=LCLBinding.set_StdCtrls_TLabel_OnDragDrop(self.pointer,self.PasOnDragDrop,oldobj,FreeOldEvent)
@@ -838,7 +894,7 @@ class TLabel(TCustomLabel):
         oldobj=0
         if hasattr(self, 'OnDragOvercall'):
             FreeOldEvent=1
-            oldobj=OnDragOverPasObject
+            oldobj=self.OnDragOverPasObject
         self.OnDragOvercall=v 
         self.PasOnDragOver=FunctionForm(self._Warper_OnDragOver)
         self.OnDragOverPasObject=LCLBinding.set_StdCtrls_TLabel_OnDragOver(self.pointer,self.PasOnDragOver,oldobj,FreeOldEvent)
@@ -853,7 +909,7 @@ class TLabel(TCustomLabel):
         oldobj=0
         if hasattr(self, 'OnEndDragcall'):
             FreeOldEvent=1
-            oldobj=OnEndDragPasObject
+            oldobj=self.OnEndDragPasObject
         self.OnEndDragcall=v 
         self.PasOnEndDrag=FunctionForm(self._Warper_OnEndDrag)
         self.OnEndDragPasObject=LCLBinding.set_StdCtrls_TLabel_OnEndDrag(self.pointer,self.PasOnEndDrag,oldobj,FreeOldEvent)
@@ -868,7 +924,7 @@ class TLabel(TCustomLabel):
         oldobj=0
         if hasattr(self, 'OnMouseDowncall'):
             FreeOldEvent=1
-            oldobj=OnMouseDownPasObject
+            oldobj=self.OnMouseDownPasObject
         self.OnMouseDowncall=v 
         self.PasOnMouseDown=FunctionForm(self._Warper_OnMouseDown)
         self.OnMouseDownPasObject=LCLBinding.set_StdCtrls_TLabel_OnMouseDown(self.pointer,self.PasOnMouseDown,oldobj,FreeOldEvent)
@@ -883,7 +939,7 @@ class TLabel(TCustomLabel):
         oldobj=0
         if hasattr(self, 'OnMouseEntercall'):
             FreeOldEvent=1
-            oldobj=OnMouseEnterPasObject
+            oldobj=self.OnMouseEnterPasObject
         self.OnMouseEntercall=v 
         self.PasOnMouseEnter=FunctionForm(self._Warper_OnMouseEnter)
         self.OnMouseEnterPasObject=LCLBinding.set_StdCtrls_TLabel_OnMouseEnter(self.pointer,self.PasOnMouseEnter,oldobj,FreeOldEvent)
@@ -898,7 +954,7 @@ class TLabel(TCustomLabel):
         oldobj=0
         if hasattr(self, 'OnMouseLeavecall'):
             FreeOldEvent=1
-            oldobj=OnMouseLeavePasObject
+            oldobj=self.OnMouseLeavePasObject
         self.OnMouseLeavecall=v 
         self.PasOnMouseLeave=FunctionForm(self._Warper_OnMouseLeave)
         self.OnMouseLeavePasObject=LCLBinding.set_StdCtrls_TLabel_OnMouseLeave(self.pointer,self.PasOnMouseLeave,oldobj,FreeOldEvent)
@@ -913,7 +969,7 @@ class TLabel(TCustomLabel):
         oldobj=0
         if hasattr(self, 'OnMouseMovecall'):
             FreeOldEvent=1
-            oldobj=OnMouseMovePasObject
+            oldobj=self.OnMouseMovePasObject
         self.OnMouseMovecall=v 
         self.PasOnMouseMove=FunctionForm(self._Warper_OnMouseMove)
         self.OnMouseMovePasObject=LCLBinding.set_StdCtrls_TLabel_OnMouseMove(self.pointer,self.PasOnMouseMove,oldobj,FreeOldEvent)
@@ -928,7 +984,7 @@ class TLabel(TCustomLabel):
         oldobj=0
         if hasattr(self, 'OnMouseUpcall'):
             FreeOldEvent=1
-            oldobj=OnMouseUpPasObject
+            oldobj=self.OnMouseUpPasObject
         self.OnMouseUpcall=v 
         self.PasOnMouseUp=FunctionForm(self._Warper_OnMouseUp)
         self.OnMouseUpPasObject=LCLBinding.set_StdCtrls_TLabel_OnMouseUp(self.pointer,self.PasOnMouseUp,oldobj,FreeOldEvent)
@@ -943,7 +999,7 @@ class TLabel(TCustomLabel):
         oldobj=0
         if hasattr(self, 'OnStartDragcall'):
             FreeOldEvent=1
-            oldobj=OnStartDragPasObject
+            oldobj=self.OnStartDragPasObject
         self.OnStartDragcall=v 
         self.PasOnStartDrag=FunctionForm(self._Warper_OnStartDrag)
         self.OnStartDragPasObject=LCLBinding.set_StdCtrls_TLabel_OnStartDrag(self.pointer,self.PasOnStartDrag,oldobj,FreeOldEvent)
@@ -1014,7 +1070,7 @@ class TGroupBox(TCustomGroupBox):
         oldobj=0
         if hasattr(self, 'OnDblClickcall'):
             FreeOldEvent=1
-            oldobj=OnDblClickPasObject
+            oldobj=self.OnDblClickPasObject
         self.OnDblClickcall=v 
         self.PasOnDblClick=FunctionForm(self._Warper_OnDblClick)
         self.OnDblClickPasObject=LCLBinding.set_StdCtrls_TGroupBox_OnDblClick(self.pointer,self.PasOnDblClick,oldobj,FreeOldEvent)
@@ -1029,7 +1085,7 @@ class TGroupBox(TCustomGroupBox):
         oldobj=0
         if hasattr(self, 'OnDragDropcall'):
             FreeOldEvent=1
-            oldobj=OnDragDropPasObject
+            oldobj=self.OnDragDropPasObject
         self.OnDragDropcall=v 
         self.PasOnDragDrop=FunctionForm(self._Warper_OnDragDrop)
         self.OnDragDropPasObject=LCLBinding.set_StdCtrls_TGroupBox_OnDragDrop(self.pointer,self.PasOnDragDrop,oldobj,FreeOldEvent)
@@ -1044,7 +1100,7 @@ class TGroupBox(TCustomGroupBox):
         oldobj=0
         if hasattr(self, 'OnDragOvercall'):
             FreeOldEvent=1
-            oldobj=OnDragOverPasObject
+            oldobj=self.OnDragOverPasObject
         self.OnDragOvercall=v 
         self.PasOnDragOver=FunctionForm(self._Warper_OnDragOver)
         self.OnDragOverPasObject=LCLBinding.set_StdCtrls_TGroupBox_OnDragOver(self.pointer,self.PasOnDragOver,oldobj,FreeOldEvent)
@@ -1059,7 +1115,7 @@ class TGroupBox(TCustomGroupBox):
         oldobj=0
         if hasattr(self, 'OnEndDockcall'):
             FreeOldEvent=1
-            oldobj=OnEndDockPasObject
+            oldobj=self.OnEndDockPasObject
         self.OnEndDockcall=v 
         self.PasOnEndDock=FunctionForm(self._Warper_OnEndDock)
         self.OnEndDockPasObject=LCLBinding.set_StdCtrls_TGroupBox_OnEndDock(self.pointer,self.PasOnEndDock,oldobj,FreeOldEvent)
@@ -1074,7 +1130,7 @@ class TGroupBox(TCustomGroupBox):
         oldobj=0
         if hasattr(self, 'OnEndDragcall'):
             FreeOldEvent=1
-            oldobj=OnEndDragPasObject
+            oldobj=self.OnEndDragPasObject
         self.OnEndDragcall=v 
         self.PasOnEndDrag=FunctionForm(self._Warper_OnEndDrag)
         self.OnEndDragPasObject=LCLBinding.set_StdCtrls_TGroupBox_OnEndDrag(self.pointer,self.PasOnEndDrag,oldobj,FreeOldEvent)
@@ -1089,7 +1145,7 @@ class TGroupBox(TCustomGroupBox):
         oldobj=0
         if hasattr(self, 'OnMouseDowncall'):
             FreeOldEvent=1
-            oldobj=OnMouseDownPasObject
+            oldobj=self.OnMouseDownPasObject
         self.OnMouseDowncall=v 
         self.PasOnMouseDown=FunctionForm(self._Warper_OnMouseDown)
         self.OnMouseDownPasObject=LCLBinding.set_StdCtrls_TGroupBox_OnMouseDown(self.pointer,self.PasOnMouseDown,oldobj,FreeOldEvent)
@@ -1104,7 +1160,7 @@ class TGroupBox(TCustomGroupBox):
         oldobj=0
         if hasattr(self, 'OnMouseEntercall'):
             FreeOldEvent=1
-            oldobj=OnMouseEnterPasObject
+            oldobj=self.OnMouseEnterPasObject
         self.OnMouseEntercall=v 
         self.PasOnMouseEnter=FunctionForm(self._Warper_OnMouseEnter)
         self.OnMouseEnterPasObject=LCLBinding.set_StdCtrls_TGroupBox_OnMouseEnter(self.pointer,self.PasOnMouseEnter,oldobj,FreeOldEvent)
@@ -1119,7 +1175,7 @@ class TGroupBox(TCustomGroupBox):
         oldobj=0
         if hasattr(self, 'OnMouseLeavecall'):
             FreeOldEvent=1
-            oldobj=OnMouseLeavePasObject
+            oldobj=self.OnMouseLeavePasObject
         self.OnMouseLeavecall=v 
         self.PasOnMouseLeave=FunctionForm(self._Warper_OnMouseLeave)
         self.OnMouseLeavePasObject=LCLBinding.set_StdCtrls_TGroupBox_OnMouseLeave(self.pointer,self.PasOnMouseLeave,oldobj,FreeOldEvent)
@@ -1134,7 +1190,7 @@ class TGroupBox(TCustomGroupBox):
         oldobj=0
         if hasattr(self, 'OnMouseMovecall'):
             FreeOldEvent=1
-            oldobj=OnMouseMovePasObject
+            oldobj=self.OnMouseMovePasObject
         self.OnMouseMovecall=v 
         self.PasOnMouseMove=FunctionForm(self._Warper_OnMouseMove)
         self.OnMouseMovePasObject=LCLBinding.set_StdCtrls_TGroupBox_OnMouseMove(self.pointer,self.PasOnMouseMove,oldobj,FreeOldEvent)
@@ -1149,7 +1205,7 @@ class TGroupBox(TCustomGroupBox):
         oldobj=0
         if hasattr(self, 'OnMouseUpcall'):
             FreeOldEvent=1
-            oldobj=OnMouseUpPasObject
+            oldobj=self.OnMouseUpPasObject
         self.OnMouseUpcall=v 
         self.PasOnMouseUp=FunctionForm(self._Warper_OnMouseUp)
         self.OnMouseUpPasObject=LCLBinding.set_StdCtrls_TGroupBox_OnMouseUp(self.pointer,self.PasOnMouseUp,oldobj,FreeOldEvent)
@@ -1164,7 +1220,7 @@ class TGroupBox(TCustomGroupBox):
         oldobj=0
         if hasattr(self, 'OnStartDockcall'):
             FreeOldEvent=1
-            oldobj=OnStartDockPasObject
+            oldobj=self.OnStartDockPasObject
         self.OnStartDockcall=v 
         self.PasOnStartDock=FunctionForm(self._Warper_OnStartDock)
         self.OnStartDockPasObject=LCLBinding.set_StdCtrls_TGroupBox_OnStartDock(self.pointer,self.PasOnStartDock,oldobj,FreeOldEvent)
@@ -1179,7 +1235,7 @@ class TGroupBox(TCustomGroupBox):
         oldobj=0
         if hasattr(self, 'OnStartDragcall'):
             FreeOldEvent=1
-            oldobj=OnStartDragPasObject
+            oldobj=self.OnStartDragPasObject
         self.OnStartDragcall=v 
         self.PasOnStartDrag=FunctionForm(self._Warper_OnStartDrag)
         self.OnStartDragPasObject=LCLBinding.set_StdCtrls_TGroupBox_OnStartDrag(self.pointer,self.PasOnStartDrag,oldobj,FreeOldEvent)
@@ -1210,6 +1266,34 @@ class TCustomEdit(TWinControl):
     @staticmethod
     def Create(AOwner):
         return LCLBindingUtil.GetPytonObject(LCLBinding.StdCtrls_TCustomEdit_Create((AOwner.pointer)),TCustomEdit)
+#Procedure StdCtrls_TCustomEdit_Clear
+    @staticmethod
+    def Clear(self,):
+        LCLBinding.StdCtrls_TCustomEdit_Clear()
+#Procedure StdCtrls_TCustomEdit_SelectAll
+    @staticmethod
+    def SelectAll(self,):
+        LCLBinding.StdCtrls_TCustomEdit_SelectAll()
+#Procedure StdCtrls_TCustomEdit_ClearSelection
+    @staticmethod
+    def ClearSelection(self,):
+        LCLBinding.StdCtrls_TCustomEdit_ClearSelection()
+#Procedure StdCtrls_TCustomEdit_CopyToClipboard
+    @staticmethod
+    def CopyToClipboard(self,):
+        LCLBinding.StdCtrls_TCustomEdit_CopyToClipboard()
+#Procedure StdCtrls_TCustomEdit_CutToClipboard
+    @staticmethod
+    def CutToClipboard(self,):
+        LCLBinding.StdCtrls_TCustomEdit_CutToClipboard()
+#Procedure StdCtrls_TCustomEdit_PasteFromClipboard
+    @staticmethod
+    def PasteFromClipboard(self,):
+        LCLBinding.StdCtrls_TCustomEdit_PasteFromClipboard()
+#Procedure StdCtrls_TCustomEdit_Undo
+    @staticmethod
+    def Undo(self,):
+        LCLBinding.StdCtrls_TCustomEdit_Undo()
     def getAlignment(self):
         r=LCLBinding.get_StdCtrls_TCustomEdit_Alignment(self.pointer)
         return r
@@ -1264,7 +1348,7 @@ class TCustomEdit(TWinControl):
         oldobj=0
         if hasattr(self, 'OnChangecall'):
             FreeOldEvent=1
-            oldobj=OnChangePasObject
+            oldobj=self.OnChangePasObject
         self.OnChangecall=v 
         self.PasOnChange=FunctionForm(self._Warper_OnChange)
         self.OnChangePasObject=LCLBinding.set_StdCtrls_TCustomEdit_OnChange(self.pointer,self.PasOnChange,oldobj,FreeOldEvent)
@@ -1317,6 +1401,14 @@ class TCustomMemo(TCustomEdit):
     @staticmethod
     def Create(AOwner):
         return LCLBindingUtil.GetPytonObject(LCLBinding.StdCtrls_TCustomMemo_Create((AOwner.pointer)),TCustomMemo)
+#Procedure StdCtrls_TCustomMemo_Append
+    @staticmethod
+    def Append(self,Value):
+        LCLBinding.StdCtrls_TCustomMemo_Append((Value))
+#Procedure StdCtrls_TCustomMemo_ScrollBy
+    @staticmethod
+    def ScrollBy(self,DeltaX,DeltaY):
+        LCLBinding.StdCtrls_TCustomMemo_ScrollBy((DeltaX),(DeltaY))
     def getLines(self):
         r=LCLBinding.get_StdCtrls_TCustomMemo_Lines(self.pointer)
         return LCLBindingUtil.GetPytonObject(r,TStrings)
@@ -1385,7 +1477,7 @@ class TMemo(TCustomMemo):
         oldobj=0
         if hasattr(self, 'OnDblClickcall'):
             FreeOldEvent=1
-            oldobj=OnDblClickPasObject
+            oldobj=self.OnDblClickPasObject
         self.OnDblClickcall=v 
         self.PasOnDblClick=FunctionForm(self._Warper_OnDblClick)
         self.OnDblClickPasObject=LCLBinding.set_StdCtrls_TMemo_OnDblClick(self.pointer,self.PasOnDblClick,oldobj,FreeOldEvent)
@@ -1400,7 +1492,7 @@ class TMemo(TCustomMemo):
         oldobj=0
         if hasattr(self, 'OnDragDropcall'):
             FreeOldEvent=1
-            oldobj=OnDragDropPasObject
+            oldobj=self.OnDragDropPasObject
         self.OnDragDropcall=v 
         self.PasOnDragDrop=FunctionForm(self._Warper_OnDragDrop)
         self.OnDragDropPasObject=LCLBinding.set_StdCtrls_TMemo_OnDragDrop(self.pointer,self.PasOnDragDrop,oldobj,FreeOldEvent)
@@ -1415,7 +1507,7 @@ class TMemo(TCustomMemo):
         oldobj=0
         if hasattr(self, 'OnDragOvercall'):
             FreeOldEvent=1
-            oldobj=OnDragOverPasObject
+            oldobj=self.OnDragOverPasObject
         self.OnDragOvercall=v 
         self.PasOnDragOver=FunctionForm(self._Warper_OnDragOver)
         self.OnDragOverPasObject=LCLBinding.set_StdCtrls_TMemo_OnDragOver(self.pointer,self.PasOnDragOver,oldobj,FreeOldEvent)
@@ -1430,7 +1522,7 @@ class TMemo(TCustomMemo):
         oldobj=0
         if hasattr(self, 'OnEditingDonecall'):
             FreeOldEvent=1
-            oldobj=OnEditingDonePasObject
+            oldobj=self.OnEditingDonePasObject
         self.OnEditingDonecall=v 
         self.PasOnEditingDone=FunctionForm(self._Warper_OnEditingDone)
         self.OnEditingDonePasObject=LCLBinding.set_StdCtrls_TMemo_OnEditingDone(self.pointer,self.PasOnEditingDone,oldobj,FreeOldEvent)
@@ -1445,7 +1537,7 @@ class TMemo(TCustomMemo):
         oldobj=0
         if hasattr(self, 'OnEndDragcall'):
             FreeOldEvent=1
-            oldobj=OnEndDragPasObject
+            oldobj=self.OnEndDragPasObject
         self.OnEndDragcall=v 
         self.PasOnEndDrag=FunctionForm(self._Warper_OnEndDrag)
         self.OnEndDragPasObject=LCLBinding.set_StdCtrls_TMemo_OnEndDrag(self.pointer,self.PasOnEndDrag,oldobj,FreeOldEvent)
@@ -1460,7 +1552,7 @@ class TMemo(TCustomMemo):
         oldobj=0
         if hasattr(self, 'OnMouseDowncall'):
             FreeOldEvent=1
-            oldobj=OnMouseDownPasObject
+            oldobj=self.OnMouseDownPasObject
         self.OnMouseDowncall=v 
         self.PasOnMouseDown=FunctionForm(self._Warper_OnMouseDown)
         self.OnMouseDownPasObject=LCLBinding.set_StdCtrls_TMemo_OnMouseDown(self.pointer,self.PasOnMouseDown,oldobj,FreeOldEvent)
@@ -1475,7 +1567,7 @@ class TMemo(TCustomMemo):
         oldobj=0
         if hasattr(self, 'OnMouseEntercall'):
             FreeOldEvent=1
-            oldobj=OnMouseEnterPasObject
+            oldobj=self.OnMouseEnterPasObject
         self.OnMouseEntercall=v 
         self.PasOnMouseEnter=FunctionForm(self._Warper_OnMouseEnter)
         self.OnMouseEnterPasObject=LCLBinding.set_StdCtrls_TMemo_OnMouseEnter(self.pointer,self.PasOnMouseEnter,oldobj,FreeOldEvent)
@@ -1490,7 +1582,7 @@ class TMemo(TCustomMemo):
         oldobj=0
         if hasattr(self, 'OnMouseLeavecall'):
             FreeOldEvent=1
-            oldobj=OnMouseLeavePasObject
+            oldobj=self.OnMouseLeavePasObject
         self.OnMouseLeavecall=v 
         self.PasOnMouseLeave=FunctionForm(self._Warper_OnMouseLeave)
         self.OnMouseLeavePasObject=LCLBinding.set_StdCtrls_TMemo_OnMouseLeave(self.pointer,self.PasOnMouseLeave,oldobj,FreeOldEvent)
@@ -1505,7 +1597,7 @@ class TMemo(TCustomMemo):
         oldobj=0
         if hasattr(self, 'OnMouseMovecall'):
             FreeOldEvent=1
-            oldobj=OnMouseMovePasObject
+            oldobj=self.OnMouseMovePasObject
         self.OnMouseMovecall=v 
         self.PasOnMouseMove=FunctionForm(self._Warper_OnMouseMove)
         self.OnMouseMovePasObject=LCLBinding.set_StdCtrls_TMemo_OnMouseMove(self.pointer,self.PasOnMouseMove,oldobj,FreeOldEvent)
@@ -1520,7 +1612,7 @@ class TMemo(TCustomMemo):
         oldobj=0
         if hasattr(self, 'OnMouseUpcall'):
             FreeOldEvent=1
-            oldobj=OnMouseUpPasObject
+            oldobj=self.OnMouseUpPasObject
         self.OnMouseUpcall=v 
         self.PasOnMouseUp=FunctionForm(self._Warper_OnMouseUp)
         self.OnMouseUpPasObject=LCLBinding.set_StdCtrls_TMemo_OnMouseUp(self.pointer,self.PasOnMouseUp,oldobj,FreeOldEvent)
@@ -1535,7 +1627,7 @@ class TMemo(TCustomMemo):
         oldobj=0
         if hasattr(self, 'OnStartDragcall'):
             FreeOldEvent=1
-            oldobj=OnStartDragPasObject
+            oldobj=self.OnStartDragPasObject
         self.OnStartDragcall=v 
         self.PasOnStartDrag=FunctionForm(self._Warper_OnStartDrag)
         self.OnStartDragPasObject=LCLBinding.set_StdCtrls_TMemo_OnStartDrag(self.pointer,self.PasOnStartDrag,oldobj,FreeOldEvent)
@@ -1602,7 +1694,7 @@ class TEdit(TCustomEdit):
         oldobj=0
         if hasattr(self, 'OnDblClickcall'):
             FreeOldEvent=1
-            oldobj=OnDblClickPasObject
+            oldobj=self.OnDblClickPasObject
         self.OnDblClickcall=v 
         self.PasOnDblClick=FunctionForm(self._Warper_OnDblClick)
         self.OnDblClickPasObject=LCLBinding.set_StdCtrls_TEdit_OnDblClick(self.pointer,self.PasOnDblClick,oldobj,FreeOldEvent)
@@ -1617,7 +1709,7 @@ class TEdit(TCustomEdit):
         oldobj=0
         if hasattr(self, 'OnDragDropcall'):
             FreeOldEvent=1
-            oldobj=OnDragDropPasObject
+            oldobj=self.OnDragDropPasObject
         self.OnDragDropcall=v 
         self.PasOnDragDrop=FunctionForm(self._Warper_OnDragDrop)
         self.OnDragDropPasObject=LCLBinding.set_StdCtrls_TEdit_OnDragDrop(self.pointer,self.PasOnDragDrop,oldobj,FreeOldEvent)
@@ -1632,7 +1724,7 @@ class TEdit(TCustomEdit):
         oldobj=0
         if hasattr(self, 'OnDragOvercall'):
             FreeOldEvent=1
-            oldobj=OnDragOverPasObject
+            oldobj=self.OnDragOverPasObject
         self.OnDragOvercall=v 
         self.PasOnDragOver=FunctionForm(self._Warper_OnDragOver)
         self.OnDragOverPasObject=LCLBinding.set_StdCtrls_TEdit_OnDragOver(self.pointer,self.PasOnDragOver,oldobj,FreeOldEvent)
@@ -1647,7 +1739,7 @@ class TEdit(TCustomEdit):
         oldobj=0
         if hasattr(self, 'OnEditingDonecall'):
             FreeOldEvent=1
-            oldobj=OnEditingDonePasObject
+            oldobj=self.OnEditingDonePasObject
         self.OnEditingDonecall=v 
         self.PasOnEditingDone=FunctionForm(self._Warper_OnEditingDone)
         self.OnEditingDonePasObject=LCLBinding.set_StdCtrls_TEdit_OnEditingDone(self.pointer,self.PasOnEditingDone,oldobj,FreeOldEvent)
@@ -1662,7 +1754,7 @@ class TEdit(TCustomEdit):
         oldobj=0
         if hasattr(self, 'OnEndDragcall'):
             FreeOldEvent=1
-            oldobj=OnEndDragPasObject
+            oldobj=self.OnEndDragPasObject
         self.OnEndDragcall=v 
         self.PasOnEndDrag=FunctionForm(self._Warper_OnEndDrag)
         self.OnEndDragPasObject=LCLBinding.set_StdCtrls_TEdit_OnEndDrag(self.pointer,self.PasOnEndDrag,oldobj,FreeOldEvent)
@@ -1677,7 +1769,7 @@ class TEdit(TCustomEdit):
         oldobj=0
         if hasattr(self, 'OnMouseDowncall'):
             FreeOldEvent=1
-            oldobj=OnMouseDownPasObject
+            oldobj=self.OnMouseDownPasObject
         self.OnMouseDowncall=v 
         self.PasOnMouseDown=FunctionForm(self._Warper_OnMouseDown)
         self.OnMouseDownPasObject=LCLBinding.set_StdCtrls_TEdit_OnMouseDown(self.pointer,self.PasOnMouseDown,oldobj,FreeOldEvent)
@@ -1692,7 +1784,7 @@ class TEdit(TCustomEdit):
         oldobj=0
         if hasattr(self, 'OnMouseEntercall'):
             FreeOldEvent=1
-            oldobj=OnMouseEnterPasObject
+            oldobj=self.OnMouseEnterPasObject
         self.OnMouseEntercall=v 
         self.PasOnMouseEnter=FunctionForm(self._Warper_OnMouseEnter)
         self.OnMouseEnterPasObject=LCLBinding.set_StdCtrls_TEdit_OnMouseEnter(self.pointer,self.PasOnMouseEnter,oldobj,FreeOldEvent)
@@ -1707,7 +1799,7 @@ class TEdit(TCustomEdit):
         oldobj=0
         if hasattr(self, 'OnMouseLeavecall'):
             FreeOldEvent=1
-            oldobj=OnMouseLeavePasObject
+            oldobj=self.OnMouseLeavePasObject
         self.OnMouseLeavecall=v 
         self.PasOnMouseLeave=FunctionForm(self._Warper_OnMouseLeave)
         self.OnMouseLeavePasObject=LCLBinding.set_StdCtrls_TEdit_OnMouseLeave(self.pointer,self.PasOnMouseLeave,oldobj,FreeOldEvent)
@@ -1722,7 +1814,7 @@ class TEdit(TCustomEdit):
         oldobj=0
         if hasattr(self, 'OnMouseMovecall'):
             FreeOldEvent=1
-            oldobj=OnMouseMovePasObject
+            oldobj=self.OnMouseMovePasObject
         self.OnMouseMovecall=v 
         self.PasOnMouseMove=FunctionForm(self._Warper_OnMouseMove)
         self.OnMouseMovePasObject=LCLBinding.set_StdCtrls_TEdit_OnMouseMove(self.pointer,self.PasOnMouseMove,oldobj,FreeOldEvent)
@@ -1737,7 +1829,7 @@ class TEdit(TCustomEdit):
         oldobj=0
         if hasattr(self, 'OnMouseUpcall'):
             FreeOldEvent=1
-            oldobj=OnMouseUpPasObject
+            oldobj=self.OnMouseUpPasObject
         self.OnMouseUpcall=v 
         self.PasOnMouseUp=FunctionForm(self._Warper_OnMouseUp)
         self.OnMouseUpPasObject=LCLBinding.set_StdCtrls_TEdit_OnMouseUp(self.pointer,self.PasOnMouseUp,oldobj,FreeOldEvent)
@@ -1752,7 +1844,7 @@ class TEdit(TCustomEdit):
         oldobj=0
         if hasattr(self, 'OnStartDragcall'):
             FreeOldEvent=1
-            oldobj=OnStartDragPasObject
+            oldobj=self.OnStartDragPasObject
         self.OnStartDragcall=v 
         self.PasOnStartDrag=FunctionForm(self._Warper_OnStartDrag)
         self.OnStartDragPasObject=LCLBinding.set_StdCtrls_TEdit_OnStartDrag(self.pointer,self.PasOnStartDrag,oldobj,FreeOldEvent)
@@ -1791,6 +1883,22 @@ class TCustomComboBox(TWinControl):
     @staticmethod
     def Create(TheOwner):
         return LCLBindingUtil.GetPytonObject(LCLBinding.StdCtrls_TCustomComboBox_Create((TheOwner.pointer)),TCustomComboBox)
+#Procedure StdCtrls_TCustomComboBox_IntfGetItems
+    @staticmethod
+    def IntfGetItems(self,):
+        LCLBinding.StdCtrls_TCustomComboBox_IntfGetItems()
+#Procedure StdCtrls_TCustomComboBox_AddItem
+    @staticmethod
+    def AddItem(self,Item,AnObject):
+        LCLBinding.StdCtrls_TCustomComboBox_AddItem((Item),(AnObject.pointer))
+#Procedure StdCtrls_TCustomComboBox_Clear
+    @staticmethod
+    def Clear(self,):
+        LCLBinding.StdCtrls_TCustomComboBox_Clear()
+#Procedure StdCtrls_TCustomComboBox_ClearSelection
+    @staticmethod
+    def ClearSelection(self,):
+        LCLBinding.StdCtrls_TCustomComboBox_ClearSelection()
     def getCharCase(self):
         r=LCLBinding.get_StdCtrls_TCustomComboBox_CharCase(self.pointer)
         return r
@@ -1809,6 +1917,10 @@ class TCustomComboBox(TWinControl):
     def setDroppingDown(self,v):
         LCLBinding.set_StdCtrls_TCustomComboBox_DroppingDown(self.pointer,v)
     DroppingDown=property(getDroppingDown,setDroppingDown)
+#Procedure StdCtrls_TCustomComboBox_SelectAll
+    @staticmethod
+    def SelectAll(self,):
+        LCLBinding.StdCtrls_TCustomComboBox_SelectAll()
     def getAutoComplete(self):
         r=LCLBinding.get_StdCtrls_TCustomComboBox_AutoComplete(self.pointer)
         return LCLBindingUtil.ConvertPascalBoolean(r)
@@ -1947,7 +2059,7 @@ class TComboBox(TCustomComboBox):
         oldobj=0
         if hasattr(self, 'OnChangecall'):
             FreeOldEvent=1
-            oldobj=OnChangePasObject
+            oldobj=self.OnChangePasObject
         self.OnChangecall=v 
         self.PasOnChange=FunctionForm(self._Warper_OnChange)
         self.OnChangePasObject=LCLBinding.set_StdCtrls_TComboBox_OnChange(self.pointer,self.PasOnChange,oldobj,FreeOldEvent)
@@ -1962,7 +2074,7 @@ class TComboBox(TCustomComboBox):
         oldobj=0
         if hasattr(self, 'OnCloseUpcall'):
             FreeOldEvent=1
-            oldobj=OnCloseUpPasObject
+            oldobj=self.OnCloseUpPasObject
         self.OnCloseUpcall=v 
         self.PasOnCloseUp=FunctionForm(self._Warper_OnCloseUp)
         self.OnCloseUpPasObject=LCLBinding.set_StdCtrls_TComboBox_OnCloseUp(self.pointer,self.PasOnCloseUp,oldobj,FreeOldEvent)
@@ -1977,7 +2089,7 @@ class TComboBox(TCustomComboBox):
         oldobj=0
         if hasattr(self, 'OnDblClickcall'):
             FreeOldEvent=1
-            oldobj=OnDblClickPasObject
+            oldobj=self.OnDblClickPasObject
         self.OnDblClickcall=v 
         self.PasOnDblClick=FunctionForm(self._Warper_OnDblClick)
         self.OnDblClickPasObject=LCLBinding.set_StdCtrls_TComboBox_OnDblClick(self.pointer,self.PasOnDblClick,oldobj,FreeOldEvent)
@@ -1992,7 +2104,7 @@ class TComboBox(TCustomComboBox):
         oldobj=0
         if hasattr(self, 'OnDragDropcall'):
             FreeOldEvent=1
-            oldobj=OnDragDropPasObject
+            oldobj=self.OnDragDropPasObject
         self.OnDragDropcall=v 
         self.PasOnDragDrop=FunctionForm(self._Warper_OnDragDrop)
         self.OnDragDropPasObject=LCLBinding.set_StdCtrls_TComboBox_OnDragDrop(self.pointer,self.PasOnDragDrop,oldobj,FreeOldEvent)
@@ -2007,7 +2119,7 @@ class TComboBox(TCustomComboBox):
         oldobj=0
         if hasattr(self, 'OnDragOvercall'):
             FreeOldEvent=1
-            oldobj=OnDragOverPasObject
+            oldobj=self.OnDragOverPasObject
         self.OnDragOvercall=v 
         self.PasOnDragOver=FunctionForm(self._Warper_OnDragOver)
         self.OnDragOverPasObject=LCLBinding.set_StdCtrls_TComboBox_OnDragOver(self.pointer,self.PasOnDragOver,oldobj,FreeOldEvent)
@@ -2022,7 +2134,7 @@ class TComboBox(TCustomComboBox):
         oldobj=0
         if hasattr(self, 'OnEndDragcall'):
             FreeOldEvent=1
-            oldobj=OnEndDragPasObject
+            oldobj=self.OnEndDragPasObject
         self.OnEndDragcall=v 
         self.PasOnEndDrag=FunctionForm(self._Warper_OnEndDrag)
         self.OnEndDragPasObject=LCLBinding.set_StdCtrls_TComboBox_OnEndDrag(self.pointer,self.PasOnEndDrag,oldobj,FreeOldEvent)
@@ -2037,7 +2149,7 @@ class TComboBox(TCustomComboBox):
         oldobj=0
         if hasattr(self, 'OnDropDowncall'):
             FreeOldEvent=1
-            oldobj=OnDropDownPasObject
+            oldobj=self.OnDropDownPasObject
         self.OnDropDowncall=v 
         self.PasOnDropDown=FunctionForm(self._Warper_OnDropDown)
         self.OnDropDownPasObject=LCLBinding.set_StdCtrls_TComboBox_OnDropDown(self.pointer,self.PasOnDropDown,oldobj,FreeOldEvent)
@@ -2052,7 +2164,7 @@ class TComboBox(TCustomComboBox):
         oldobj=0
         if hasattr(self, 'OnEditingDonecall'):
             FreeOldEvent=1
-            oldobj=OnEditingDonePasObject
+            oldobj=self.OnEditingDonePasObject
         self.OnEditingDonecall=v 
         self.PasOnEditingDone=FunctionForm(self._Warper_OnEditingDone)
         self.OnEditingDonePasObject=LCLBinding.set_StdCtrls_TComboBox_OnEditingDone(self.pointer,self.PasOnEditingDone,oldobj,FreeOldEvent)
@@ -2067,7 +2179,7 @@ class TComboBox(TCustomComboBox):
         oldobj=0
         if hasattr(self, 'OnGetItemscall'):
             FreeOldEvent=1
-            oldobj=OnGetItemsPasObject
+            oldobj=self.OnGetItemsPasObject
         self.OnGetItemscall=v 
         self.PasOnGetItems=FunctionForm(self._Warper_OnGetItems)
         self.OnGetItemsPasObject=LCLBinding.set_StdCtrls_TComboBox_OnGetItems(self.pointer,self.PasOnGetItems,oldobj,FreeOldEvent)
@@ -2082,7 +2194,7 @@ class TComboBox(TCustomComboBox):
         oldobj=0
         if hasattr(self, 'OnMeasureItemcall'):
             FreeOldEvent=1
-            oldobj=OnMeasureItemPasObject
+            oldobj=self.OnMeasureItemPasObject
         self.OnMeasureItemcall=v 
         self.PasOnMeasureItem=FunctionForm(self._Warper_OnMeasureItem)
         self.OnMeasureItemPasObject=LCLBinding.set_StdCtrls_TComboBox_OnMeasureItem(self.pointer,self.PasOnMeasureItem,oldobj,FreeOldEvent)
@@ -2097,7 +2209,7 @@ class TComboBox(TCustomComboBox):
         oldobj=0
         if hasattr(self, 'OnMouseDowncall'):
             FreeOldEvent=1
-            oldobj=OnMouseDownPasObject
+            oldobj=self.OnMouseDownPasObject
         self.OnMouseDowncall=v 
         self.PasOnMouseDown=FunctionForm(self._Warper_OnMouseDown)
         self.OnMouseDownPasObject=LCLBinding.set_StdCtrls_TComboBox_OnMouseDown(self.pointer,self.PasOnMouseDown,oldobj,FreeOldEvent)
@@ -2112,7 +2224,7 @@ class TComboBox(TCustomComboBox):
         oldobj=0
         if hasattr(self, 'OnMouseEntercall'):
             FreeOldEvent=1
-            oldobj=OnMouseEnterPasObject
+            oldobj=self.OnMouseEnterPasObject
         self.OnMouseEntercall=v 
         self.PasOnMouseEnter=FunctionForm(self._Warper_OnMouseEnter)
         self.OnMouseEnterPasObject=LCLBinding.set_StdCtrls_TComboBox_OnMouseEnter(self.pointer,self.PasOnMouseEnter,oldobj,FreeOldEvent)
@@ -2127,7 +2239,7 @@ class TComboBox(TCustomComboBox):
         oldobj=0
         if hasattr(self, 'OnMouseLeavecall'):
             FreeOldEvent=1
-            oldobj=OnMouseLeavePasObject
+            oldobj=self.OnMouseLeavePasObject
         self.OnMouseLeavecall=v 
         self.PasOnMouseLeave=FunctionForm(self._Warper_OnMouseLeave)
         self.OnMouseLeavePasObject=LCLBinding.set_StdCtrls_TComboBox_OnMouseLeave(self.pointer,self.PasOnMouseLeave,oldobj,FreeOldEvent)
@@ -2142,7 +2254,7 @@ class TComboBox(TCustomComboBox):
         oldobj=0
         if hasattr(self, 'OnMouseMovecall'):
             FreeOldEvent=1
-            oldobj=OnMouseMovePasObject
+            oldobj=self.OnMouseMovePasObject
         self.OnMouseMovecall=v 
         self.PasOnMouseMove=FunctionForm(self._Warper_OnMouseMove)
         self.OnMouseMovePasObject=LCLBinding.set_StdCtrls_TComboBox_OnMouseMove(self.pointer,self.PasOnMouseMove,oldobj,FreeOldEvent)
@@ -2157,7 +2269,7 @@ class TComboBox(TCustomComboBox):
         oldobj=0
         if hasattr(self, 'OnMouseUpcall'):
             FreeOldEvent=1
-            oldobj=OnMouseUpPasObject
+            oldobj=self.OnMouseUpPasObject
         self.OnMouseUpcall=v 
         self.PasOnMouseUp=FunctionForm(self._Warper_OnMouseUp)
         self.OnMouseUpPasObject=LCLBinding.set_StdCtrls_TComboBox_OnMouseUp(self.pointer,self.PasOnMouseUp,oldobj,FreeOldEvent)
@@ -2172,7 +2284,7 @@ class TComboBox(TCustomComboBox):
         oldobj=0
         if hasattr(self, 'OnSelectcall'):
             FreeOldEvent=1
-            oldobj=OnSelectPasObject
+            oldobj=self.OnSelectPasObject
         self.OnSelectcall=v 
         self.PasOnSelect=FunctionForm(self._Warper_OnSelect)
         self.OnSelectPasObject=LCLBinding.set_StdCtrls_TComboBox_OnSelect(self.pointer,self.PasOnSelect,oldobj,FreeOldEvent)
@@ -2187,7 +2299,7 @@ class TComboBox(TCustomComboBox):
         oldobj=0
         if hasattr(self, 'OnStartDragcall'):
             FreeOldEvent=1
-            oldobj=OnStartDragPasObject
+            oldobj=self.OnStartDragPasObject
         self.OnStartDragcall=v 
         self.PasOnStartDrag=FunctionForm(self._Warper_OnStartDrag)
         self.OnStartDragPasObject=LCLBinding.set_StdCtrls_TComboBox_OnStartDrag(self.pointer,self.PasOnStartDrag,oldobj,FreeOldEvent)
@@ -2262,7 +2374,7 @@ class TCustomCheckBox(TButtonControl):
         oldobj=0
         if hasattr(self, 'OnChangecall'):
             FreeOldEvent=1
-            oldobj=OnChangePasObject
+            oldobj=self.OnChangePasObject
         self.OnChangecall=v 
         self.PasOnChange=FunctionForm(self._Warper_OnChange)
         self.OnChangePasObject=LCLBinding.set_StdCtrls_TCustomCheckBox_OnChange(self.pointer,self.PasOnChange,oldobj,FreeOldEvent)
@@ -2305,7 +2417,7 @@ class TToggleBox(TCustomCheckBox):
         oldobj=0
         if hasattr(self, 'OnDragDropcall'):
             FreeOldEvent=1
-            oldobj=OnDragDropPasObject
+            oldobj=self.OnDragDropPasObject
         self.OnDragDropcall=v 
         self.PasOnDragDrop=FunctionForm(self._Warper_OnDragDrop)
         self.OnDragDropPasObject=LCLBinding.set_StdCtrls_TToggleBox_OnDragDrop(self.pointer,self.PasOnDragDrop,oldobj,FreeOldEvent)
@@ -2320,7 +2432,7 @@ class TToggleBox(TCustomCheckBox):
         oldobj=0
         if hasattr(self, 'OnDragOvercall'):
             FreeOldEvent=1
-            oldobj=OnDragOverPasObject
+            oldobj=self.OnDragOverPasObject
         self.OnDragOvercall=v 
         self.PasOnDragOver=FunctionForm(self._Warper_OnDragOver)
         self.OnDragOverPasObject=LCLBinding.set_StdCtrls_TToggleBox_OnDragOver(self.pointer,self.PasOnDragOver,oldobj,FreeOldEvent)
@@ -2335,7 +2447,7 @@ class TToggleBox(TCustomCheckBox):
         oldobj=0
         if hasattr(self, 'OnEndDragcall'):
             FreeOldEvent=1
-            oldobj=OnEndDragPasObject
+            oldobj=self.OnEndDragPasObject
         self.OnEndDragcall=v 
         self.PasOnEndDrag=FunctionForm(self._Warper_OnEndDrag)
         self.OnEndDragPasObject=LCLBinding.set_StdCtrls_TToggleBox_OnEndDrag(self.pointer,self.PasOnEndDrag,oldobj,FreeOldEvent)
@@ -2350,7 +2462,7 @@ class TToggleBox(TCustomCheckBox):
         oldobj=0
         if hasattr(self, 'OnMouseDowncall'):
             FreeOldEvent=1
-            oldobj=OnMouseDownPasObject
+            oldobj=self.OnMouseDownPasObject
         self.OnMouseDowncall=v 
         self.PasOnMouseDown=FunctionForm(self._Warper_OnMouseDown)
         self.OnMouseDownPasObject=LCLBinding.set_StdCtrls_TToggleBox_OnMouseDown(self.pointer,self.PasOnMouseDown,oldobj,FreeOldEvent)
@@ -2365,7 +2477,7 @@ class TToggleBox(TCustomCheckBox):
         oldobj=0
         if hasattr(self, 'OnMouseEntercall'):
             FreeOldEvent=1
-            oldobj=OnMouseEnterPasObject
+            oldobj=self.OnMouseEnterPasObject
         self.OnMouseEntercall=v 
         self.PasOnMouseEnter=FunctionForm(self._Warper_OnMouseEnter)
         self.OnMouseEnterPasObject=LCLBinding.set_StdCtrls_TToggleBox_OnMouseEnter(self.pointer,self.PasOnMouseEnter,oldobj,FreeOldEvent)
@@ -2380,7 +2492,7 @@ class TToggleBox(TCustomCheckBox):
         oldobj=0
         if hasattr(self, 'OnMouseLeavecall'):
             FreeOldEvent=1
-            oldobj=OnMouseLeavePasObject
+            oldobj=self.OnMouseLeavePasObject
         self.OnMouseLeavecall=v 
         self.PasOnMouseLeave=FunctionForm(self._Warper_OnMouseLeave)
         self.OnMouseLeavePasObject=LCLBinding.set_StdCtrls_TToggleBox_OnMouseLeave(self.pointer,self.PasOnMouseLeave,oldobj,FreeOldEvent)
@@ -2395,7 +2507,7 @@ class TToggleBox(TCustomCheckBox):
         oldobj=0
         if hasattr(self, 'OnMouseMovecall'):
             FreeOldEvent=1
-            oldobj=OnMouseMovePasObject
+            oldobj=self.OnMouseMovePasObject
         self.OnMouseMovecall=v 
         self.PasOnMouseMove=FunctionForm(self._Warper_OnMouseMove)
         self.OnMouseMovePasObject=LCLBinding.set_StdCtrls_TToggleBox_OnMouseMove(self.pointer,self.PasOnMouseMove,oldobj,FreeOldEvent)
@@ -2410,7 +2522,7 @@ class TToggleBox(TCustomCheckBox):
         oldobj=0
         if hasattr(self, 'OnMouseUpcall'):
             FreeOldEvent=1
-            oldobj=OnMouseUpPasObject
+            oldobj=self.OnMouseUpPasObject
         self.OnMouseUpcall=v 
         self.PasOnMouseUp=FunctionForm(self._Warper_OnMouseUp)
         self.OnMouseUpPasObject=LCLBinding.set_StdCtrls_TToggleBox_OnMouseUp(self.pointer,self.PasOnMouseUp,oldobj,FreeOldEvent)
@@ -2425,7 +2537,7 @@ class TToggleBox(TCustomCheckBox):
         oldobj=0
         if hasattr(self, 'OnStartDragcall'):
             FreeOldEvent=1
-            oldobj=OnStartDragPasObject
+            oldobj=self.OnStartDragPasObject
         self.OnStartDragcall=v 
         self.PasOnStartDrag=FunctionForm(self._Warper_OnStartDrag)
         self.OnStartDragPasObject=LCLBinding.set_StdCtrls_TToggleBox_OnStartDrag(self.pointer,self.PasOnStartDrag,oldobj,FreeOldEvent)
@@ -2480,7 +2592,7 @@ class TRadioButton(TCustomCheckBox):
         oldobj=0
         if hasattr(self, 'OnDragDropcall'):
             FreeOldEvent=1
-            oldobj=OnDragDropPasObject
+            oldobj=self.OnDragDropPasObject
         self.OnDragDropcall=v 
         self.PasOnDragDrop=FunctionForm(self._Warper_OnDragDrop)
         self.OnDragDropPasObject=LCLBinding.set_StdCtrls_TRadioButton_OnDragDrop(self.pointer,self.PasOnDragDrop,oldobj,FreeOldEvent)
@@ -2495,7 +2607,7 @@ class TRadioButton(TCustomCheckBox):
         oldobj=0
         if hasattr(self, 'OnDragOvercall'):
             FreeOldEvent=1
-            oldobj=OnDragOverPasObject
+            oldobj=self.OnDragOverPasObject
         self.OnDragOvercall=v 
         self.PasOnDragOver=FunctionForm(self._Warper_OnDragOver)
         self.OnDragOverPasObject=LCLBinding.set_StdCtrls_TRadioButton_OnDragOver(self.pointer,self.PasOnDragOver,oldobj,FreeOldEvent)
@@ -2510,7 +2622,7 @@ class TRadioButton(TCustomCheckBox):
         oldobj=0
         if hasattr(self, 'OnEndDragcall'):
             FreeOldEvent=1
-            oldobj=OnEndDragPasObject
+            oldobj=self.OnEndDragPasObject
         self.OnEndDragcall=v 
         self.PasOnEndDrag=FunctionForm(self._Warper_OnEndDrag)
         self.OnEndDragPasObject=LCLBinding.set_StdCtrls_TRadioButton_OnEndDrag(self.pointer,self.PasOnEndDrag,oldobj,FreeOldEvent)
@@ -2525,7 +2637,7 @@ class TRadioButton(TCustomCheckBox):
         oldobj=0
         if hasattr(self, 'OnMouseDowncall'):
             FreeOldEvent=1
-            oldobj=OnMouseDownPasObject
+            oldobj=self.OnMouseDownPasObject
         self.OnMouseDowncall=v 
         self.PasOnMouseDown=FunctionForm(self._Warper_OnMouseDown)
         self.OnMouseDownPasObject=LCLBinding.set_StdCtrls_TRadioButton_OnMouseDown(self.pointer,self.PasOnMouseDown,oldobj,FreeOldEvent)
@@ -2540,7 +2652,7 @@ class TRadioButton(TCustomCheckBox):
         oldobj=0
         if hasattr(self, 'OnMouseEntercall'):
             FreeOldEvent=1
-            oldobj=OnMouseEnterPasObject
+            oldobj=self.OnMouseEnterPasObject
         self.OnMouseEntercall=v 
         self.PasOnMouseEnter=FunctionForm(self._Warper_OnMouseEnter)
         self.OnMouseEnterPasObject=LCLBinding.set_StdCtrls_TRadioButton_OnMouseEnter(self.pointer,self.PasOnMouseEnter,oldobj,FreeOldEvent)
@@ -2555,7 +2667,7 @@ class TRadioButton(TCustomCheckBox):
         oldobj=0
         if hasattr(self, 'OnMouseLeavecall'):
             FreeOldEvent=1
-            oldobj=OnMouseLeavePasObject
+            oldobj=self.OnMouseLeavePasObject
         self.OnMouseLeavecall=v 
         self.PasOnMouseLeave=FunctionForm(self._Warper_OnMouseLeave)
         self.OnMouseLeavePasObject=LCLBinding.set_StdCtrls_TRadioButton_OnMouseLeave(self.pointer,self.PasOnMouseLeave,oldobj,FreeOldEvent)
@@ -2570,7 +2682,7 @@ class TRadioButton(TCustomCheckBox):
         oldobj=0
         if hasattr(self, 'OnMouseMovecall'):
             FreeOldEvent=1
-            oldobj=OnMouseMovePasObject
+            oldobj=self.OnMouseMovePasObject
         self.OnMouseMovecall=v 
         self.PasOnMouseMove=FunctionForm(self._Warper_OnMouseMove)
         self.OnMouseMovePasObject=LCLBinding.set_StdCtrls_TRadioButton_OnMouseMove(self.pointer,self.PasOnMouseMove,oldobj,FreeOldEvent)
@@ -2585,7 +2697,7 @@ class TRadioButton(TCustomCheckBox):
         oldobj=0
         if hasattr(self, 'OnMouseUpcall'):
             FreeOldEvent=1
-            oldobj=OnMouseUpPasObject
+            oldobj=self.OnMouseUpPasObject
         self.OnMouseUpcall=v 
         self.PasOnMouseUp=FunctionForm(self._Warper_OnMouseUp)
         self.OnMouseUpPasObject=LCLBinding.set_StdCtrls_TRadioButton_OnMouseUp(self.pointer,self.PasOnMouseUp,oldobj,FreeOldEvent)
@@ -2600,7 +2712,7 @@ class TRadioButton(TCustomCheckBox):
         oldobj=0
         if hasattr(self, 'OnStartDragcall'):
             FreeOldEvent=1
-            oldobj=OnStartDragPasObject
+            oldobj=self.OnStartDragPasObject
         self.OnStartDragcall=v 
         self.PasOnStartDrag=FunctionForm(self._Warper_OnStartDrag)
         self.OnStartDragPasObject=LCLBinding.set_StdCtrls_TRadioButton_OnStartDrag(self.pointer,self.PasOnStartDrag,oldobj,FreeOldEvent)
@@ -2661,7 +2773,7 @@ class TCheckBox(TCustomCheckBox):
         oldobj=0
         if hasattr(self, 'OnDragDropcall'):
             FreeOldEvent=1
-            oldobj=OnDragDropPasObject
+            oldobj=self.OnDragDropPasObject
         self.OnDragDropcall=v 
         self.PasOnDragDrop=FunctionForm(self._Warper_OnDragDrop)
         self.OnDragDropPasObject=LCLBinding.set_StdCtrls_TCheckBox_OnDragDrop(self.pointer,self.PasOnDragDrop,oldobj,FreeOldEvent)
@@ -2676,7 +2788,7 @@ class TCheckBox(TCustomCheckBox):
         oldobj=0
         if hasattr(self, 'OnDragOvercall'):
             FreeOldEvent=1
-            oldobj=OnDragOverPasObject
+            oldobj=self.OnDragOverPasObject
         self.OnDragOvercall=v 
         self.PasOnDragOver=FunctionForm(self._Warper_OnDragOver)
         self.OnDragOverPasObject=LCLBinding.set_StdCtrls_TCheckBox_OnDragOver(self.pointer,self.PasOnDragOver,oldobj,FreeOldEvent)
@@ -2691,7 +2803,7 @@ class TCheckBox(TCustomCheckBox):
         oldobj=0
         if hasattr(self, 'OnEditingDonecall'):
             FreeOldEvent=1
-            oldobj=OnEditingDonePasObject
+            oldobj=self.OnEditingDonePasObject
         self.OnEditingDonecall=v 
         self.PasOnEditingDone=FunctionForm(self._Warper_OnEditingDone)
         self.OnEditingDonePasObject=LCLBinding.set_StdCtrls_TCheckBox_OnEditingDone(self.pointer,self.PasOnEditingDone,oldobj,FreeOldEvent)
@@ -2706,7 +2818,7 @@ class TCheckBox(TCustomCheckBox):
         oldobj=0
         if hasattr(self, 'OnEndDragcall'):
             FreeOldEvent=1
-            oldobj=OnEndDragPasObject
+            oldobj=self.OnEndDragPasObject
         self.OnEndDragcall=v 
         self.PasOnEndDrag=FunctionForm(self._Warper_OnEndDrag)
         self.OnEndDragPasObject=LCLBinding.set_StdCtrls_TCheckBox_OnEndDrag(self.pointer,self.PasOnEndDrag,oldobj,FreeOldEvent)
@@ -2721,7 +2833,7 @@ class TCheckBox(TCustomCheckBox):
         oldobj=0
         if hasattr(self, 'OnMouseDowncall'):
             FreeOldEvent=1
-            oldobj=OnMouseDownPasObject
+            oldobj=self.OnMouseDownPasObject
         self.OnMouseDowncall=v 
         self.PasOnMouseDown=FunctionForm(self._Warper_OnMouseDown)
         self.OnMouseDownPasObject=LCLBinding.set_StdCtrls_TCheckBox_OnMouseDown(self.pointer,self.PasOnMouseDown,oldobj,FreeOldEvent)
@@ -2736,7 +2848,7 @@ class TCheckBox(TCustomCheckBox):
         oldobj=0
         if hasattr(self, 'OnMouseEntercall'):
             FreeOldEvent=1
-            oldobj=OnMouseEnterPasObject
+            oldobj=self.OnMouseEnterPasObject
         self.OnMouseEntercall=v 
         self.PasOnMouseEnter=FunctionForm(self._Warper_OnMouseEnter)
         self.OnMouseEnterPasObject=LCLBinding.set_StdCtrls_TCheckBox_OnMouseEnter(self.pointer,self.PasOnMouseEnter,oldobj,FreeOldEvent)
@@ -2751,7 +2863,7 @@ class TCheckBox(TCustomCheckBox):
         oldobj=0
         if hasattr(self, 'OnMouseLeavecall'):
             FreeOldEvent=1
-            oldobj=OnMouseLeavePasObject
+            oldobj=self.OnMouseLeavePasObject
         self.OnMouseLeavecall=v 
         self.PasOnMouseLeave=FunctionForm(self._Warper_OnMouseLeave)
         self.OnMouseLeavePasObject=LCLBinding.set_StdCtrls_TCheckBox_OnMouseLeave(self.pointer,self.PasOnMouseLeave,oldobj,FreeOldEvent)
@@ -2766,7 +2878,7 @@ class TCheckBox(TCustomCheckBox):
         oldobj=0
         if hasattr(self, 'OnMouseMovecall'):
             FreeOldEvent=1
-            oldobj=OnMouseMovePasObject
+            oldobj=self.OnMouseMovePasObject
         self.OnMouseMovecall=v 
         self.PasOnMouseMove=FunctionForm(self._Warper_OnMouseMove)
         self.OnMouseMovePasObject=LCLBinding.set_StdCtrls_TCheckBox_OnMouseMove(self.pointer,self.PasOnMouseMove,oldobj,FreeOldEvent)
@@ -2781,7 +2893,7 @@ class TCheckBox(TCustomCheckBox):
         oldobj=0
         if hasattr(self, 'OnMouseUpcall'):
             FreeOldEvent=1
-            oldobj=OnMouseUpPasObject
+            oldobj=self.OnMouseUpPasObject
         self.OnMouseUpcall=v 
         self.PasOnMouseUp=FunctionForm(self._Warper_OnMouseUp)
         self.OnMouseUpPasObject=LCLBinding.set_StdCtrls_TCheckBox_OnMouseUp(self.pointer,self.PasOnMouseUp,oldobj,FreeOldEvent)
@@ -2796,7 +2908,7 @@ class TCheckBox(TCustomCheckBox):
         oldobj=0
         if hasattr(self, 'OnStartDragcall'):
             FreeOldEvent=1
-            oldobj=OnStartDragPasObject
+            oldobj=self.OnStartDragPasObject
         self.OnStartDragcall=v 
         self.PasOnStartDrag=FunctionForm(self._Warper_OnStartDrag)
         self.OnStartDragPasObject=LCLBinding.set_StdCtrls_TCheckBox_OnStartDrag(self.pointer,self.PasOnStartDrag,oldobj,FreeOldEvent)
@@ -2831,6 +2943,26 @@ class TCustomButton(TButtonControl):
     @staticmethod
     def Create(TheOwner):
         return LCLBindingUtil.GetPytonObject(LCLBinding.StdCtrls_TCustomButton_Create((TheOwner.pointer)),TCustomButton)
+#Procedure StdCtrls_TCustomButton_Click
+    @staticmethod
+    def Click(self,):
+        LCLBinding.StdCtrls_TCustomButton_Click()
+#Procedure StdCtrls_TCustomButton_ExecuteDefaultAction
+    @staticmethod
+    def ExecuteDefaultAction(self,):
+        LCLBinding.StdCtrls_TCustomButton_ExecuteDefaultAction()
+#Procedure StdCtrls_TCustomButton_ExecuteCancelAction
+    @staticmethod
+    def ExecuteCancelAction(self,):
+        LCLBinding.StdCtrls_TCustomButton_ExecuteCancelAction()
+#Procedure StdCtrls_TCustomButton_ActiveDefaultControlChanged
+    @staticmethod
+    def ActiveDefaultControlChanged(self,NewControl):
+        LCLBinding.StdCtrls_TCustomButton_ActiveDefaultControlChanged((NewControl.pointer))
+#Procedure StdCtrls_TCustomButton_UpdateRolesForForm
+    @staticmethod
+    def UpdateRolesForForm(self,):
+        LCLBinding.StdCtrls_TCustomButton_UpdateRolesForForm()
     def getActive(self):
         r=LCLBinding.get_StdCtrls_TCustomButton_Active(self.pointer)
         return LCLBindingUtil.ConvertPascalBoolean(r)
@@ -2873,7 +3005,7 @@ class TButton(TCustomButton):
         oldobj=0
         if hasattr(self, 'OnDragDropcall'):
             FreeOldEvent=1
-            oldobj=OnDragDropPasObject
+            oldobj=self.OnDragDropPasObject
         self.OnDragDropcall=v 
         self.PasOnDragDrop=FunctionForm(self._Warper_OnDragDrop)
         self.OnDragDropPasObject=LCLBinding.set_StdCtrls_TButton_OnDragDrop(self.pointer,self.PasOnDragDrop,oldobj,FreeOldEvent)
@@ -2888,7 +3020,7 @@ class TButton(TCustomButton):
         oldobj=0
         if hasattr(self, 'OnDragOvercall'):
             FreeOldEvent=1
-            oldobj=OnDragOverPasObject
+            oldobj=self.OnDragOverPasObject
         self.OnDragOvercall=v 
         self.PasOnDragOver=FunctionForm(self._Warper_OnDragOver)
         self.OnDragOverPasObject=LCLBinding.set_StdCtrls_TButton_OnDragOver(self.pointer,self.PasOnDragOver,oldobj,FreeOldEvent)
@@ -2903,7 +3035,7 @@ class TButton(TCustomButton):
         oldobj=0
         if hasattr(self, 'OnEndDragcall'):
             FreeOldEvent=1
-            oldobj=OnEndDragPasObject
+            oldobj=self.OnEndDragPasObject
         self.OnEndDragcall=v 
         self.PasOnEndDrag=FunctionForm(self._Warper_OnEndDrag)
         self.OnEndDragPasObject=LCLBinding.set_StdCtrls_TButton_OnEndDrag(self.pointer,self.PasOnEndDrag,oldobj,FreeOldEvent)
@@ -2918,7 +3050,7 @@ class TButton(TCustomButton):
         oldobj=0
         if hasattr(self, 'OnMouseDowncall'):
             FreeOldEvent=1
-            oldobj=OnMouseDownPasObject
+            oldobj=self.OnMouseDownPasObject
         self.OnMouseDowncall=v 
         self.PasOnMouseDown=FunctionForm(self._Warper_OnMouseDown)
         self.OnMouseDownPasObject=LCLBinding.set_StdCtrls_TButton_OnMouseDown(self.pointer,self.PasOnMouseDown,oldobj,FreeOldEvent)
@@ -2933,7 +3065,7 @@ class TButton(TCustomButton):
         oldobj=0
         if hasattr(self, 'OnMouseEntercall'):
             FreeOldEvent=1
-            oldobj=OnMouseEnterPasObject
+            oldobj=self.OnMouseEnterPasObject
         self.OnMouseEntercall=v 
         self.PasOnMouseEnter=FunctionForm(self._Warper_OnMouseEnter)
         self.OnMouseEnterPasObject=LCLBinding.set_StdCtrls_TButton_OnMouseEnter(self.pointer,self.PasOnMouseEnter,oldobj,FreeOldEvent)
@@ -2948,7 +3080,7 @@ class TButton(TCustomButton):
         oldobj=0
         if hasattr(self, 'OnMouseLeavecall'):
             FreeOldEvent=1
-            oldobj=OnMouseLeavePasObject
+            oldobj=self.OnMouseLeavePasObject
         self.OnMouseLeavecall=v 
         self.PasOnMouseLeave=FunctionForm(self._Warper_OnMouseLeave)
         self.OnMouseLeavePasObject=LCLBinding.set_StdCtrls_TButton_OnMouseLeave(self.pointer,self.PasOnMouseLeave,oldobj,FreeOldEvent)
@@ -2963,7 +3095,7 @@ class TButton(TCustomButton):
         oldobj=0
         if hasattr(self, 'OnMouseMovecall'):
             FreeOldEvent=1
-            oldobj=OnMouseMovePasObject
+            oldobj=self.OnMouseMovePasObject
         self.OnMouseMovecall=v 
         self.PasOnMouseMove=FunctionForm(self._Warper_OnMouseMove)
         self.OnMouseMovePasObject=LCLBinding.set_StdCtrls_TButton_OnMouseMove(self.pointer,self.PasOnMouseMove,oldobj,FreeOldEvent)
@@ -2978,7 +3110,7 @@ class TButton(TCustomButton):
         oldobj=0
         if hasattr(self, 'OnMouseUpcall'):
             FreeOldEvent=1
-            oldobj=OnMouseUpPasObject
+            oldobj=self.OnMouseUpPasObject
         self.OnMouseUpcall=v 
         self.PasOnMouseUp=FunctionForm(self._Warper_OnMouseUp)
         self.OnMouseUpPasObject=LCLBinding.set_StdCtrls_TButton_OnMouseUp(self.pointer,self.PasOnMouseUp,oldobj,FreeOldEvent)
@@ -2993,7 +3125,7 @@ class TButton(TCustomButton):
         oldobj=0
         if hasattr(self, 'OnStartDragcall'):
             FreeOldEvent=1
-            oldobj=OnStartDragPasObject
+            oldobj=self.OnStartDragPasObject
         self.OnStartDragcall=v 
         self.PasOnStartDrag=FunctionForm(self._Warper_OnStartDrag)
         self.OnStartDragPasObject=LCLBinding.set_StdCtrls_TButton_OnStartDrag(self.pointer,self.PasOnStartDrag,oldobj,FreeOldEvent)

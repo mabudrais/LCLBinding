@@ -1,4 +1,14 @@
+from clipbrd import *
+from Buttons import *
+from MaskEdit import *
+from StdCtrls import *
+from Forms import *
+from Graphics import *
+from GraphType import *
+from Controls import *
+from Classes import *
 from MainPasObject import *
+import LCLBindingUtil
 #import end
 def CreateTGridDrawStateFromInt(i):
     dic={1:"gdSelected",2:"gdFocused",4:"gdFixed",8:"gdHot",16:"gdPushed",32:"gdRowHighlight"}
@@ -27,6 +37,66 @@ class TCustomGrid(TCustomControl):
     @staticmethod
     def Create(AOwner):
         return LCLBindingUtil.GetPytonObject(LCLBinding.Grids_TCustomGrid_Create((AOwner.pointer)),TCustomGrid)
+#Procedure Grids_TCustomGrid_Invalidate
+    @staticmethod
+    def Invalidate(self,):
+        LCLBinding.Grids_TCustomGrid_Invalidate()
+#Procedure Grids_TCustomGrid_EditingDone
+    @staticmethod
+    def EditingDone(self,):
+        LCLBinding.Grids_TCustomGrid_EditingDone()
+#Procedure Grids_TCustomGrid_AutoAdjustColumns
+    @staticmethod
+    def AutoAdjustColumns(self,):
+        LCLBinding.Grids_TCustomGrid_AutoAdjustColumns()
+#Procedure Grids_TCustomGrid_BeginUpdate
+    @staticmethod
+    def BeginUpdate(self,):
+        LCLBinding.Grids_TCustomGrid_BeginUpdate()
+#Procedure Grids_TCustomGrid_CheckPosition
+    @staticmethod
+    def CheckPosition(self,):
+        LCLBinding.Grids_TCustomGrid_CheckPosition()
+#Procedure Grids_TCustomGrid_Clear
+    @staticmethod
+    def Clear(self,):
+        LCLBinding.Grids_TCustomGrid_Clear()
+#Procedure Grids_TCustomGrid_ClearSelections
+    @staticmethod
+    def ClearSelections(self,):
+        LCLBinding.Grids_TCustomGrid_ClearSelections()
+#Procedure Grids_TCustomGrid_EndUpdate
+    @staticmethod
+    def EndUpdate(self,aRefresh):
+        LCLBinding.Grids_TCustomGrid_EndUpdate((booleantoint(aRefresh)))
+#Procedure Grids_TCustomGrid_InvalidateCol
+    @staticmethod
+    def InvalidateCol(self,ACol):
+        LCLBinding.Grids_TCustomGrid_InvalidateCol((ACol))
+#Procedure Grids_TCustomGrid_InvalidateRow
+    @staticmethod
+    def InvalidateRow(self,ARow):
+        LCLBinding.Grids_TCustomGrid_InvalidateRow((ARow))
+#Procedure Grids_TCustomGrid_LoadFromFile
+    @staticmethod
+    def LoadFromFile(self,FileName):
+        LCLBinding.Grids_TCustomGrid_LoadFromFile((FileName))
+#Procedure Grids_TCustomGrid_LoadFromStream
+    @staticmethod
+    def LoadFromStream(self,AStream):
+        LCLBinding.Grids_TCustomGrid_LoadFromStream((AStream.pointer))
+#Procedure Grids_TCustomGrid_SaveToFile
+    @staticmethod
+    def SaveToFile(self,FileName):
+        LCLBinding.Grids_TCustomGrid_SaveToFile((FileName))
+#Procedure Grids_TCustomGrid_SaveToStream
+    @staticmethod
+    def SaveToStream(self,AStream):
+        LCLBinding.Grids_TCustomGrid_SaveToStream((AStream.pointer))
+#Procedure Grids_TCustomGrid_SetFocus
+    @staticmethod
+    def SetFocus(self,):
+        LCLBinding.Grids_TCustomGrid_SetFocus()
     def getSelectedRangeCount(self):
         r=LCLBinding.get_Grids_TCustomGrid_SelectedRangeCount(self.pointer)
         return LCLBindingUtil.ConvertPascalInteger(r)
@@ -51,6 +121,30 @@ class TCustomDrawGrid(TCustomGrid):
     @staticmethod
     def Create(AOwner):
         return LCLBindingUtil.GetPytonObject(LCLBinding.Grids_TCustomDrawGrid_Create((AOwner.pointer)),TCustomDrawGrid)
+#Procedure Grids_TCustomDrawGrid_DeleteColRow
+    @staticmethod
+    def DeleteColRow(self,IsColumn,index):
+        LCLBinding.Grids_TCustomDrawGrid_DeleteColRow((booleantoint(IsColumn)),(index))
+#Procedure Grids_TCustomDrawGrid_DeleteCol
+    @staticmethod
+    def DeleteCol(self,Index):
+        LCLBinding.Grids_TCustomDrawGrid_DeleteCol((Index))
+#Procedure Grids_TCustomDrawGrid_DeleteRow
+    @staticmethod
+    def DeleteRow(self,Index):
+        LCLBinding.Grids_TCustomDrawGrid_DeleteRow((Index))
+#Procedure Grids_TCustomDrawGrid_ExchangeColRow
+    @staticmethod
+    def ExchangeColRow(self,IsColumn,index,WithIndex):
+        LCLBinding.Grids_TCustomDrawGrid_ExchangeColRow((booleantoint(IsColumn)),(index),(WithIndex))
+#Procedure Grids_TCustomDrawGrid_InsertColRow
+    @staticmethod
+    def InsertColRow(self,IsColumn,index):
+        LCLBinding.Grids_TCustomDrawGrid_InsertColRow((booleantoint(IsColumn)),(index))
+#Procedure Grids_TCustomDrawGrid_MoveColRow
+    @staticmethod
+    def MoveColRow(self,IsColumn,FromIndex,ToIndex):
+        LCLBinding.Grids_TCustomDrawGrid_MoveColRow((booleantoint(IsColumn)),(FromIndex),(ToIndex))
     def getAllowOutboundEvents(self):
         r=LCLBinding.get_Grids_TCustomDrawGrid_AllowOutboundEvents(self.pointer)
         return LCLBindingUtil.ConvertPascalBoolean(r)
@@ -278,7 +372,7 @@ class TCustomDrawGrid(TCustomGrid):
         oldobj=0
         if hasattr(self, 'OnAfterSelectioncall'):
             FreeOldEvent=1
-            oldobj=OnAfterSelectionPasObject
+            oldobj=self.OnAfterSelectionPasObject
         self.OnAfterSelectioncall=v 
         self.PasOnAfterSelection=FunctionForm(self._Warper_OnAfterSelection)
         self.OnAfterSelectionPasObject=LCLBinding.set_Grids_TCustomDrawGrid_OnAfterSelection(self.pointer,self.PasOnAfterSelection,oldobj,FreeOldEvent)
@@ -293,7 +387,7 @@ class TCustomDrawGrid(TCustomGrid):
         oldobj=0
         if hasattr(self, 'OnBeforeSelectioncall'):
             FreeOldEvent=1
-            oldobj=OnBeforeSelectionPasObject
+            oldobj=self.OnBeforeSelectionPasObject
         self.OnBeforeSelectioncall=v 
         self.PasOnBeforeSelection=FunctionForm(self._Warper_OnBeforeSelection)
         self.OnBeforeSelectionPasObject=LCLBinding.set_Grids_TCustomDrawGrid_OnBeforeSelection(self.pointer,self.PasOnBeforeSelection,oldobj,FreeOldEvent)
@@ -308,7 +402,7 @@ class TCustomDrawGrid(TCustomGrid):
         oldobj=0
         if hasattr(self, 'OnColRowDeletedcall'):
             FreeOldEvent=1
-            oldobj=OnColRowDeletedPasObject
+            oldobj=self.OnColRowDeletedPasObject
         self.OnColRowDeletedcall=v 
         self.PasOnColRowDeleted=FunctionForm(self._Warper_OnColRowDeleted)
         self.OnColRowDeletedPasObject=LCLBinding.set_Grids_TCustomDrawGrid_OnColRowDeleted(self.pointer,self.PasOnColRowDeleted,oldobj,FreeOldEvent)
@@ -323,7 +417,7 @@ class TCustomDrawGrid(TCustomGrid):
         oldobj=0
         if hasattr(self, 'OnColRowExchangedcall'):
             FreeOldEvent=1
-            oldobj=OnColRowExchangedPasObject
+            oldobj=self.OnColRowExchangedPasObject
         self.OnColRowExchangedcall=v 
         self.PasOnColRowExchanged=FunctionForm(self._Warper_OnColRowExchanged)
         self.OnColRowExchangedPasObject=LCLBinding.set_Grids_TCustomDrawGrid_OnColRowExchanged(self.pointer,self.PasOnColRowExchanged,oldobj,FreeOldEvent)
@@ -338,7 +432,7 @@ class TCustomDrawGrid(TCustomGrid):
         oldobj=0
         if hasattr(self, 'OnColRowInsertedcall'):
             FreeOldEvent=1
-            oldobj=OnColRowInsertedPasObject
+            oldobj=self.OnColRowInsertedPasObject
         self.OnColRowInsertedcall=v 
         self.PasOnColRowInserted=FunctionForm(self._Warper_OnColRowInserted)
         self.OnColRowInsertedPasObject=LCLBinding.set_Grids_TCustomDrawGrid_OnColRowInserted(self.pointer,self.PasOnColRowInserted,oldobj,FreeOldEvent)
@@ -353,7 +447,7 @@ class TCustomDrawGrid(TCustomGrid):
         oldobj=0
         if hasattr(self, 'OnColRowMovedcall'):
             FreeOldEvent=1
-            oldobj=OnColRowMovedPasObject
+            oldobj=self.OnColRowMovedPasObject
         self.OnColRowMovedcall=v 
         self.PasOnColRowMoved=FunctionForm(self._Warper_OnColRowMoved)
         self.OnColRowMovedPasObject=LCLBinding.set_Grids_TCustomDrawGrid_OnColRowMoved(self.pointer,self.PasOnColRowMoved,oldobj,FreeOldEvent)
@@ -368,7 +462,7 @@ class TCustomDrawGrid(TCustomGrid):
         oldobj=0
         if hasattr(self, 'OnCompareCellscall'):
             FreeOldEvent=1
-            oldobj=OnCompareCellsPasObject
+            oldobj=self.OnCompareCellsPasObject
         self.OnCompareCellscall=v 
         self.PasOnCompareCells=FunctionForm(self._Warper_OnCompareCells)
         self.OnCompareCellsPasObject=LCLBinding.set_Grids_TCustomDrawGrid_OnCompareCells(self.pointer,self.PasOnCompareCells,oldobj,FreeOldEvent)
@@ -383,7 +477,7 @@ class TCustomDrawGrid(TCustomGrid):
         oldobj=0
         if hasattr(self, 'OnDblClickcall'):
             FreeOldEvent=1
-            oldobj=OnDblClickPasObject
+            oldobj=self.OnDblClickPasObject
         self.OnDblClickcall=v 
         self.PasOnDblClick=FunctionForm(self._Warper_OnDblClick)
         self.OnDblClickPasObject=LCLBinding.set_Grids_TCustomDrawGrid_OnDblClick(self.pointer,self.PasOnDblClick,oldobj,FreeOldEvent)
@@ -398,7 +492,7 @@ class TCustomDrawGrid(TCustomGrid):
         oldobj=0
         if hasattr(self, 'OnDragDropcall'):
             FreeOldEvent=1
-            oldobj=OnDragDropPasObject
+            oldobj=self.OnDragDropPasObject
         self.OnDragDropcall=v 
         self.PasOnDragDrop=FunctionForm(self._Warper_OnDragDrop)
         self.OnDragDropPasObject=LCLBinding.set_Grids_TCustomDrawGrid_OnDragDrop(self.pointer,self.PasOnDragDrop,oldobj,FreeOldEvent)
@@ -413,7 +507,7 @@ class TCustomDrawGrid(TCustomGrid):
         oldobj=0
         if hasattr(self, 'OnDragOvercall'):
             FreeOldEvent=1
-            oldobj=OnDragOverPasObject
+            oldobj=self.OnDragOverPasObject
         self.OnDragOvercall=v 
         self.PasOnDragOver=FunctionForm(self._Warper_OnDragOver)
         self.OnDragOverPasObject=LCLBinding.set_Grids_TCustomDrawGrid_OnDragOver(self.pointer,self.PasOnDragOver,oldobj,FreeOldEvent)
@@ -428,7 +522,7 @@ class TCustomDrawGrid(TCustomGrid):
         oldobj=0
         if hasattr(self, 'OnEditButtonClickcall'):
             FreeOldEvent=1
-            oldobj=OnEditButtonClickPasObject
+            oldobj=self.OnEditButtonClickPasObject
         self.OnEditButtonClickcall=v 
         self.PasOnEditButtonClick=FunctionForm(self._Warper_OnEditButtonClick)
         self.OnEditButtonClickPasObject=LCLBinding.set_Grids_TCustomDrawGrid_OnEditButtonClick(self.pointer,self.PasOnEditButtonClick,oldobj,FreeOldEvent)
@@ -443,7 +537,7 @@ class TCustomDrawGrid(TCustomGrid):
         oldobj=0
         if hasattr(self, 'OnButtonClickcall'):
             FreeOldEvent=1
-            oldobj=OnButtonClickPasObject
+            oldobj=self.OnButtonClickPasObject
         self.OnButtonClickcall=v 
         self.PasOnButtonClick=FunctionForm(self._Warper_OnButtonClick)
         self.OnButtonClickPasObject=LCLBinding.set_Grids_TCustomDrawGrid_OnButtonClick(self.pointer,self.PasOnButtonClick,oldobj,FreeOldEvent)
@@ -458,7 +552,7 @@ class TCustomDrawGrid(TCustomGrid):
         oldobj=0
         if hasattr(self, 'OnEndDockcall'):
             FreeOldEvent=1
-            oldobj=OnEndDockPasObject
+            oldobj=self.OnEndDockPasObject
         self.OnEndDockcall=v 
         self.PasOnEndDock=FunctionForm(self._Warper_OnEndDock)
         self.OnEndDockPasObject=LCLBinding.set_Grids_TCustomDrawGrid_OnEndDock(self.pointer,self.PasOnEndDock,oldobj,FreeOldEvent)
@@ -473,7 +567,7 @@ class TCustomDrawGrid(TCustomGrid):
         oldobj=0
         if hasattr(self, 'OnEndDragcall'):
             FreeOldEvent=1
-            oldobj=OnEndDragPasObject
+            oldobj=self.OnEndDragPasObject
         self.OnEndDragcall=v 
         self.PasOnEndDrag=FunctionForm(self._Warper_OnEndDrag)
         self.OnEndDragPasObject=LCLBinding.set_Grids_TCustomDrawGrid_OnEndDrag(self.pointer,self.PasOnEndDrag,oldobj,FreeOldEvent)
@@ -488,7 +582,7 @@ class TCustomDrawGrid(TCustomGrid):
         oldobj=0
         if hasattr(self, 'OnGetEditMaskcall'):
             FreeOldEvent=1
-            oldobj=OnGetEditMaskPasObject
+            oldobj=self.OnGetEditMaskPasObject
         self.OnGetEditMaskcall=v 
         self.PasOnGetEditMask=FunctionForm(self._Warper_OnGetEditMask)
         self.OnGetEditMaskPasObject=LCLBinding.set_Grids_TCustomDrawGrid_OnGetEditMask(self.pointer,self.PasOnGetEditMask,oldobj,FreeOldEvent)
@@ -503,7 +597,7 @@ class TCustomDrawGrid(TCustomGrid):
         oldobj=0
         if hasattr(self, 'OnGetEditTextcall'):
             FreeOldEvent=1
-            oldobj=OnGetEditTextPasObject
+            oldobj=self.OnGetEditTextPasObject
         self.OnGetEditTextcall=v 
         self.PasOnGetEditText=FunctionForm(self._Warper_OnGetEditText)
         self.OnGetEditTextPasObject=LCLBinding.set_Grids_TCustomDrawGrid_OnGetEditText(self.pointer,self.PasOnGetEditText,oldobj,FreeOldEvent)
@@ -518,7 +612,7 @@ class TCustomDrawGrid(TCustomGrid):
         oldobj=0
         if hasattr(self, 'OnHeaderClickcall'):
             FreeOldEvent=1
-            oldobj=OnHeaderClickPasObject
+            oldobj=self.OnHeaderClickPasObject
         self.OnHeaderClickcall=v 
         self.PasOnHeaderClick=FunctionForm(self._Warper_OnHeaderClick)
         self.OnHeaderClickPasObject=LCLBinding.set_Grids_TCustomDrawGrid_OnHeaderClick(self.pointer,self.PasOnHeaderClick,oldobj,FreeOldEvent)
@@ -533,7 +627,7 @@ class TCustomDrawGrid(TCustomGrid):
         oldobj=0
         if hasattr(self, 'OnHeaderSizedcall'):
             FreeOldEvent=1
-            oldobj=OnHeaderSizedPasObject
+            oldobj=self.OnHeaderSizedPasObject
         self.OnHeaderSizedcall=v 
         self.PasOnHeaderSized=FunctionForm(self._Warper_OnHeaderSized)
         self.OnHeaderSizedPasObject=LCLBinding.set_Grids_TCustomDrawGrid_OnHeaderSized(self.pointer,self.PasOnHeaderSized,oldobj,FreeOldEvent)
@@ -548,7 +642,7 @@ class TCustomDrawGrid(TCustomGrid):
         oldobj=0
         if hasattr(self, 'OnHeaderSizingcall'):
             FreeOldEvent=1
-            oldobj=OnHeaderSizingPasObject
+            oldobj=self.OnHeaderSizingPasObject
         self.OnHeaderSizingcall=v 
         self.PasOnHeaderSizing=FunctionForm(self._Warper_OnHeaderSizing)
         self.OnHeaderSizingPasObject=LCLBinding.set_Grids_TCustomDrawGrid_OnHeaderSizing(self.pointer,self.PasOnHeaderSizing,oldobj,FreeOldEvent)
@@ -563,7 +657,7 @@ class TCustomDrawGrid(TCustomGrid):
         oldobj=0
         if hasattr(self, 'OnMouseDowncall'):
             FreeOldEvent=1
-            oldobj=OnMouseDownPasObject
+            oldobj=self.OnMouseDownPasObject
         self.OnMouseDowncall=v 
         self.PasOnMouseDown=FunctionForm(self._Warper_OnMouseDown)
         self.OnMouseDownPasObject=LCLBinding.set_Grids_TCustomDrawGrid_OnMouseDown(self.pointer,self.PasOnMouseDown,oldobj,FreeOldEvent)
@@ -578,7 +672,7 @@ class TCustomDrawGrid(TCustomGrid):
         oldobj=0
         if hasattr(self, 'OnMouseEntercall'):
             FreeOldEvent=1
-            oldobj=OnMouseEnterPasObject
+            oldobj=self.OnMouseEnterPasObject
         self.OnMouseEntercall=v 
         self.PasOnMouseEnter=FunctionForm(self._Warper_OnMouseEnter)
         self.OnMouseEnterPasObject=LCLBinding.set_Grids_TCustomDrawGrid_OnMouseEnter(self.pointer,self.PasOnMouseEnter,oldobj,FreeOldEvent)
@@ -593,7 +687,7 @@ class TCustomDrawGrid(TCustomGrid):
         oldobj=0
         if hasattr(self, 'OnMouseLeavecall'):
             FreeOldEvent=1
-            oldobj=OnMouseLeavePasObject
+            oldobj=self.OnMouseLeavePasObject
         self.OnMouseLeavecall=v 
         self.PasOnMouseLeave=FunctionForm(self._Warper_OnMouseLeave)
         self.OnMouseLeavePasObject=LCLBinding.set_Grids_TCustomDrawGrid_OnMouseLeave(self.pointer,self.PasOnMouseLeave,oldobj,FreeOldEvent)
@@ -608,7 +702,7 @@ class TCustomDrawGrid(TCustomGrid):
         oldobj=0
         if hasattr(self, 'OnMouseMovecall'):
             FreeOldEvent=1
-            oldobj=OnMouseMovePasObject
+            oldobj=self.OnMouseMovePasObject
         self.OnMouseMovecall=v 
         self.PasOnMouseMove=FunctionForm(self._Warper_OnMouseMove)
         self.OnMouseMovePasObject=LCLBinding.set_Grids_TCustomDrawGrid_OnMouseMove(self.pointer,self.PasOnMouseMove,oldobj,FreeOldEvent)
@@ -623,7 +717,7 @@ class TCustomDrawGrid(TCustomGrid):
         oldobj=0
         if hasattr(self, 'OnMouseUpcall'):
             FreeOldEvent=1
-            oldobj=OnMouseUpPasObject
+            oldobj=self.OnMouseUpPasObject
         self.OnMouseUpcall=v 
         self.PasOnMouseUp=FunctionForm(self._Warper_OnMouseUp)
         self.OnMouseUpPasObject=LCLBinding.set_Grids_TCustomDrawGrid_OnMouseUp(self.pointer,self.PasOnMouseUp,oldobj,FreeOldEvent)
@@ -638,7 +732,7 @@ class TCustomDrawGrid(TCustomGrid):
         oldobj=0
         if hasattr(self, 'OnPickListSelectcall'):
             FreeOldEvent=1
-            oldobj=OnPickListSelectPasObject
+            oldobj=self.OnPickListSelectPasObject
         self.OnPickListSelectcall=v 
         self.PasOnPickListSelect=FunctionForm(self._Warper_OnPickListSelect)
         self.OnPickListSelectPasObject=LCLBinding.set_Grids_TCustomDrawGrid_OnPickListSelect(self.pointer,self.PasOnPickListSelect,oldobj,FreeOldEvent)
@@ -653,7 +747,7 @@ class TCustomDrawGrid(TCustomGrid):
         oldobj=0
         if hasattr(self, 'OnPrepareCanvascall'):
             FreeOldEvent=1
-            oldobj=OnPrepareCanvasPasObject
+            oldobj=self.OnPrepareCanvasPasObject
         self.OnPrepareCanvascall=v 
         self.PasOnPrepareCanvas=FunctionForm(self._Warper_OnPrepareCanvas)
         self.OnPrepareCanvasPasObject=LCLBinding.set_Grids_TCustomDrawGrid_OnPrepareCanvas(self.pointer,self.PasOnPrepareCanvas,oldobj,FreeOldEvent)
@@ -668,7 +762,7 @@ class TCustomDrawGrid(TCustomGrid):
         oldobj=0
         if hasattr(self, 'OnSelectEditorcall'):
             FreeOldEvent=1
-            oldobj=OnSelectEditorPasObject
+            oldobj=self.OnSelectEditorPasObject
         self.OnSelectEditorcall=v 
         self.PasOnSelectEditor=FunctionForm(self._Warper_OnSelectEditor)
         self.OnSelectEditorPasObject=LCLBinding.set_Grids_TCustomDrawGrid_OnSelectEditor(self.pointer,self.PasOnSelectEditor,oldobj,FreeOldEvent)
@@ -683,7 +777,7 @@ class TCustomDrawGrid(TCustomGrid):
         oldobj=0
         if hasattr(self, 'OnSelectioncall'):
             FreeOldEvent=1
-            oldobj=OnSelectionPasObject
+            oldobj=self.OnSelectionPasObject
         self.OnSelectioncall=v 
         self.PasOnSelection=FunctionForm(self._Warper_OnSelection)
         self.OnSelectionPasObject=LCLBinding.set_Grids_TCustomDrawGrid_OnSelection(self.pointer,self.PasOnSelection,oldobj,FreeOldEvent)
@@ -698,7 +792,7 @@ class TCustomDrawGrid(TCustomGrid):
         oldobj=0
         if hasattr(self, 'OnSelectCellcall'):
             FreeOldEvent=1
-            oldobj=OnSelectCellPasObject
+            oldobj=self.OnSelectCellPasObject
         self.OnSelectCellcall=v 
         self.PasOnSelectCell=FunctionForm(self._Warper_OnSelectCell)
         self.OnSelectCellPasObject=LCLBinding.set_Grids_TCustomDrawGrid_OnSelectCell(self.pointer,self.PasOnSelectCell,oldobj,FreeOldEvent)
@@ -713,7 +807,7 @@ class TCustomDrawGrid(TCustomGrid):
         oldobj=0
         if hasattr(self, 'OnSetEditTextcall'):
             FreeOldEvent=1
-            oldobj=OnSetEditTextPasObject
+            oldobj=self.OnSetEditTextPasObject
         self.OnSetEditTextcall=v 
         self.PasOnSetEditText=FunctionForm(self._Warper_OnSetEditText)
         self.OnSetEditTextPasObject=LCLBinding.set_Grids_TCustomDrawGrid_OnSetEditText(self.pointer,self.PasOnSetEditText,oldobj,FreeOldEvent)
@@ -728,7 +822,7 @@ class TCustomDrawGrid(TCustomGrid):
         oldobj=0
         if hasattr(self, 'OnStartDockcall'):
             FreeOldEvent=1
-            oldobj=OnStartDockPasObject
+            oldobj=self.OnStartDockPasObject
         self.OnStartDockcall=v 
         self.PasOnStartDock=FunctionForm(self._Warper_OnStartDock)
         self.OnStartDockPasObject=LCLBinding.set_Grids_TCustomDrawGrid_OnStartDock(self.pointer,self.PasOnStartDock,oldobj,FreeOldEvent)
@@ -743,7 +837,7 @@ class TCustomDrawGrid(TCustomGrid):
         oldobj=0
         if hasattr(self, 'OnStartDragcall'):
             FreeOldEvent=1
-            oldobj=OnStartDragPasObject
+            oldobj=self.OnStartDragPasObject
         self.OnStartDragcall=v 
         self.PasOnStartDrag=FunctionForm(self._Warper_OnStartDrag)
         self.OnStartDragPasObject=LCLBinding.set_Grids_TCustomDrawGrid_OnStartDrag(self.pointer,self.PasOnStartDrag,oldobj,FreeOldEvent)
@@ -756,6 +850,18 @@ class TGridColumnTitle(TPersistent):
 #    pointer=c_void_p()
     def __init__(self):#TGridColumnTitle
         TPersistent.__init__(self)
+#constructorGrids_TGridColumnTitle_Create
+    @staticmethod
+    def Create(TheColumn):
+        return LCLBindingUtil.GetPytonObject(LCLBinding.Grids_TGridColumnTitle_Create((TheColumn.pointer)),TGridColumnTitle)
+#Procedure Grids_TGridColumnTitle_Assign
+    @staticmethod
+    def Assign(self,Source):
+        LCLBinding.Grids_TGridColumnTitle_Assign((Source.pointer))
+#Procedure Grids_TGridColumnTitle_FillTitleDefaultFont
+    @staticmethod
+    def FillTitleDefaultFont(self,):
+        LCLBinding.Grids_TGridColumnTitle_FillTitleDefaultFont()
     def getColumn(self):
         r=LCLBinding.get_Grids_TGridColumnTitle_Column(self.pointer)
         return LCLBindingUtil.GetPytonObject(r,TGridColumn)
@@ -818,6 +924,14 @@ class TGridColumn(TCollectionItem):
     @staticmethod
     def Create(ACollection):
         return LCLBindingUtil.GetPytonObject(LCLBinding.Grids_TGridColumn_Create((ACollection.pointer)),TGridColumn)
+#Procedure Grids_TGridColumn_Assign
+    @staticmethod
+    def Assign(self,Source):
+        LCLBinding.Grids_TGridColumn_Assign((Source.pointer))
+#Procedure Grids_TGridColumn_FillDefaultFont
+    @staticmethod
+    def FillDefaultFont(self,):
+        LCLBinding.Grids_TGridColumn_FillDefaultFont()
     def getGrid(self):
         r=LCLBinding.get_Grids_TGridColumn_Grid(self.pointer)
         return LCLBindingUtil.GetPytonObject(r,TCustomGrid)
@@ -930,6 +1044,10 @@ class TGridColumns(TCollection):
 #    pointer=c_void_p()
     def __init__(self):#TGridColumns
         TCollection.__init__(self)
+#Procedure Grids_TGridColumns_Clear
+    @staticmethod
+    def Clear(self,):
+        LCLBinding.Grids_TGridColumns_Clear()
     def getGrid(self):
         r=LCLBinding.get_Grids_TGridColumns_Grid(self.pointer)
         return LCLBindingUtil.GetPytonObject(r,TCustomGrid)
@@ -957,6 +1075,18 @@ class TCustomStringGrid(TCustomDrawGrid):
     @staticmethod
     def Create(AOwner):
         return LCLBindingUtil.GetPytonObject(LCLBinding.Grids_TCustomStringGrid_Create((AOwner.pointer)),TCustomStringGrid)
+#Procedure Grids_TCustomStringGrid_AutoSizeColumn
+    @staticmethod
+    def AutoSizeColumn(self,aCol):
+        LCLBinding.Grids_TCustomStringGrid_AutoSizeColumn((aCol))
+#Procedure Grids_TCustomStringGrid_AutoSizeColumns
+    @staticmethod
+    def AutoSizeColumns(self,):
+        LCLBinding.Grids_TCustomStringGrid_AutoSizeColumns()
+#Procedure Grids_TCustomStringGrid_CopyToClipboard
+    @staticmethod
+    def CopyToClipboard(self,AUseSelection):
+        LCLBinding.Grids_TCustomStringGrid_CopyToClipboard((booleantoint(AUseSelection)))
     def getCells(self,ACol,ARow):
         r=LCLBinding.get_Grids_TCustomStringGrid_Cells(self.pointer,ACol,ARow)
         return LCLBindingUtil.ConvertPascalstring(r)
@@ -1091,7 +1221,7 @@ class TStringGrid(TCustomStringGrid):
         oldobj=0
         if hasattr(self, 'OnCellProcesscall'):
             FreeOldEvent=1
-            oldobj=OnCellProcessPasObject
+            oldobj=self.OnCellProcessPasObject
         self.OnCellProcesscall=v 
         self.PasOnCellProcess=FunctionForm(self._Warper_OnCellProcess)
         self.OnCellProcessPasObject=LCLBinding.set_Grids_TStringGrid_OnCellProcess(self.pointer,self.PasOnCellProcess,oldobj,FreeOldEvent)
@@ -1106,7 +1236,7 @@ class TStringGrid(TCustomStringGrid):
         oldobj=0
         if hasattr(self, 'OnCheckboxToggledcall'):
             FreeOldEvent=1
-            oldobj=OnCheckboxToggledPasObject
+            oldobj=self.OnCheckboxToggledPasObject
         self.OnCheckboxToggledcall=v 
         self.PasOnCheckboxToggled=FunctionForm(self._Warper_OnCheckboxToggled)
         self.OnCheckboxToggledPasObject=LCLBinding.set_Grids_TStringGrid_OnCheckboxToggled(self.pointer,self.PasOnCheckboxToggled,oldobj,FreeOldEvent)
@@ -1121,7 +1251,7 @@ class TStringGrid(TCustomStringGrid):
         oldobj=0
         if hasattr(self, 'OnEditingDonecall'):
             FreeOldEvent=1
-            oldobj=OnEditingDonePasObject
+            oldobj=self.OnEditingDonePasObject
         self.OnEditingDonecall=v 
         self.PasOnEditingDone=FunctionForm(self._Warper_OnEditingDone)
         self.OnEditingDonePasObject=LCLBinding.set_Grids_TStringGrid_OnEditingDone(self.pointer,self.PasOnEditingDone,oldobj,FreeOldEvent)
@@ -1136,7 +1266,7 @@ class TStringGrid(TCustomStringGrid):
         oldobj=0
         if hasattr(self, 'OnGetCellHintcall'):
             FreeOldEvent=1
-            oldobj=OnGetCellHintPasObject
+            oldobj=self.OnGetCellHintPasObject
         self.OnGetCellHintcall=v 
         self.PasOnGetCellHint=FunctionForm(self._Warper_OnGetCellHint)
         self.OnGetCellHintPasObject=LCLBinding.set_Grids_TStringGrid_OnGetCellHint(self.pointer,self.PasOnGetCellHint,oldobj,FreeOldEvent)
@@ -1151,7 +1281,7 @@ class TStringGrid(TCustomStringGrid):
         oldobj=0
         if hasattr(self, 'OnGetCheckboxStatecall'):
             FreeOldEvent=1
-            oldobj=OnGetCheckboxStatePasObject
+            oldobj=self.OnGetCheckboxStatePasObject
         self.OnGetCheckboxStatecall=v 
         self.PasOnGetCheckboxState=FunctionForm(self._Warper_OnGetCheckboxState)
         self.OnGetCheckboxStatePasObject=LCLBinding.set_Grids_TStringGrid_OnGetCheckboxState(self.pointer,self.PasOnGetCheckboxState,oldobj,FreeOldEvent)
@@ -1166,7 +1296,7 @@ class TStringGrid(TCustomStringGrid):
         oldobj=0
         if hasattr(self, 'OnSetCheckboxStatecall'):
             FreeOldEvent=1
-            oldobj=OnSetCheckboxStatePasObject
+            oldobj=self.OnSetCheckboxStatePasObject
         self.OnSetCheckboxStatecall=v 
         self.PasOnSetCheckboxState=FunctionForm(self._Warper_OnSetCheckboxState)
         self.OnSetCheckboxStatePasObject=LCLBinding.set_Grids_TStringGrid_OnSetCheckboxState(self.pointer,self.PasOnSetCheckboxState,oldobj,FreeOldEvent)
@@ -1181,7 +1311,7 @@ class TStringGrid(TCustomStringGrid):
         oldobj=0
         if hasattr(self, 'OnTopLeftChangedcall'):
             FreeOldEvent=1
-            oldobj=OnTopLeftChangedPasObject
+            oldobj=self.OnTopLeftChangedPasObject
         self.OnTopLeftChangedcall=v 
         self.PasOnTopLeftChanged=FunctionForm(self._Warper_OnTopLeftChanged)
         self.OnTopLeftChangedPasObject=LCLBinding.set_Grids_TStringGrid_OnTopLeftChanged(self.pointer,self.PasOnTopLeftChanged,oldobj,FreeOldEvent)
@@ -1196,7 +1326,7 @@ class TStringGrid(TCustomStringGrid):
         oldobj=0
         if hasattr(self, 'OnUserCheckboxBitmapcall'):
             FreeOldEvent=1
-            oldobj=OnUserCheckboxBitmapPasObject
+            oldobj=self.OnUserCheckboxBitmapPasObject
         self.OnUserCheckboxBitmapcall=v 
         self.PasOnUserCheckboxBitmap=FunctionForm(self._Warper_OnUserCheckboxBitmap)
         self.OnUserCheckboxBitmapPasObject=LCLBinding.set_Grids_TStringGrid_OnUserCheckboxBitmap(self.pointer,self.PasOnUserCheckboxBitmap,oldobj,FreeOldEvent)
@@ -1211,7 +1341,7 @@ class TStringGrid(TCustomStringGrid):
         oldobj=0
         if hasattr(self, 'OnValidateEntrycall'):
             FreeOldEvent=1
-            oldobj=OnValidateEntryPasObject
+            oldobj=self.OnValidateEntryPasObject
         self.OnValidateEntrycall=v 
         self.PasOnValidateEntry=FunctionForm(self._Warper_OnValidateEntry)
         self.OnValidateEntryPasObject=LCLBinding.set_Grids_TStringGrid_OnValidateEntry(self.pointer,self.PasOnValidateEntry,oldobj,FreeOldEvent)
@@ -1324,7 +1454,7 @@ class TDrawGrid(TCustomDrawGrid):
         oldobj=0
         if hasattr(self, 'OnCheckboxToggledcall'):
             FreeOldEvent=1
-            oldobj=OnCheckboxToggledPasObject
+            oldobj=self.OnCheckboxToggledPasObject
         self.OnCheckboxToggledcall=v 
         self.PasOnCheckboxToggled=FunctionForm(self._Warper_OnCheckboxToggled)
         self.OnCheckboxToggledPasObject=LCLBinding.set_Grids_TDrawGrid_OnCheckboxToggled(self.pointer,self.PasOnCheckboxToggled,oldobj,FreeOldEvent)
@@ -1339,7 +1469,7 @@ class TDrawGrid(TCustomDrawGrid):
         oldobj=0
         if hasattr(self, 'OnEditingDonecall'):
             FreeOldEvent=1
-            oldobj=OnEditingDonePasObject
+            oldobj=self.OnEditingDonePasObject
         self.OnEditingDonecall=v 
         self.PasOnEditingDone=FunctionForm(self._Warper_OnEditingDone)
         self.OnEditingDonePasObject=LCLBinding.set_Grids_TDrawGrid_OnEditingDone(self.pointer,self.PasOnEditingDone,oldobj,FreeOldEvent)
@@ -1354,7 +1484,7 @@ class TDrawGrid(TCustomDrawGrid):
         oldobj=0
         if hasattr(self, 'OnGetCellHintcall'):
             FreeOldEvent=1
-            oldobj=OnGetCellHintPasObject
+            oldobj=self.OnGetCellHintPasObject
         self.OnGetCellHintcall=v 
         self.PasOnGetCellHint=FunctionForm(self._Warper_OnGetCellHint)
         self.OnGetCellHintPasObject=LCLBinding.set_Grids_TDrawGrid_OnGetCellHint(self.pointer,self.PasOnGetCellHint,oldobj,FreeOldEvent)
@@ -1369,7 +1499,7 @@ class TDrawGrid(TCustomDrawGrid):
         oldobj=0
         if hasattr(self, 'OnGetCheckboxStatecall'):
             FreeOldEvent=1
-            oldobj=OnGetCheckboxStatePasObject
+            oldobj=self.OnGetCheckboxStatePasObject
         self.OnGetCheckboxStatecall=v 
         self.PasOnGetCheckboxState=FunctionForm(self._Warper_OnGetCheckboxState)
         self.OnGetCheckboxStatePasObject=LCLBinding.set_Grids_TDrawGrid_OnGetCheckboxState(self.pointer,self.PasOnGetCheckboxState,oldobj,FreeOldEvent)
@@ -1384,7 +1514,7 @@ class TDrawGrid(TCustomDrawGrid):
         oldobj=0
         if hasattr(self, 'OnSetCheckboxStatecall'):
             FreeOldEvent=1
-            oldobj=OnSetCheckboxStatePasObject
+            oldobj=self.OnSetCheckboxStatePasObject
         self.OnSetCheckboxStatecall=v 
         self.PasOnSetCheckboxState=FunctionForm(self._Warper_OnSetCheckboxState)
         self.OnSetCheckboxStatePasObject=LCLBinding.set_Grids_TDrawGrid_OnSetCheckboxState(self.pointer,self.PasOnSetCheckboxState,oldobj,FreeOldEvent)
@@ -1399,7 +1529,7 @@ class TDrawGrid(TCustomDrawGrid):
         oldobj=0
         if hasattr(self, 'OnUserCheckboxBitmapcall'):
             FreeOldEvent=1
-            oldobj=OnUserCheckboxBitmapPasObject
+            oldobj=self.OnUserCheckboxBitmapPasObject
         self.OnUserCheckboxBitmapcall=v 
         self.PasOnUserCheckboxBitmap=FunctionForm(self._Warper_OnUserCheckboxBitmap)
         self.OnUserCheckboxBitmapPasObject=LCLBinding.set_Grids_TDrawGrid_OnUserCheckboxBitmap(self.pointer,self.PasOnUserCheckboxBitmap,oldobj,FreeOldEvent)

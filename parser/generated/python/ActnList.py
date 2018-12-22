@@ -1,4 +1,8 @@
+from LCLClasses import *
+from ImgList import *
+from Classes import *
 from MainPasObject import *
+import LCLBindingUtil
 #import end
 #class TActionLink start
 class TActionLink(TBasicActionLink):

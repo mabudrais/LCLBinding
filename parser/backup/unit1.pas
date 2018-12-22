@@ -6,7 +6,7 @@ interface
 
 uses
   Classes, SysUtils, FileUtil, Forms, Controls, Graphics, Dialogs, StdCtrls,
-  Grids, contnrs, pasfileunit, Parserunit, Parser2Unit, dateutils, LResources,Unit3;
+  Grids, contnrs, pasfileunit, Parserunit, Parser2Unit, dateutils, LResources, Unit3;
 
 type
 
@@ -53,7 +53,7 @@ var
   TargetFileName, TargetFileName2: TStringList;
   k: integer;
 begin
- // TForm.Create();
+  // TForm.Create();
   LCLPath := 'G:\dev\temp\lclbinding2\parser\targetfile\';
   TargetFileName := FindAllFiles(LCLPath, '', False);
   TargetFileName2 := TStringList.Create;
@@ -111,15 +111,16 @@ end;
 
 procedure TForm1.ClassNamesButtonClick(Sender: TObject);
 var
-  e: String;
-  k: Integer;
+  e: string;
+  k: integer;
 begin
   ClassNameMemo.Clear;
-  for k:=0 to ClassMemo.Lines.Count-1 do
+  for k := 0 to ClassMemo.Lines.Count - 1 do
   begin
-    ClassNameMemo.Lines.Add(e+' if CompareText(AClassName, '''+Trim(ClassMemo.Lines[k])+''') = 0 then');
-    ClassNameMemo.Lines.Add('ComponentClass := '+Trim(ClassMemo.Lines[k]));
-    e:='else';
+    ClassNameMemo.Lines.Add(e + ' if CompareText(AClassName, ''' + Trim(
+      ClassMemo.Lines[k]) + ''') = 0 then');
+    ClassNameMemo.Lines.Add('ComponentClass := ' + Trim(ClassMemo.Lines[k]));
+    e := 'else';
   end;
 end;
 

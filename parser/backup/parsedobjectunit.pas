@@ -18,10 +18,16 @@ type
   { TparsedParameter }
 
   TparsedParameter = class
+  private
+    parsedObjectList: TObject;
+    index: integer;
+    function getparameterTypeO: TParsedObject;
+  public
     parameterName, parameterType, parameterAcsess: string;
-    parameterTypeO: TParsedObject;
     isSimpleType, isDefaultType: boolean;
+    property parameterTypeO: TParsedObject read getparameterTypeO;
     constructor Create(CparameterName, CparameterAcsess: string);
+    procedure SetparameterTypeO(o: TObject; cindex: integer);
     //parameterAcsess cons var value
   end;
 
@@ -29,6 +35,7 @@ type
 
   TparsedUses = class(TParsedObject)
     useslist: TStringList;
+  private
     constructor Create;
   end;
 
@@ -41,7 +48,9 @@ type
   public
     LinkedProperty: TParsedProperty;
     Isindexed, IsReadable, IsWritable, isSimple, isDefaultType: boolean;
-    index1, index2, IndexType, AccesModifir, Basicproptype: string;
+    AccesModifir, Basicproptype: string;
+    paramaterList: TObjectList;
+    constructor Create;
     property proptype: TParsedObject read Getproptype;
     function GetLinkedProperty(): TParsedProperty;
     procedure Setproptype(PT: PTParsedObject);
@@ -71,6 +80,8 @@ type
 
   TParsedProcedureType = class(TParsedObject)
     paramaterList: TObjectList;
+    hasResult: boolean;
+    resultType: TparsedParameter;
     constructor Create;
     destructor Destroy; override;
   end;
@@ -91,6 +102,8 @@ type
 
 implementation
 
+uses Parser2Unit;
+
 { TparsedConstructor }
 
 constructor TparsedConstructor.Create;
@@ -99,16 +112,16 @@ begin
   LinkedConstructor := nil;
 end;
 
-procedure TparsedConstructor.CopyDataFrom(Con: TparsedConstructor; memb,
-  CFileName: string);
+procedure TparsedConstructor.CopyDataFrom(Con: TparsedConstructor;
+  memb, CFileName: string);
 begin
   Self.TParsedObjectName := Con.TParsedObjectName;
-  Self.FileName:=CFileName;
+  Self.FileName := CFileName;
   Self.pro := TParsedProcedureType.Create;
   self.pro.TParsedObjectName := con.pro.TParsedObjectName;
   self.pro.paramaterList := con.pro.paramaterList;
-  self.pro.memberof:=memb;
-  Self.pro.FileName:=CFileName;
+  self.pro.memberof := memb;
+  Self.pro.FileName := CFileName;
 end;
 
 { TParsedProperty }
@@ -136,6 +149,12 @@ end;
 procedure TParsedProperty.Setproptype(PT: PTParsedObject);
 begin
   _proptype := PT;
+end;
+
+constructor TParsedProperty.Create;
+begin
+  inherited;
+  Self.paramaterList := TObjectList.Create;
 end;
 
 { TParsedClass }
@@ -168,6 +187,7 @@ end;
 constructor TParsedProcedureType.Create;
 begin
   paramaterList := TObjectList.Create();
+  hasResult := False;
 end;
 
 { TparsedUses }
@@ -184,6 +204,29 @@ begin
   parameterName := CparameterName;
   if CparameterAcsess <> 'val' then
     parameterAcsess := CparameterAcsess;
+end;
+
+function TparsedParameter.getparameterTypeO: TParsedObject;
+var
+  PFIS: TStringMap;
+  cPFI: TPFI;
+begin
+  if (index < 0)or(Self.parsedObjectList=Nil) then
+    Exit(nil);
+  try
+    PFIS := parsedObjectList as TStringMap;
+    cPFI := (PFIS.Data[Index] as TPFI);
+  except
+    on e: Exception do
+      writeln('ll');
+  end;
+  Result := cPFI.Ob;
+end;
+
+procedure TparsedParameter.SetparameterTypeO(o: TObject; cindex: integer);
+begin
+  Self.parsedObjectList := o;
+  index := cindex;
 end;
 
 { TparsedFunction }

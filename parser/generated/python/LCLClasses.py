@@ -1,4 +1,6 @@
+from Classes import *
 from MainPasObject import *
+import LCLBindingUtil
 #import end
 #class TLCLComponent start
 class TLCLComponent(TComponent):
@@ -9,6 +11,18 @@ class TLCLComponent(TComponent):
     @staticmethod
     def Create(TheOwner):
         return LCLBindingUtil.GetPytonObject(LCLBinding.LCLClasses_TLCLComponent_Create((TheOwner.pointer)),TLCLComponent)
+#Procedure LCLClasses_TLCLComponent_RemoveAllHandlersOfObject
+    @staticmethod
+    def RemoveAllHandlersOfObject(self,AnObject):
+        LCLBinding.LCLClasses_TLCLComponent_RemoveAllHandlersOfObject((AnObject.pointer))
+#Procedure LCLClasses_TLCLComponent_IncLCLRefCount
+    @staticmethod
+    def IncLCLRefCount(self,):
+        LCLBinding.LCLClasses_TLCLComponent_IncLCLRefCount()
+#Procedure LCLClasses_TLCLComponent_DecLCLRefCount
+    @staticmethod
+    def DecLCLRefCount(self,):
+        LCLBinding.LCLClasses_TLCLComponent_DecLCLRefCount()
     def getLCLRefCount(self):
         r=LCLBinding.get_LCLClasses_TLCLComponent_LCLRefCount(self.pointer)
         return LCLBindingUtil.ConvertPascalInteger(r)

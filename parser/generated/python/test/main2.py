@@ -2,7 +2,7 @@ from ctypes import *
 from Application import *
 from MainPasObject import *
 from Forms import *
-from stdctrls import *
+from StdCtrls import *
 from Grids import *
 class Form1(TForm):
     Button1=TButton()

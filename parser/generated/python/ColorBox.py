@@ -1,4 +1,10 @@
+from StdCtrls import *
+from Forms import *
+from Controls import *
+from Graphics import *
+from Classes import *
 from MainPasObject import *
+import LCLBindingUtil
 #import end
 def CreateTColorBoxStyleFromInt(i):
     dic={1:"cbStandardColors",2:"cbExtendedColors",4:"cbSystemColors",8:"cbIncludeNone",16:"cbIncludeDefault",32:"cbCustomColor",64:"cbPrettyNames",128:"cbCustomColors"}
@@ -33,6 +39,21 @@ class TCustomColorListBox(TCustomListBox):
     def getColorNames(self,Index):
         r=LCLBinding.get_ColorBox_TCustomColorListBox_ColorNames(self.pointer,Index)
         return LCLBindingUtil.ConvertPascalstring(r)
+    def _Warper_OnGetColors(self,Sender,Items):
+        self.OnGetColorscall(LCLBindingUtil.GetPytonObject(Sender,TCustomColorListBox),LCLBindingUtil.GetPytonObject(Items,TStrings))
+    def setOnGetColors(self,v):
+        FunctionForm= CFUNCTYPE(c_void_p,c_void_p,c_void_p)
+        FreeOldEvent=0
+        oldobj=0
+        if hasattr(self, 'OnGetColorscall'):
+            FreeOldEvent=1
+            oldobj=self.OnGetColorsPasObject
+        self.OnGetColorscall=v 
+        self.PasOnGetColors=FunctionForm(self._Warper_OnGetColors)
+        self.OnGetColorsPasObject=LCLBinding.set_ColorBox_TCustomColorListBox_OnGetColors(self.pointer,self.PasOnGetColors,oldobj,FreeOldEvent)
+    def getOnGetColors(self):
+        return OnGetColorscall
+    OnGetColors=property(getOnGetColors,setOnGetColors)
 #class TCustomColorListBox end
 #class TColorListBox start
 class TColorListBox(TCustomColorListBox):
@@ -59,7 +80,7 @@ class TColorListBox(TCustomColorListBox):
         oldobj=0
         if hasattr(self, 'OnDragDropcall'):
             FreeOldEvent=1
-            oldobj=OnDragDropPasObject
+            oldobj=self.OnDragDropPasObject
         self.OnDragDropcall=v 
         self.PasOnDragDrop=FunctionForm(self._Warper_OnDragDrop)
         self.OnDragDropPasObject=LCLBinding.set_ColorBox_TColorListBox_OnDragDrop(self.pointer,self.PasOnDragDrop,oldobj,FreeOldEvent)
@@ -74,7 +95,7 @@ class TColorListBox(TCustomColorListBox):
         oldobj=0
         if hasattr(self, 'OnDragOvercall'):
             FreeOldEvent=1
-            oldobj=OnDragOverPasObject
+            oldobj=self.OnDragOverPasObject
         self.OnDragOvercall=v 
         self.PasOnDragOver=FunctionForm(self._Warper_OnDragOver)
         self.OnDragOverPasObject=LCLBinding.set_ColorBox_TColorListBox_OnDragOver(self.pointer,self.PasOnDragOver,oldobj,FreeOldEvent)
@@ -89,7 +110,7 @@ class TColorListBox(TCustomColorListBox):
         oldobj=0
         if hasattr(self, 'OnEndDragcall'):
             FreeOldEvent=1
-            oldobj=OnEndDragPasObject
+            oldobj=self.OnEndDragPasObject
         self.OnEndDragcall=v 
         self.PasOnEndDrag=FunctionForm(self._Warper_OnEndDrag)
         self.OnEndDragPasObject=LCLBinding.set_ColorBox_TColorListBox_OnEndDrag(self.pointer,self.PasOnEndDrag,oldobj,FreeOldEvent)
@@ -104,7 +125,7 @@ class TColorListBox(TCustomColorListBox):
         oldobj=0
         if hasattr(self, 'OnStartDragcall'):
             FreeOldEvent=1
-            oldobj=OnStartDragPasObject
+            oldobj=self.OnStartDragPasObject
         self.OnStartDragcall=v 
         self.PasOnStartDrag=FunctionForm(self._Warper_OnStartDrag)
         self.OnStartDragPasObject=LCLBinding.set_ColorBox_TColorListBox_OnStartDrag(self.pointer,self.PasOnStartDrag,oldobj,FreeOldEvent)
@@ -146,6 +167,21 @@ class TCustomColorBox(TCustomComboBox):
     def getColorNames(self,Index):
         r=LCLBinding.get_ColorBox_TCustomColorBox_ColorNames(self.pointer,Index)
         return LCLBindingUtil.ConvertPascalstring(r)
+    def _Warper_OnGetColors(self,Sender,Items):
+        self.OnGetColorscall(LCLBindingUtil.GetPytonObject(Sender,TCustomColorBox),LCLBindingUtil.GetPytonObject(Items,TStrings))
+    def setOnGetColors(self,v):
+        FunctionForm= CFUNCTYPE(c_void_p,c_void_p,c_void_p)
+        FreeOldEvent=0
+        oldobj=0
+        if hasattr(self, 'OnGetColorscall'):
+            FreeOldEvent=1
+            oldobj=self.OnGetColorsPasObject
+        self.OnGetColorscall=v 
+        self.PasOnGetColors=FunctionForm(self._Warper_OnGetColors)
+        self.OnGetColorsPasObject=LCLBinding.set_ColorBox_TCustomColorBox_OnGetColors(self.pointer,self.PasOnGetColors,oldobj,FreeOldEvent)
+    def getOnGetColors(self):
+        return OnGetColorscall
+    OnGetColors=property(getOnGetColors,setOnGetColors)
 #class TCustomColorBox end
 #class TColorBox start
 class TColorBox(TCustomColorBox):
@@ -178,7 +214,7 @@ class TColorBox(TCustomColorBox):
         oldobj=0
         if hasattr(self, 'OnChangecall'):
             FreeOldEvent=1
-            oldobj=OnChangePasObject
+            oldobj=self.OnChangePasObject
         self.OnChangecall=v 
         self.PasOnChange=FunctionForm(self._Warper_OnChange)
         self.OnChangePasObject=LCLBinding.set_ColorBox_TColorBox_OnChange(self.pointer,self.PasOnChange,oldobj,FreeOldEvent)
@@ -193,7 +229,7 @@ class TColorBox(TCustomColorBox):
         oldobj=0
         if hasattr(self, 'OnCloseUpcall'):
             FreeOldEvent=1
-            oldobj=OnCloseUpPasObject
+            oldobj=self.OnCloseUpPasObject
         self.OnCloseUpcall=v 
         self.PasOnCloseUp=FunctionForm(self._Warper_OnCloseUp)
         self.OnCloseUpPasObject=LCLBinding.set_ColorBox_TColorBox_OnCloseUp(self.pointer,self.PasOnCloseUp,oldobj,FreeOldEvent)
@@ -208,7 +244,7 @@ class TColorBox(TCustomColorBox):
         oldobj=0
         if hasattr(self, 'OnDblClickcall'):
             FreeOldEvent=1
-            oldobj=OnDblClickPasObject
+            oldobj=self.OnDblClickPasObject
         self.OnDblClickcall=v 
         self.PasOnDblClick=FunctionForm(self._Warper_OnDblClick)
         self.OnDblClickPasObject=LCLBinding.set_ColorBox_TColorBox_OnDblClick(self.pointer,self.PasOnDblClick,oldobj,FreeOldEvent)
@@ -223,7 +259,7 @@ class TColorBox(TCustomColorBox):
         oldobj=0
         if hasattr(self, 'OnDragDropcall'):
             FreeOldEvent=1
-            oldobj=OnDragDropPasObject
+            oldobj=self.OnDragDropPasObject
         self.OnDragDropcall=v 
         self.PasOnDragDrop=FunctionForm(self._Warper_OnDragDrop)
         self.OnDragDropPasObject=LCLBinding.set_ColorBox_TColorBox_OnDragDrop(self.pointer,self.PasOnDragDrop,oldobj,FreeOldEvent)
@@ -238,7 +274,7 @@ class TColorBox(TCustomColorBox):
         oldobj=0
         if hasattr(self, 'OnDragOvercall'):
             FreeOldEvent=1
-            oldobj=OnDragOverPasObject
+            oldobj=self.OnDragOverPasObject
         self.OnDragOvercall=v 
         self.PasOnDragOver=FunctionForm(self._Warper_OnDragOver)
         self.OnDragOverPasObject=LCLBinding.set_ColorBox_TColorBox_OnDragOver(self.pointer,self.PasOnDragOver,oldobj,FreeOldEvent)
@@ -253,7 +289,7 @@ class TColorBox(TCustomColorBox):
         oldobj=0
         if hasattr(self, 'OnEndDragcall'):
             FreeOldEvent=1
-            oldobj=OnEndDragPasObject
+            oldobj=self.OnEndDragPasObject
         self.OnEndDragcall=v 
         self.PasOnEndDrag=FunctionForm(self._Warper_OnEndDrag)
         self.OnEndDragPasObject=LCLBinding.set_ColorBox_TColorBox_OnEndDrag(self.pointer,self.PasOnEndDrag,oldobj,FreeOldEvent)
@@ -268,7 +304,7 @@ class TColorBox(TCustomColorBox):
         oldobj=0
         if hasattr(self, 'OnDropDowncall'):
             FreeOldEvent=1
-            oldobj=OnDropDownPasObject
+            oldobj=self.OnDropDownPasObject
         self.OnDropDowncall=v 
         self.PasOnDropDown=FunctionForm(self._Warper_OnDropDown)
         self.OnDropDownPasObject=LCLBinding.set_ColorBox_TColorBox_OnDropDown(self.pointer,self.PasOnDropDown,oldobj,FreeOldEvent)
@@ -283,7 +319,7 @@ class TColorBox(TCustomColorBox):
         oldobj=0
         if hasattr(self, 'OnEditingDonecall'):
             FreeOldEvent=1
-            oldobj=OnEditingDonePasObject
+            oldobj=self.OnEditingDonePasObject
         self.OnEditingDonecall=v 
         self.PasOnEditingDone=FunctionForm(self._Warper_OnEditingDone)
         self.OnEditingDonePasObject=LCLBinding.set_ColorBox_TColorBox_OnEditingDone(self.pointer,self.PasOnEditingDone,oldobj,FreeOldEvent)
@@ -298,7 +334,7 @@ class TColorBox(TCustomColorBox):
         oldobj=0
         if hasattr(self, 'OnMouseDowncall'):
             FreeOldEvent=1
-            oldobj=OnMouseDownPasObject
+            oldobj=self.OnMouseDownPasObject
         self.OnMouseDowncall=v 
         self.PasOnMouseDown=FunctionForm(self._Warper_OnMouseDown)
         self.OnMouseDownPasObject=LCLBinding.set_ColorBox_TColorBox_OnMouseDown(self.pointer,self.PasOnMouseDown,oldobj,FreeOldEvent)
@@ -313,7 +349,7 @@ class TColorBox(TCustomColorBox):
         oldobj=0
         if hasattr(self, 'OnMouseEntercall'):
             FreeOldEvent=1
-            oldobj=OnMouseEnterPasObject
+            oldobj=self.OnMouseEnterPasObject
         self.OnMouseEntercall=v 
         self.PasOnMouseEnter=FunctionForm(self._Warper_OnMouseEnter)
         self.OnMouseEnterPasObject=LCLBinding.set_ColorBox_TColorBox_OnMouseEnter(self.pointer,self.PasOnMouseEnter,oldobj,FreeOldEvent)
@@ -328,7 +364,7 @@ class TColorBox(TCustomColorBox):
         oldobj=0
         if hasattr(self, 'OnMouseLeavecall'):
             FreeOldEvent=1
-            oldobj=OnMouseLeavePasObject
+            oldobj=self.OnMouseLeavePasObject
         self.OnMouseLeavecall=v 
         self.PasOnMouseLeave=FunctionForm(self._Warper_OnMouseLeave)
         self.OnMouseLeavePasObject=LCLBinding.set_ColorBox_TColorBox_OnMouseLeave(self.pointer,self.PasOnMouseLeave,oldobj,FreeOldEvent)
@@ -343,7 +379,7 @@ class TColorBox(TCustomColorBox):
         oldobj=0
         if hasattr(self, 'OnMouseMovecall'):
             FreeOldEvent=1
-            oldobj=OnMouseMovePasObject
+            oldobj=self.OnMouseMovePasObject
         self.OnMouseMovecall=v 
         self.PasOnMouseMove=FunctionForm(self._Warper_OnMouseMove)
         self.OnMouseMovePasObject=LCLBinding.set_ColorBox_TColorBox_OnMouseMove(self.pointer,self.PasOnMouseMove,oldobj,FreeOldEvent)
@@ -358,7 +394,7 @@ class TColorBox(TCustomColorBox):
         oldobj=0
         if hasattr(self, 'OnMouseUpcall'):
             FreeOldEvent=1
-            oldobj=OnMouseUpPasObject
+            oldobj=self.OnMouseUpPasObject
         self.OnMouseUpcall=v 
         self.PasOnMouseUp=FunctionForm(self._Warper_OnMouseUp)
         self.OnMouseUpPasObject=LCLBinding.set_ColorBox_TColorBox_OnMouseUp(self.pointer,self.PasOnMouseUp,oldobj,FreeOldEvent)
@@ -373,7 +409,7 @@ class TColorBox(TCustomColorBox):
         oldobj=0
         if hasattr(self, 'OnStartDragcall'):
             FreeOldEvent=1
-            oldobj=OnStartDragPasObject
+            oldobj=self.OnStartDragPasObject
         self.OnStartDragcall=v 
         self.PasOnStartDrag=FunctionForm(self._Warper_OnStartDrag)
         self.OnStartDragPasObject=LCLBinding.set_ColorBox_TColorBox_OnStartDrag(self.pointer,self.PasOnStartDrag,oldobj,FreeOldEvent)
@@ -388,7 +424,7 @@ class TColorBox(TCustomColorBox):
         oldobj=0
         if hasattr(self, 'OnSelectcall'):
             FreeOldEvent=1
-            oldobj=OnSelectPasObject
+            oldobj=self.OnSelectPasObject
         self.OnSelectcall=v 
         self.PasOnSelect=FunctionForm(self._Warper_OnSelect)
         self.OnSelectPasObject=LCLBinding.set_ColorBox_TColorBox_OnSelect(self.pointer,self.PasOnSelect,oldobj,FreeOldEvent)

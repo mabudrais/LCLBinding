@@ -1,4 +1,15 @@
+from LCLClasses import *
+from ImgList import *
+from Graphics import *
+from ActnList import *
+from lmessages import *
+from lresources import *
+from lclproc import *
+from lcltype import *
+from lclstrconsts import *
+from Classes import *
 from MainPasObject import *
+import LCLBindingUtil
 #import end
 #class TMenu start
 class TMenu(TLCLComponent):
@@ -9,6 +20,14 @@ class TMenu(TLCLComponent):
     @staticmethod
     def Create(AOwner):
         return LCLBindingUtil.GetPytonObject(LCLBinding.Menus_TMenu_Create((AOwner.pointer)),TMenu)
+#Procedure Menus_TMenu_DestroyHandle
+    @staticmethod
+    def DestroyHandle(self,):
+        LCLBinding.Menus_TMenu_DestroyHandle()
+#Procedure Menus_TMenu_HandleNeeded
+    @staticmethod
+    def HandleNeeded(self,):
+        LCLBinding.Menus_TMenu_HandleNeeded()
     def getParent(self):
         r=LCLBinding.get_Menus_TMenu_Parent(self.pointer)
         return LCLBindingUtil.GetPytonObject(r,TComponent)
@@ -57,7 +76,7 @@ class TMenu(TLCLComponent):
         oldobj=0
         if hasattr(self, 'OnMeasureItemcall'):
             FreeOldEvent=1
-            oldobj=OnMeasureItemPasObject
+            oldobj=self.OnMeasureItemPasObject
         self.OnMeasureItemcall=v 
         self.PasOnMeasureItem=FunctionForm(self._Warper_OnMeasureItem)
         self.OnMeasureItemPasObject=LCLBinding.set_Menus_TMenu_OnMeasureItem(self.pointer,self.PasOnMeasureItem,oldobj,FreeOldEvent)
@@ -84,6 +103,58 @@ class TMenuItem(TLCLComponent):
     @staticmethod
     def Create(TheOwner):
         return LCLBindingUtil.GetPytonObject(LCLBinding.Menus_TMenuItem_Create((TheOwner.pointer)),TMenuItem)
+#Procedure Menus_TMenuItem_InitiateAction
+    @staticmethod
+    def InitiateAction(self,):
+        LCLBinding.Menus_TMenuItem_InitiateAction()
+#Procedure Menus_TMenuItem_IntfDoSelect
+    @staticmethod
+    def IntfDoSelect(self,):
+        LCLBinding.Menus_TMenuItem_IntfDoSelect()
+#Procedure Menus_TMenuItem_AddSeparator
+    @staticmethod
+    def AddSeparator(self,):
+        LCLBinding.Menus_TMenuItem_AddSeparator()
+#Procedure Menus_TMenuItem_Click
+    @staticmethod
+    def Click(self,):
+        LCLBinding.Menus_TMenuItem_Click()
+#Procedure Menus_TMenuItem_Delete
+    @staticmethod
+    def Delete(self,Index):
+        LCLBinding.Menus_TMenuItem_Delete((Index))
+#Procedure Menus_TMenuItem_HandleNeeded
+    @staticmethod
+    def HandleNeeded(self,):
+        LCLBinding.Menus_TMenuItem_HandleNeeded()
+#Procedure Menus_TMenuItem_Insert
+    @staticmethod
+    def Insert(self,Index,Item):
+        LCLBinding.Menus_TMenuItem_Insert((Index),(Item.pointer))
+#Procedure Menus_TMenuItem_RecreateHandle
+    @staticmethod
+    def RecreateHandle(self,):
+        LCLBinding.Menus_TMenuItem_RecreateHandle()
+#Procedure Menus_TMenuItem_Remove
+    @staticmethod
+    def Remove(self,Item):
+        LCLBinding.Menus_TMenuItem_Remove((Item.pointer))
+#Procedure Menus_TMenuItem_Clear
+    @staticmethod
+    def Clear(self,):
+        LCLBinding.Menus_TMenuItem_Clear()
+#Procedure Menus_TMenuItem_RemoveAllHandlersOfObject
+    @staticmethod
+    def RemoveAllHandlersOfObject(self,AnObject):
+        LCLBinding.Menus_TMenuItem_RemoveAllHandlersOfObject((AnObject.pointer))
+#Procedure Menus_TMenuItem_AddHandlerOnDestroy
+    @staticmethod
+    def AddHandlerOnDestroy(self,OnDestroyEvent,AsFirst):
+        LCLBinding.Menus_TMenuItem_AddHandlerOnDestroy((OnDestroyEvent.pointer),(booleantoint(AsFirst)))
+#Procedure Menus_TMenuItem_RemoveHandlerOnDestroy
+    @staticmethod
+    def RemoveHandlerOnDestroy(self,OnDestroyEvent):
+        LCLBinding.Menus_TMenuItem_RemoveHandlerOnDestroy((OnDestroyEvent.pointer))
     def getCount(self):
         r=LCLBinding.get_Menus_TMenuItem_Count(self.pointer)
         return LCLBindingUtil.ConvertPascalInteger(r)
@@ -105,6 +176,10 @@ class TMenuItem(TLCLComponent):
         r=LCLBinding.get_Menus_TMenuItem_Parent(self.pointer)
         return LCLBindingUtil.GetPytonObject(r,TMenuItem)
     Parent=property(getParent)
+#Procedure Menus_TMenuItem_WriteDebugReport
+    @staticmethod
+    def WriteDebugReport(self,Prefix):
+        LCLBinding.Menus_TMenuItem_WriteDebugReport((Prefix))
     def getAction(self):
         r=LCLBinding.get_Menus_TMenuItem_Action(self.pointer)
         return LCLBindingUtil.GetPytonObject(r,TBasicAction)
@@ -185,7 +260,7 @@ class TMenuItem(TLCLComponent):
         oldobj=0
         if hasattr(self, 'OnClickcall'):
             FreeOldEvent=1
-            oldobj=OnClickPasObject
+            oldobj=self.OnClickPasObject
         self.OnClickcall=v 
         self.PasOnClick=FunctionForm(self._Warper_OnClick)
         self.OnClickPasObject=LCLBinding.set_Menus_TMenuItem_OnClick(self.pointer,self.PasOnClick,oldobj,FreeOldEvent)
@@ -200,7 +275,7 @@ class TMenuItem(TLCLComponent):
         oldobj=0
         if hasattr(self, 'OnMeasureItemcall'):
             FreeOldEvent=1
-            oldobj=OnMeasureItemPasObject
+            oldobj=self.OnMeasureItemPasObject
         self.OnMeasureItemcall=v 
         self.PasOnMeasureItem=FunctionForm(self._Warper_OnMeasureItem)
         self.OnMeasureItemPasObject=LCLBinding.set_Menus_TMenuItem_OnMeasureItem(self.pointer,self.PasOnMeasureItem,oldobj,FreeOldEvent)
@@ -229,7 +304,7 @@ class TMainMenu(TMenu):
         oldobj=0
         if hasattr(self, 'OnChangecall'):
             FreeOldEvent=1
-            oldobj=OnChangePasObject
+            oldobj=self.OnChangePasObject
         self.OnChangecall=v 
         self.PasOnChange=FunctionForm(self._Warper_OnChange)
         self.OnChangePasObject=LCLBinding.set_Menus_TMainMenu_OnChange(self.pointer,self.PasOnChange,oldobj,FreeOldEvent)
@@ -252,6 +327,10 @@ class TPopupMenu(TMenu):
     def setPopupComponent(self,v):
         LCLBinding.set_Menus_TPopupMenu_PopupComponent(self.pointer,v.pointer)
     PopupComponent=property(getPopupComponent,setPopupComponent)
+#Procedure Menus_TPopupMenu_Close
+    @staticmethod
+    def Close(self,):
+        LCLBinding.Menus_TPopupMenu_Close()
     def getAlignment(self):
         r=LCLBinding.get_Menus_TPopupMenu_Alignment(self.pointer)
         return r
@@ -278,7 +357,7 @@ class TPopupMenu(TMenu):
         oldobj=0
         if hasattr(self, 'OnPopupcall'):
             FreeOldEvent=1
-            oldobj=OnPopupPasObject
+            oldobj=self.OnPopupPasObject
         self.OnPopupcall=v 
         self.PasOnPopup=FunctionForm(self._Warper_OnPopup)
         self.OnPopupPasObject=LCLBinding.set_Menus_TPopupMenu_OnPopup(self.pointer,self.PasOnPopup,oldobj,FreeOldEvent)
@@ -293,7 +372,7 @@ class TPopupMenu(TMenu):
         oldobj=0
         if hasattr(self, 'OnClosecall'):
             FreeOldEvent=1
-            oldobj=OnClosePasObject
+            oldobj=self.OnClosePasObject
         self.OnClosecall=v 
         self.PasOnClose=FunctionForm(self._Warper_OnClose)
         self.OnClosePasObject=LCLBinding.set_Menus_TPopupMenu_OnClose(self.pointer,self.PasOnClose,oldobj,FreeOldEvent)

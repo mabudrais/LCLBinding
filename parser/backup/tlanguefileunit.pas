@@ -5,7 +5,7 @@ unit TLangueFileUnit;
 interface
 
 uses
-  Classes, SysUtils, parsedobjectunit;
+  Classes, SysUtils, parsedobjectunit, contnrs;
 
 type
 
@@ -13,19 +13,22 @@ type
 
   TLangueFile = class
     filename: string;
-    FileExt:String;
-    constructor Create(Fname:String);
+    FileExt: string;
+    constructor Create(Fname: string);
     procedure AddUses(Name: string); virtual;
     procedure AddClass(C: TParsedClass); virtual;
     procedure AddFunction(fun: TparsedFunction); virtual;
     procedure AddConstructor(c: TparsedConstructor); virtual;
-    procedure AddProcedure(pro: Pointer); virtual;
+    procedure AddProcedure(pro: TparsedFunction); virtual;
     procedure AddProperty(prop: TParsedProperty); virtual;
     procedure AddUses(U: TparsedUses); virtual;
     procedure save(saveFolder: string); virtual;
-    procedure AddProcedureType(prot :TParsedProcedureType);virtual;
-    procedure AddCodeline(L:String);
-   protected
+    procedure AddProcedureType(prot: TParsedProcedureType); virtual;
+    procedure AddSet(S: TParsedSet); virtual;
+    procedure AddCodeline(L: string);
+    function CheckPara(paraList: TObjectList): boolean;
+    function Checkpara(p: TparsedParameter): Boolean;
+  protected
     C: TStringList; //file content
     function InsertAfter(index: integer; str: string): integer;
   end;
@@ -46,6 +49,7 @@ begin
     Result := index + 1;
   end;
 end;
+
 procedure TLangueFile.AddClass(C: TParsedClass);
 begin
 
@@ -56,7 +60,7 @@ begin
 
 end;
 
-procedure TLangueFile.AddProcedure(pro: Pointer);
+procedure TLangueFile.AddProcedure(pro: TparsedFunction);
 begin
 
 end;
@@ -78,12 +82,12 @@ end;
 
 procedure TLangueFile.save(saveFolder: string);
 begin
-  C.SaveToFile(saveFolder+PathDelim+filename+FileExt);
+  C.SaveToFile(saveFolder + PathDelim + filename + FileExt);
 end;
 
-constructor TLangueFile.Create(Fname: String);
+constructor TLangueFile.Create(Fname: string);
 begin
-  filename:=Fname;
+  filename := Fname;
   C := TStringList.Create;
 end;
 
@@ -97,9 +101,35 @@ begin
 
 end;
 
-procedure TLangueFile.AddCodeline(L: String);
+procedure TLangueFile.AddCodeline(L: string);
 begin
   c.Add(L);
+end;
+
+procedure TLangueFile.AddSet(S: TParsedSet);
+begin
+
+end;
+
+function TLangueFile.CheckPara(paraList: TObjectList): boolean;
+var
+  p: TparsedParameter;
+  k: Integer;
+begin
+  for k := 0 to paraList.Count - 1 do
+  begin
+    p := paraList[k] as TparsedParameter;
+   if not Checpara(p)then Exit(False);
+  end;
+  Result := True;
+end;
+
+function TLangueFile.Checkpara( p: TparsedParameter):Boolean;
+begin
+  if (not p.isSimpleType) and (not p.isDefaultType) and (p.parameterTypeO =
+    nil) then
+        Exit(False);
+  Result:=True;
 end;
 
 end.

@@ -1,7 +1,7 @@
 from ctypes import *
 from Application import *
 from MainPasObject import *
-from stdctrls import *
+from StdCtrls import *
 class Form1:
     def OnClickH(self,Sender):
         #F=GetPytonObject(sender)
@@ -9,7 +9,11 @@ class Form1:
         print (Sender.Caption)
     
     def OnButton1Click(self,Sender):
-        Sender.Top=Sender.Top+1
+        Sender.Top=Sender.Top+10
+        Sender.OnClick=self.OnButton1Click2
+    def OnButton1Click2(self,Sender):
+        Sender.Top=Sender.Top-10
+        Sender.OnClick=self.OnButton1Click
 
     def OnMouseMove2(self,Sender,i,i2,i3):
         print (i,i2,i3)

@@ -1,4 +1,8 @@
+from GraphType import *
+from IntfGraphics import *
+from Classes import *
 from MainPasObject import *
+import LCLBindingUtil
 #import end
 def CreateTFontStylesFromInt(i):
     dic={1:"fsBold",2:"fsItalic",4:"fsUnderline",8:"fsStrikeOut"}
@@ -8,10 +12,46 @@ class TGraphic(TPersistent):
 #    pointer=c_void_p()
     def __init__(self):#TGraphic
         TPersistent.__init__(self)
+#Procedure Graphics_TGraphic_Assign
+    @staticmethod
+    def Assign(self,ASource):
+        LCLBinding.Graphics_TGraphic_Assign((ASource.pointer))
 #constructorGraphics_TGraphic_Create
     @staticmethod
     def Create():
         return LCLBindingUtil.GetPytonObject(LCLBinding.Graphics_TGraphic_Create(),TGraphic)
+#Procedure Graphics_TGraphic_Clear
+    @staticmethod
+    def Clear(self,):
+        LCLBinding.Graphics_TGraphic_Clear()
+#Procedure Graphics_TGraphic_LoadFromFile
+    @staticmethod
+    def LoadFromFile(self,Filename):
+        LCLBinding.Graphics_TGraphic_LoadFromFile((Filename))
+#Procedure Graphics_TGraphic_LoadFromStream
+    @staticmethod
+    def LoadFromStream(self,Stream):
+        LCLBinding.Graphics_TGraphic_LoadFromStream((Stream.pointer))
+#Procedure Graphics_TGraphic_LoadFromMimeStream
+    @staticmethod
+    def LoadFromMimeStream(self,AStream,AMimeType):
+        LCLBinding.Graphics_TGraphic_LoadFromMimeStream((AStream.pointer),(AMimeType))
+#Procedure Graphics_TGraphic_LoadFromLazarusResource
+    @staticmethod
+    def LoadFromLazarusResource(self,ResName):
+        LCLBinding.Graphics_TGraphic_LoadFromLazarusResource((ResName))
+#Procedure Graphics_TGraphic_SaveToFile
+    @staticmethod
+    def SaveToFile(self,Filename):
+        LCLBinding.Graphics_TGraphic_SaveToFile((Filename))
+#Procedure Graphics_TGraphic_SaveToStream
+    @staticmethod
+    def SaveToStream(self,Stream):
+        LCLBinding.Graphics_TGraphic_SaveToStream((Stream.pointer))
+#Procedure Graphics_TGraphic_GetSupportedSourceMimeTypes
+    @staticmethod
+    def GetSupportedSourceMimeTypes(self,List):
+        LCLBinding.Graphics_TGraphic_GetSupportedSourceMimeTypes((List.pointer))
     def getEmpty(self):
         r=LCLBinding.get_Graphics_TGraphic_Empty(self.pointer)
         return LCLBindingUtil.ConvertPascalBoolean(r)
@@ -40,7 +80,7 @@ class TGraphic(TPersistent):
         oldobj=0
         if hasattr(self, 'OnChangecall'):
             FreeOldEvent=1
-            oldobj=OnChangePasObject
+            oldobj=self.OnChangePasObject
         self.OnChangecall=v 
         self.PasOnChange=FunctionForm(self._Warper_OnChange)
         self.OnChangePasObject=LCLBinding.set_Graphics_TGraphic_OnChange(self.pointer,self.PasOnChange,oldobj,FreeOldEvent)
@@ -75,6 +115,46 @@ class TRasterImage(TGraphic):
     @staticmethod
     def Create():
         return LCLBindingUtil.GetPytonObject(LCLBinding.Graphics_TRasterImage_Create(),TRasterImage)
+#Procedure Graphics_TRasterImage_Assign
+    @staticmethod
+    def Assign(self,Source):
+        LCLBinding.Graphics_TRasterImage_Assign((Source.pointer))
+#Procedure Graphics_TRasterImage_Clear
+    @staticmethod
+    def Clear(self,):
+        LCLBinding.Graphics_TRasterImage_Clear()
+#Procedure Graphics_TRasterImage_BeginUpdate
+    @staticmethod
+    def BeginUpdate(self,ACanvasOnly):
+        LCLBinding.Graphics_TRasterImage_BeginUpdate((booleantoint(ACanvasOnly)))
+#Procedure Graphics_TRasterImage_EndUpdate
+    @staticmethod
+    def EndUpdate(self,AStreamIsValid):
+        LCLBinding.Graphics_TRasterImage_EndUpdate((booleantoint(AStreamIsValid)))
+#Procedure Graphics_TRasterImage_FreeImage
+    @staticmethod
+    def FreeImage(self,):
+        LCLBinding.Graphics_TRasterImage_FreeImage()
+#Procedure Graphics_TRasterImage_LoadFromMimeStream
+    @staticmethod
+    def LoadFromMimeStream(self,AStream,AMimeType):
+        LCLBinding.Graphics_TRasterImage_LoadFromMimeStream((AStream.pointer),(AMimeType))
+#Procedure Graphics_TRasterImage_LoadFromRawImage
+    @staticmethod
+    def LoadFromRawImage(self,AIMage,ADataOwner):
+        LCLBinding.Graphics_TRasterImage_LoadFromRawImage((AIMage.pointer),(booleantoint(ADataOwner)))
+#Procedure Graphics_TRasterImage_LoadFromIntfImage
+    @staticmethod
+    def LoadFromIntfImage(self,IntfImage):
+        LCLBinding.Graphics_TRasterImage_LoadFromIntfImage((IntfImage.pointer))
+#Procedure Graphics_TRasterImage_SaveToStream
+    @staticmethod
+    def SaveToStream(self,AStream):
+        LCLBinding.Graphics_TRasterImage_SaveToStream((AStream.pointer))
+#Procedure Graphics_TRasterImage_GetSupportedSourceMimeTypes
+    @staticmethod
+    def GetSupportedSourceMimeTypes(self,List):
+        LCLBinding.Graphics_TRasterImage_GetSupportedSourceMimeTypes((List.pointer))
     def getCanvas(self):
         r=LCLBinding.get_Graphics_TRasterImage_Canvas(self.pointer)
         return LCLBindingUtil.GetPytonObject(r,TCanvas)
@@ -111,6 +191,22 @@ class TCustomBitmap(TRasterImage):
     @staticmethod
     def Create():
         return LCLBindingUtil.GetPytonObject(LCLBinding.Graphics_TCustomBitmap_Create(),TCustomBitmap)
+#Procedure Graphics_TCustomBitmap_Assign
+    @staticmethod
+    def Assign(self,Source):
+        LCLBinding.Graphics_TCustomBitmap_Assign((Source.pointer))
+#Procedure Graphics_TCustomBitmap_Clear
+    @staticmethod
+    def Clear(self,):
+        LCLBinding.Graphics_TCustomBitmap_Clear()
+#Procedure Graphics_TCustomBitmap_FreeImage
+    @staticmethod
+    def FreeImage(self,):
+        LCLBinding.Graphics_TCustomBitmap_FreeImage()
+#Procedure Graphics_TCustomBitmap_SetSize
+    @staticmethod
+    def SetSize(self,AWidth,AHeight):
+        LCLBinding.Graphics_TCustomBitmap_SetSize((AWidth),(AHeight))
     def getHandleType(self):
         r=LCLBinding.get_Graphics_TCustomBitmap_HandleType(self.pointer)
         return r
@@ -143,6 +239,42 @@ class TPicture(TPersistent):
     @staticmethod
     def Create():
         return LCLBindingUtil.GetPytonObject(LCLBinding.Graphics_TPicture_Create(),TPicture)
+#Procedure Graphics_TPicture_Clear
+    @staticmethod
+    def Clear(self,):
+        LCLBinding.Graphics_TPicture_Clear()
+#Procedure Graphics_TPicture_LoadFromFile
+    @staticmethod
+    def LoadFromFile(self,Filename):
+        LCLBinding.Graphics_TPicture_LoadFromFile((Filename))
+#Procedure Graphics_TPicture_LoadFromLazarusResource
+    @staticmethod
+    def LoadFromLazarusResource(self,AName):
+        LCLBinding.Graphics_TPicture_LoadFromLazarusResource((AName))
+#Procedure Graphics_TPicture_LoadFromStream
+    @staticmethod
+    def LoadFromStream(self,Stream):
+        LCLBinding.Graphics_TPicture_LoadFromStream((Stream.pointer))
+#Procedure Graphics_TPicture_LoadFromStreamWithFileExt
+    @staticmethod
+    def LoadFromStreamWithFileExt(self,Stream,FileExt):
+        LCLBinding.Graphics_TPicture_LoadFromStreamWithFileExt((Stream.pointer),(FileExt))
+#Procedure Graphics_TPicture_SaveToFile
+    @staticmethod
+    def SaveToFile(self,Filename,FileExt):
+        LCLBinding.Graphics_TPicture_SaveToFile((Filename),(FileExt))
+#Procedure Graphics_TPicture_SaveToStream
+    @staticmethod
+    def SaveToStream(self,Stream):
+        LCLBinding.Graphics_TPicture_SaveToStream((Stream.pointer))
+#Procedure Graphics_TPicture_SaveToStreamWithFileExt
+    @staticmethod
+    def SaveToStreamWithFileExt(self,Stream,FileExt):
+        LCLBinding.Graphics_TPicture_SaveToStreamWithFileExt((Stream.pointer),(FileExt))
+#Procedure Graphics_TPicture_Assign
+    @staticmethod
+    def Assign(self,Source):
+        LCLBinding.Graphics_TPicture_Assign((Source.pointer))
     def getBitmap(self):
         r=LCLBinding.get_Graphics_TPicture_Bitmap(self.pointer)
         return LCLBindingUtil.GetPytonObject(r,TBitmap)
@@ -201,7 +333,7 @@ class TPicture(TPersistent):
         oldobj=0
         if hasattr(self, 'OnChangecall'):
             FreeOldEvent=1
-            oldobj=OnChangePasObject
+            oldobj=self.OnChangePasObject
         self.OnChangecall=v 
         self.PasOnChange=FunctionForm(self._Warper_OnChange)
         self.OnChangePasObject=LCLBinding.set_Graphics_TPicture_OnChange(self.pointer,self.PasOnChange,oldobj,FreeOldEvent)
@@ -209,24 +341,6 @@ class TPicture(TPersistent):
         return OnChangecall
     OnChange=property(getOnChange,setOnChange)
 #class TPicture end
-#class TJPEGImage start
-class TJPEGImage(TFPImageBitmap):
-#    pointer=c_void_p()
-    def __init__(self):#TJPEGImage
-        TFPImageBitmap.__init__(self)
-#constructorGraphics_TJPEGImage_Create
-    @staticmethod
-    def Create():
-        return LCLBindingUtil.GetPytonObject(LCLBinding.Graphics_TJPEGImage_Create(),TJPEGImage)
-    def getGrayScale(self):
-        r=LCLBinding.get_Graphics_TJPEGImage_GrayScale(self.pointer)
-        return LCLBindingUtil.ConvertPascalBoolean(r)
-    GrayScale=property(getGrayScale)
-    def getProgressiveEncoding(self):
-        r=LCLBinding.get_Graphics_TJPEGImage_ProgressiveEncoding(self.pointer)
-        return LCLBindingUtil.ConvertPascalBoolean(r)
-    ProgressiveEncoding=property(getProgressiveEncoding)
-#class TJPEGImage end
 #class TPixmap start
 class TPixmap(TFPImageBitmap):
 #    pointer=c_void_p()
@@ -237,6 +351,46 @@ class TPixmap(TFPImageBitmap):
     def Create():
         return LCLBindingUtil.GetPytonObject(LCLBinding.Graphics_TPixmap_Create(),TPixmap)
 #class TPixmap end
+#class TCustomIcon start
+class TCustomIcon(TRasterImage):
+#    pointer=c_void_p()
+    def __init__(self):#TCustomIcon
+        TRasterImage.__init__(self)
+#constructorGraphics_TCustomIcon_Create
+    @staticmethod
+    def Create():
+        return LCLBindingUtil.GetPytonObject(LCLBinding.Graphics_TCustomIcon_Create(),TCustomIcon)
+#Procedure Graphics_TCustomIcon_Assign
+    @staticmethod
+    def Assign(self,Source):
+        LCLBinding.Graphics_TCustomIcon_Assign((Source.pointer))
+#Procedure Graphics_TCustomIcon_AssignImage
+    @staticmethod
+    def AssignImage(self,ASource):
+        LCLBinding.Graphics_TCustomIcon_AssignImage((ASource.pointer))
+#Procedure Graphics_TCustomIcon_Clear
+    @staticmethod
+    def Clear(self,):
+        LCLBinding.Graphics_TCustomIcon_Clear()
+#Procedure Graphics_TCustomIcon_Delete
+    @staticmethod
+    def Delete(self,Aindex):
+        LCLBinding.Graphics_TCustomIcon_Delete((Aindex))
+#Procedure Graphics_TCustomIcon_SetSize
+    @staticmethod
+    def SetSize(self,AWidth,AHeight):
+        LCLBinding.Graphics_TCustomIcon_SetSize((AWidth),(AHeight))
+    def getCurrent(self):
+        r=LCLBinding.get_Graphics_TCustomIcon_Current(self.pointer)
+        return LCLBindingUtil.ConvertPascalInteger(r)
+    def setCurrent(self,v):
+        LCLBinding.set_Graphics_TCustomIcon_Current(self.pointer,v)
+    Current=property(getCurrent,setCurrent)
+    def getCount(self):
+        r=LCLBinding.get_Graphics_TCustomIcon_Count(self.pointer)
+        return LCLBindingUtil.ConvertPascalInteger(r)
+    Count=property(getCount)
+#class TCustomIcon end
 #class TGraphicsObject start
 class TGraphicsObject(TPersistent):
 #    pointer=c_void_p()
@@ -250,7 +404,7 @@ class TGraphicsObject(TPersistent):
         oldobj=0
         if hasattr(self, 'OnChangingcall'):
             FreeOldEvent=1
-            oldobj=OnChangingPasObject
+            oldobj=self.OnChangingPasObject
         self.OnChangingcall=v 
         self.PasOnChanging=FunctionForm(self._Warper_OnChanging)
         self.OnChangingPasObject=LCLBinding.set_Graphics_TGraphicsObject_OnChanging(self.pointer,self.PasOnChanging,oldobj,FreeOldEvent)
@@ -265,7 +419,7 @@ class TGraphicsObject(TPersistent):
         oldobj=0
         if hasattr(self, 'OnChangecall'):
             FreeOldEvent=1
-            oldobj=OnChangePasObject
+            oldobj=self.OnChangePasObject
         self.OnChangecall=v 
         self.PasOnChange=FunctionForm(self._Warper_OnChange)
         self.OnChangePasObject=LCLBinding.set_Graphics_TGraphicsObject_OnChange(self.pointer,self.PasOnChange,oldobj,FreeOldEvent)
@@ -282,16 +436,28 @@ class TRegion(TGraphicsObject):
     @staticmethod
     def Create():
         return LCLBindingUtil.GetPytonObject(LCLBinding.Graphics_TRegion_Create(),TRegion)
+#Procedure Graphics_TRegion_Assign
+    @staticmethod
+    def Assign(self,Source):
+        LCLBinding.Graphics_TRegion_Assign((Source.pointer))
+#Procedure Graphics_TRegion_AddRectangle
+    @staticmethod
+    def AddRectangle(self,X1,Y1,X2,Y2):
+        LCLBinding.Graphics_TRegion_AddRectangle((X1),(Y1),(X2),(Y2))
 #class TRegion end
 #class TPen start
-class TPen(TFPCustomPen):
+class TPen(TObject):
 #    pointer=c_void_p()
     def __init__(self):#TPen
-        TFPCustomPen.__init__(self)
+        TObject.__init__(self)
 #constructorGraphics_TPen_Create
     @staticmethod
     def Create():
         return LCLBindingUtil.GetPytonObject(LCLBinding.Graphics_TPen_Create(),TPen)
+#Procedure Graphics_TPen_Assign
+    @staticmethod
+    def Assign(self,Source):
+        LCLBinding.Graphics_TPen_Assign((Source.pointer))
     def getCosmetic(self):
         r=LCLBinding.get_Graphics_TPen_Cosmetic(self.pointer)
         return LCLBindingUtil.ConvertPascalBoolean(r)
@@ -312,10 +478,14 @@ class TPen(TFPCustomPen):
     JoinStyle=property(getJoinStyle,setJoinStyle)
 #class TPen end
 #class TBrush start
-class TBrush(TFPCustomBrush):
+class TBrush(TObject):
 #    pointer=c_void_p()
     def __init__(self):#TBrush
-        TFPCustomBrush.__init__(self)
+        TObject.__init__(self)
+#Procedure Graphics_TBrush_Assign
+    @staticmethod
+    def Assign(self,Source):
+        LCLBinding.Graphics_TBrush_Assign((Source.pointer))
 #constructorGraphics_TBrush_Create
     @staticmethod
     def Create():
@@ -328,14 +498,62 @@ class TBrush(TFPCustomBrush):
     Bitmap=property(getBitmap,setBitmap)
 #class TBrush end
 #class TCanvas start
-class TCanvas(TFPCustomCanvas):
+class TCanvas(TObject):
 #    pointer=c_void_p()
     def __init__(self):#TCanvas
-        TFPCustomCanvas.__init__(self)
+        TObject.__init__(self)
 #constructorGraphics_TCanvas_Create
     @staticmethod
     def Create():
         return LCLBindingUtil.GetPytonObject(LCLBinding.Graphics_TCanvas_Create(),TCanvas)
+#Procedure Graphics_TCanvas_Lock
+    @staticmethod
+    def Lock(self,):
+        LCLBinding.Graphics_TCanvas_Lock()
+#Procedure Graphics_TCanvas_Unlock
+    @staticmethod
+    def Unlock(self,):
+        LCLBinding.Graphics_TCanvas_Unlock()
+#Procedure Graphics_TCanvas_Refresh
+    @staticmethod
+    def Refresh(self,):
+        LCLBinding.Graphics_TCanvas_Refresh()
+#Procedure Graphics_TCanvas_Changing
+    @staticmethod
+    def Changing(self,):
+        LCLBinding.Graphics_TCanvas_Changing()
+#Procedure Graphics_TCanvas_Changed
+    @staticmethod
+    def Changed(self,):
+        LCLBinding.Graphics_TCanvas_Changed()
+#Procedure Graphics_TCanvas_SaveHandleState
+    @staticmethod
+    def SaveHandleState(self,):
+        LCLBinding.Graphics_TCanvas_SaveHandleState()
+#Procedure Graphics_TCanvas_RestoreHandleState
+    @staticmethod
+    def RestoreHandleState(self,):
+        LCLBinding.Graphics_TCanvas_RestoreHandleState()
+#Procedure Graphics_TCanvas_ArcTo
+    @staticmethod
+    def ArcTo(self,ALeft,ATop,ARight,ABottom,SX,SY,EX,EY):
+        LCLBinding.Graphics_TCanvas_ArcTo((ALeft),(ATop),(ARight),(ABottom),(SX),(SY),(EX),(EY))
+#Procedure Graphics_TCanvas_Draw
+    @staticmethod
+    def Draw(self,X,Y,SrcGraphic):
+        LCLBinding.Graphics_TCanvas_Draw((X),(Y),(SrcGraphic.pointer))
+#Procedure Graphics_TCanvas_RadialPie
+    @staticmethod
+    def RadialPie(self,x1,y1,x2,y2,StartAngle16Deg,Angle16DegLength):
+        LCLBinding.Graphics_TCanvas_RadialPie((x1),(y1),(x2),(y2),(StartAngle16Deg),(Angle16DegLength))
+#Procedure Graphics_TCanvas_Pie
+    @staticmethod
+    def Pie(self,EllipseX1,EllipseY1,EllipseX2,EllipseY2,StartX,StartY,EndX,EndY):
+        LCLBinding.Graphics_TCanvas_Pie((EllipseX1),(EllipseY1),(EllipseX2),(EllipseY2),(StartX),(StartY),(EndX),(EndY))
+#Procedure Graphics_TCanvas_TextOut
+    @staticmethod
+    def TextOut(self,X,Y,Text):
+        LCLBinding.Graphics_TCanvas_TextOut((X),(Y),(Text))
     def getAntialiasingMode(self):
         r=LCLBinding.get_Graphics_TCanvas_AntialiasingMode(self.pointer)
         return r
@@ -388,7 +606,7 @@ class TCanvas(TFPCustomCanvas):
         oldobj=0
         if hasattr(self, 'OnChangecall'):
             FreeOldEvent=1
-            oldobj=OnChangePasObject
+            oldobj=self.OnChangePasObject
         self.OnChangecall=v 
         self.PasOnChange=FunctionForm(self._Warper_OnChange)
         self.OnChangePasObject=LCLBinding.set_Graphics_TCanvas_OnChange(self.pointer,self.PasOnChange,oldobj,FreeOldEvent)
@@ -403,7 +621,7 @@ class TCanvas(TFPCustomCanvas):
         oldobj=0
         if hasattr(self, 'OnChangingcall'):
             FreeOldEvent=1
-            oldobj=OnChangingPasObject
+            oldobj=self.OnChangingPasObject
         self.OnChangingcall=v 
         self.PasOnChanging=FunctionForm(self._Warper_OnChanging)
         self.OnChangingPasObject=LCLBinding.set_Graphics_TCanvas_OnChanging(self.pointer,self.PasOnChanging,oldobj,FreeOldEvent)
@@ -411,26 +629,24 @@ class TCanvas(TFPCustomCanvas):
         return OnChangingcall
     OnChanging=property(getOnChanging,setOnChanging)
 #class TCanvas end
-#class TCustomIcon start
-class TCustomIcon(TRasterImage):
+#class TJPEGImage start
+class TJPEGImage(TFPImageBitmap):
 #    pointer=c_void_p()
-    def __init__(self):#TCustomIcon
-        TRasterImage.__init__(self)
-#constructorGraphics_TCustomIcon_Create
+    def __init__(self):#TJPEGImage
+        TFPImageBitmap.__init__(self)
+#constructorGraphics_TJPEGImage_Create
     @staticmethod
     def Create():
-        return LCLBindingUtil.GetPytonObject(LCLBinding.Graphics_TCustomIcon_Create(),TCustomIcon)
-    def getCurrent(self):
-        r=LCLBinding.get_Graphics_TCustomIcon_Current(self.pointer)
-        return LCLBindingUtil.ConvertPascalInteger(r)
-    def setCurrent(self,v):
-        LCLBinding.set_Graphics_TCustomIcon_Current(self.pointer,v)
-    Current=property(getCurrent,setCurrent)
-    def getCount(self):
-        r=LCLBinding.get_Graphics_TCustomIcon_Count(self.pointer)
-        return LCLBindingUtil.ConvertPascalInteger(r)
-    Count=property(getCount)
-#class TCustomIcon end
+        return LCLBindingUtil.GetPytonObject(LCLBinding.Graphics_TJPEGImage_Create(),TJPEGImage)
+    def getGrayScale(self):
+        r=LCLBinding.get_Graphics_TJPEGImage_GrayScale(self.pointer)
+        return LCLBindingUtil.ConvertPascalBoolean(r)
+    GrayScale=property(getGrayScale)
+    def getProgressiveEncoding(self):
+        r=LCLBinding.get_Graphics_TJPEGImage_ProgressiveEncoding(self.pointer)
+        return LCLBindingUtil.ConvertPascalBoolean(r)
+    ProgressiveEncoding=property(getProgressiveEncoding)
+#class TJPEGImage end
 #class TIcon start
 class TIcon(TCustomIcon):
 #    pointer=c_void_p()
@@ -472,18 +688,30 @@ class TBitmap(TFPImageBitmap):
         return LCLBindingUtil.GetPytonObject(LCLBinding.Graphics_TBitmap_Create(),TBitmap)
 #class TBitmap end
 #class TFont start
-class TFont(TFPCustomFont):
+class TFont(TObject):
 #    pointer=c_void_p()
     def __init__(self):#TFont
-        TFPCustomFont.__init__(self)
+        TObject.__init__(self)
 #constructorGraphics_TFont_Create
     @staticmethod
     def Create():
         return LCLBindingUtil.GetPytonObject(LCLBinding.Graphics_TFont_Create(),TFont)
+#Procedure Graphics_TFont_BeginUpdate
+    @staticmethod
+    def BeginUpdate(self,):
+        LCLBinding.Graphics_TFont_BeginUpdate()
+#Procedure Graphics_TFont_EndUpdate
+    @staticmethod
+    def EndUpdate(self,):
+        LCLBinding.Graphics_TFont_EndUpdate()
     def getIsMonoSpace(self):
         r=LCLBinding.get_Graphics_TFont_IsMonoSpace(self.pointer)
         return LCLBindingUtil.ConvertPascalBoolean(r)
     IsMonoSpace=property(getIsMonoSpace)
+#Procedure Graphics_TFont_SetDefault
+    @staticmethod
+    def SetDefault(self,):
+        LCLBinding.Graphics_TFont_SetDefault()
     def getCanUTF8(self):
         r=LCLBinding.get_Graphics_TFont_CanUTF8(self.pointer)
         return LCLBindingUtil.ConvertPascalBoolean(r)

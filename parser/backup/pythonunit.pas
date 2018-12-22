@@ -29,8 +29,8 @@ begin
   SavingDiroctry:=D;
   PascalExport := TPascalLang.Create(D +PathDelim+ 'pas');
   ReturnTypeDec:=TpythonFile.Create('ReturnTypeDec');
-  ReturnTypeDec.c.add('from ctypes import *');
-  ReturnTypeDec.C.add('#import end');
+  ReturnTypeDec.AddCodeline('from ctypes import *');
+  ReturnTypeDec.AddCodeline('#import end');
   Self.LangueFile.Add(ReturnTypeDec);
 end;
 
